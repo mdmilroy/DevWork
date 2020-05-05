@@ -54,7 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employer.cs" />
+    <Compile Include="Freelancer.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="JobPost.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
