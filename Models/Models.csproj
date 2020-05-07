@@ -50,6 +50,7 @@
     <Compile Include="Message\MessageDetail.cs" />
     <Compile Include="Message\MessageEdit.cs" />
     <Compile Include="Message\MessageListItem.cs" />
+    <Compile Include="Profiles\GetUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
