@@ -24,8 +24,8 @@ namespace Data
         public int StateId { get; set; }
         public virtual string State { get; set; }
 
-        [ForeignKey("CodingLanguage")]
-        public int LanguageId { get; set; }
-        public virtual string CodingLanguage { get; set; }
+        //[ForeignKey("CodingLanguage")]
+        //public int LanguageId { get; set; }
+        //public virtual string CodingLanguage { get; set; }
     }
 }

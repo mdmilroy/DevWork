@@ -42,7 +42,7 @@ namespace Services
                 var query =
                     ctx
                         .Messages
-                        .Where(e => e.Sender == _userId)
+                        .Where(e => e.Sender == _userId || e.Recipient == _userId)
                         .Select(
                             e =>
                                 new MessageListItem
@@ -65,7 +65,7 @@ namespace Services
                 var entity =
                     ctx
                         .Messages
-                        .Single(e => e.Id == id && e.Sender == _userId);
+                        .Single(e => e.Id == id && e.Sender == _userId || e.Recipient == _userId);
                 return
                     new MessageDetail
                     {
