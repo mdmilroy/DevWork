@@ -46,10 +46,14 @@
     <Compile Include="JobPost\JobPostDetail.cs" />
     <Compile Include="JobPost\JobPostEdit.cs" />
     <Compile Include="JobPost\JobPostListItem.cs" />
+<<<<<<< HEAD
     <Compile Include="Message\MessageCreate.cs" />
     <Compile Include="Message\MessageDetail.cs" />
     <Compile Include="Message\MessageEdit.cs" />
     <Compile Include="Message\MessageListItem.cs" />
+=======
+    <Compile Include="Profiles\GetUsers.cs" />
+>>>>>>> 7b027f2dbe29271e8734c68e3ffe39e411661d78
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
