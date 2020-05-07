@@ -10,6 +10,10 @@ namespace Services
 {
     public class CodingLanguageService
     {
+        public CodingLanguageService() 
+        {
+            
+        }
 
         public bool CreateCodingLanguage(LanguageCreate model)
         {
