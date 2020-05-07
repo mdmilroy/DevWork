@@ -46,8 +46,13 @@
     <Compile Include="JobPost\JobPostDetail.cs" />
     <Compile Include="JobPost\JobPostEdit.cs" />
     <Compile Include="JobPost\JobPostListItem.cs" />
+    <Compile Include="Message\MessageCreate.cs" />
+    <Compile Include="Message\MessageDetail.cs" />
+    <Compile Include="Message\MessageEdit.cs" />
+    <Compile Include="Message\MessageListItem.cs" />
     <Compile Include="Profiles\GetUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
