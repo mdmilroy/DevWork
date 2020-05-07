@@ -412,7 +412,7 @@
       <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{41E3916F-FC06-4DB0-8580-D2685BC87C25}</Project>
+      <Project>{41e3916f-fc06-4db0-8580-d2685bc87c25}</Project>
       <Name>Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
