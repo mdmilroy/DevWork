@@ -64,9 +64,17 @@
     <Compile Include="Migrations\202005072149355_InitialCreate.Designer.cs">
       <DependentUpon>202005072149355_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005072225546_initialMigration.cs" />
-    <Compile Include="Migrations\202005072225546_initialMigration.Designer.cs">
-      <DependentUpon>202005072225546_initialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202005080039501_initialMigration.cs" />
+    <Compile Include="Migrations\202005080039501_initialMigration.Designer.cs">
+      <DependentUpon>202005080039501_initialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005080118016_removedEnteringLangId.cs" />
+    <Compile Include="Migrations\202005080118016_removedEnteringLangId.Designer.cs">
+      <DependentUpon>202005080118016_removedEnteringLangId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005080123119_requireUserIdForLang.cs" />
+    <Compile Include="Migrations\202005080123119_requireUserIdForLang.Designer.cs">
+      <DependentUpon>202005080123119_requireUserIdForLang.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,8 +88,14 @@
     <EmbeddedResource Include="Migrations\202005072149355_InitialCreate.resx">
       <DependentUpon>202005072149355_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005072225546_initialMigration.resx">
-      <DependentUpon>202005072225546_initialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005080039501_initialMigration.resx">
+      <DependentUpon>202005080039501_initialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005080118016_removedEnteringLangId.resx">
+      <DependentUpon>202005080118016_removedEnteringLangId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005080123119_requireUserIdForLang.resx">
+      <DependentUpon>202005080123119_requireUserIdForLang.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
