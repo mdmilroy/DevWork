@@ -10,7 +10,7 @@ namespace Models.Message
     public class MessageCreate
     {
         [Required]
-        public Guid Recipient { get; set; }
+        public string Recipient { get; set; }
         [Required]
         public string Content { get; set; }
     }
