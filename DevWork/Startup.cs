@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Data;
+using Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 
@@ -14,6 +18,24 @@ namespace DevWork
         {
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             ConfigureAuth(app);
+            CreateRole();
+        }
+
+        private void CreateRole()
+        {
+            ApplicationDbContext ctx = new ApplicationDbContext();
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(ctx));
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ctx));
+
+            if (!roleManager.RoleExists("Employer"))
+            {
+                roleManager.Create(new IdentityRole("Employer"));
+            }
+            if (!roleManager.RoleExists("Freelancer"))
+            {
+                roleManager.Create(new IdentityRole("Freelancer"));
+            }
+
         }
     }
 }

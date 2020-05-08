@@ -20,7 +20,7 @@ namespace Data
         public double Rating { get; set; }
 
         [ForeignKey("State")]
-        public int Id { get; set; }
+        public int StateId { get; set; }
         public virtual string State { get; set; }
     }
 }

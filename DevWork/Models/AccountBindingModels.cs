@@ -56,6 +56,10 @@ namespace DevWork.Models
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Role")]
+        public string UserRole { get; set; }
     }
 
     public class RegisterExternalBindingModel

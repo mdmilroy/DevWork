@@ -329,7 +329,7 @@ namespace DevWork.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName};
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, UserRole = model.UserRole};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
