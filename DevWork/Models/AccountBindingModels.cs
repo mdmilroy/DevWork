@@ -60,6 +60,17 @@ namespace DevWork.Models
         [Required]
         [Display(Name = "Freelancer or Employer?")]
         public string UserRole { get; set; }
+
+        [Required]
+        [MaxLength(2, ErrorMessage = "Use your state's two letter abbreviation")]
+        [Display(Name = "State")]
+        public string State { get; set; }
+        [Required]
+        [Display(Name = "Name of your organization (none if Freelancer)")]
+        public string Organization { get; set; }
+        [Required]
+        [Display(Name = "Primary coding language")]
+        public string CodingLanguage { get; set; }
     }
 
     public class RegisterExternalBindingModel

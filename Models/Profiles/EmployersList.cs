@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Models.Profile
 {
-    public class FreelancersList
+    public class EmployersList
     {
         public Guid UserId { get; set; }
+        public string Organization { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int JobsCompleted { get; set; }
         public double Rating { get; set; }
         public virtual string State { get; set; }
-        public virtual string CodingLanguage { get; set; }
     }
 }
