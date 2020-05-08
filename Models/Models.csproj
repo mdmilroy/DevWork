@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployersList.cs" />
+    <Compile Include="FreelancersList.cs" />
     <Compile Include="JobPost\JobPostCreate.cs" />
     <Compile Include="JobPost\JobPostDetail.cs" />
     <Compile Include="JobPost\JobPostEdit.cs" />
@@ -50,7 +52,9 @@
     <Compile Include="Message\MessageDetail.cs" />
     <Compile Include="Message\MessageEdit.cs" />
     <Compile Include="Message\MessageListItem.cs" />
-    <Compile Include="Profiles\GetUsers.cs" />
+    <Compile Include="CodingLang\LanguageCreate.cs" />
+    <Compile Include="CodingLang\LanguageEdit.cs" />
+    <Compile Include="CodingLang\LanguageListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
