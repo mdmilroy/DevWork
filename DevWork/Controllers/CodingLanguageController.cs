@@ -1,4 +1,5 @@
-﻿using Models.Profiles;
+﻿using Microsoft.AspNet.Identity;
+using Models.Profiles;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace DevWork.Controllers
     {
         private CodingLanguageService CreateCodingLanguageService()
         {
-            var languageService = new CodingLanguageService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var languageService = new CodingLanguageService(userId);
             return languageService;
         }
 

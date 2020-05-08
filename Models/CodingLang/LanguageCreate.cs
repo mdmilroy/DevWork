@@ -8,7 +8,6 @@ namespace Models.Profiles
 {
     public class LanguageCreate
     {
-        public int LanguageId { get; set; }
         public string LanguageName { get; set; }
     }
 }

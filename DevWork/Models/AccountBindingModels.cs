@@ -58,7 +58,7 @@ namespace DevWork.Models
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "Role")]
+        [Display(Name = "Freelancer or Employer?")]
         public string UserRole { get; set; }
     }
 

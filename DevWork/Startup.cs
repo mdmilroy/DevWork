@@ -27,13 +27,13 @@ namespace DevWork
             RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(ctx));
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ctx));
 
-            if (!roleManager.RoleExists("Employer"))
+            if (!roleManager.RoleExists("employer"))
             {
-                roleManager.Create(new IdentityRole("Employer"));
+                roleManager.Create(new IdentityRole("employer"));
             }
-            if (!roleManager.RoleExists("Freelancer"))
+            if (!roleManager.RoleExists("freelancer"))
             {
-                roleManager.Create(new IdentityRole("Freelancer"));
+                roleManager.Create(new IdentityRole("freelancer"));
             }
 
         }

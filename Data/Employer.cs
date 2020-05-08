@@ -21,6 +21,6 @@ namespace Data
 
         [ForeignKey("State")]
         public int StateId { get; set; }
-        public virtual string State { get; set; }
+        public virtual State State { get; set; }
     }
 }

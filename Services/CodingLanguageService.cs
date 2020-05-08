@@ -10,9 +10,11 @@ namespace Services
 {
     public class CodingLanguageService
     {
-        public CodingLanguageService() 
+        private readonly Guid _userId;
+
+        public CodingLanguageService(Guid userId)
         {
-            
+            _userId = userId;
         }
 
         public bool CreateCodingLanguage(LanguageCreate model)
@@ -20,7 +22,6 @@ namespace Services
             var entity =
                 new CodingLanguage()
                 {
-                    LanguageId = model.LanguageId,
                     LanguageName = model.LanguageName,
                 };
 
