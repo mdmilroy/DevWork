@@ -11,7 +11,8 @@ using System.Web.Http;
 
 namespace DevWork.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "employer")]
+
     public class JobPostController : ApiController
     {
         private JobPostService CreateJobPostService()
@@ -30,6 +31,7 @@ namespace DevWork.Controllers
 
         public IHttpActionResult Post(JobPostCreate post)
         {
+            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 

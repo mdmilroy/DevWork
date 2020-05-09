@@ -20,6 +20,7 @@ namespace Services
 
         public bool CreateJobPost(JobPostCreate model)
         {
+
             var entity =
                 new JobPost()
                 {
