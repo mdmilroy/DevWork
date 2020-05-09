@@ -16,6 +16,9 @@ namespace Data
         public string LastName { get; set; }
         
         [Required]
+        public string Email { get; set; }
+
+        [Required]
         public int JobsCompleted { get; set; }
         public double Rating { get; set; }
 

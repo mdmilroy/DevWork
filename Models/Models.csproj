@@ -55,6 +55,8 @@
     <Compile Include="CodingLang\LanguageCreate.cs" />
     <Compile Include="CodingLang\LanguageEdit.cs" />
     <Compile Include="CodingLang\LanguageListItem.cs" />
+    <Compile Include="Profiles\EmployerDetail.cs" />
+    <Compile Include="Profiles\FreelancerDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
