@@ -12,6 +12,7 @@ using System.Web.Http;
 namespace DevWork.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/Message")]
     public class MessageController : ApiController
     {
         private MessageService CreateMessageService()

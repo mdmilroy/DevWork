@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace DevWork.Controllers
 {
     [Authorize(Roles = "employer")]
-
+    [RoutePrefix("api/JobPost")]
     public class JobPostController : ApiController
     {
         private JobPostService CreateJobPostService()
