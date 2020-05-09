@@ -8,7 +8,6 @@ namespace Models.Profiles
 {
     public class FreelancerDetail
     {
-        public Guid FreelancerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

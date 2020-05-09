@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Profiles\EmployerCreate.cs" />
+    <Compile Include="Profiles\FreelancerCreate.cs" />
     <Compile Include="Profiles\EmployersList.cs" />
     <Compile Include="Profiles\FreelancersList.cs" />
     <Compile Include="JobPost\JobPostCreate.cs" />
