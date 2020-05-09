@@ -22,6 +22,8 @@ namespace DevWork.Controllers
             return profileService;
         }
 
+        [HttpGet]
+        [Route("GetEmployers")]
         public IHttpActionResult GetEmployers()
         {
             ProfileService profileService = CreateProfileService();
@@ -29,6 +31,8 @@ namespace DevWork.Controllers
             return Ok(notes);
         }
 
+        [HttpGet]
+        [Route("GetFreelancers")]
         public IHttpActionResult GetFreelancers()
         {
             ProfileService profileService = CreateProfileService();
@@ -36,6 +40,8 @@ namespace DevWork.Controllers
             return Ok(notes);
         }
 
+        [HttpGet]
+        [Route("GetEmployerById")]
         public IHttpActionResult GetEmployer(int id)
         {
             ProfileService profileService = CreateProfileService();
@@ -43,6 +49,8 @@ namespace DevWork.Controllers
             return Ok(employer);
         }
 
+        [HttpGet]
+        [Route("GetFreelancerById")]
         public IHttpActionResult GetFreelancer(int id)
         {
             ProfileService profileService = CreateProfileService();
