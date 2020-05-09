@@ -10,6 +10,8 @@ using System.Web.Http;
 
 namespace DevWork.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/CodingLanguage")]
     public class CodingLanguageController : ApiController
     {
         private CodingLanguageService CreateCodingLanguageService()

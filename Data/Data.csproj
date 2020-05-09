@@ -76,9 +76,13 @@
     <Compile Include="Migrations\202005080123119_requireUserIdForLang.Designer.cs">
       <DependentUpon>202005080123119_requireUserIdForLang.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202005091518357_new stuffs.cs" />
-    <Compile Include="Migrations\202005091518357_new stuffs.Designer.cs">
-      <DependentUpon>202005091518357_new stuffs.cs</DependentUpon>
+    <Compile Include="Migrations\202005091439279_ProfileServiceAndController.cs" />
+    <Compile Include="Migrations\202005091439279_ProfileServiceAndController.Designer.cs">
+      <DependentUpon>202005091439279_ProfileServiceAndController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005091507105_ProfileController.cs" />
+    <Compile Include="Migrations\202005091507105_ProfileController.Designer.cs">
+      <DependentUpon>202005091507105_ProfileController.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,8 +105,11 @@
     <EmbeddedResource Include="Migrations\202005080123119_requireUserIdForLang.resx">
       <DependentUpon>202005080123119_requireUserIdForLang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005091518357_new stuffs.resx">
-      <DependentUpon>202005091518357_new stuffs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005091439279_ProfileServiceAndController.resx">
+      <DependentUpon>202005091439279_ProfileServiceAndController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005091507105_ProfileController.resx">
+      <DependentUpon>202005091507105_ProfileController.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
