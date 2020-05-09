@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace DevWork.Controllers
 {
+    [Authorize]
     public class CodingLanguageController : ApiController
     {
         private CodingLanguageService CreateCodingLanguageService()
