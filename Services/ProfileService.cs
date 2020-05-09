@@ -1,5 +1,6 @@
 ﻿using Data;
 using Models.Profile;
+using Models.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,6 @@ namespace Services
                                     LastName = e.LastName,
                                     Organization = e.Organization,
                                     Rating = e.Rating,
-                                    State =e.State.StateName
                                 }
                         );
 
@@ -57,11 +57,54 @@ namespace Services
                                     LastName = e.LastName,
                                     CodingLanguage = e.CodingLanguage.LanguageName,
                                     Rating = e.Rating,
-                                    State = e.State.StateName
                                 }
                         );
 
                 return query.ToArray();
+            }
+        }
+
+        public EmployerDetail GetEmployerById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Employers
+                        .Single(e => e.UserId == _userId);
+                return
+                    new EmployerDetail
+                    {
+                        EmployerId = entity.UserId,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        Email = entity.Email,
+                        Organization = entity.Organization,
+                        State = entity.State.StateName,
+                        Rating = entity.Rating
+                    };
+            }
+        }
+
+        public FreelancerDetail GetFreelancerById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Freelancers
+                        .Single(e => e.UserId == _userId);
+                return
+                    new FreelancerDetail
+                    {
+                        FreelancerId = entity.UserId,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
+                        Email = entity.Email,
+                        CodingLanguage = entity.CodingLanguage.LanguageName,
+                        State = entity.State.StateName,
+                        Rating = entity.Rating
+                    };
             }
         }
     }
