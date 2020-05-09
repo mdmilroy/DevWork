@@ -22,7 +22,8 @@ namespace Services
             var entity =
                 new Message()
                 {
-                    Recipient = _userId,
+                    Sender = _userId,
+                    Recipient = Guid.Parse(message.Recipient),
                     Content = message.Content,
                     Timestamp = DateTimeOffset.Now
                 };

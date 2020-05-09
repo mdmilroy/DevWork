@@ -1,6 +1,7 @@
 ﻿using Data;
 using Microsoft.AspNet.Identity;
 using Models.Message;
+using Models.Profiles;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,36 @@ namespace DevWork.Controllers
             var userId = Guid.Parse(User.Identity.GetUserId());
             var profileService = new ProfileService(userId);
             return profileService;
+        }
+
+        [HttpPost]
+        [Route("NewEmployer")]
+        public IHttpActionResult Post(EmployerCreate employer)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateProfileService();
+
+            if (!service.CreateEmployer(employer))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("NewFreelancer")]
+        public IHttpActionResult Post(FreelancerCreate freelancer)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateProfileService();
+
+            if (!service.CreateFreelancer(freelancer))
+                return InternalServerError();
+
+            return Ok();
         }
 
         [HttpGet]

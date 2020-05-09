@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Models.Profiles
 {
-    public class EmployerDetail
+    public class EmployerCreate
     {
+        public string Organization { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Organization { get; set; }
-        public virtual string State { get; set; }
-        public double Rating { get; set; }
+        public int StateId { get; set; }
     }
 }
