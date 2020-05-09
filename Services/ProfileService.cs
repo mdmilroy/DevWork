@@ -18,6 +18,48 @@ namespace Services
             _userId = userId;
         }
 
+        public bool CreateEmployer(EmployerCreate model)
+        {
+
+            var entity =
+                new Employer()
+                {
+                    UserId = _userId,
+                    Organization = model.Organization,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    StateId = model.StateId
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Employers.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool CreateFreelancer(FreelancerCreate model)
+        {
+
+            var entity =
+                new Freelancer()
+                {
+                    UserId = _userId,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    StateId = model.StateId,
+                    LanguageId = model.CodingLanguage
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Freelancers.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public IEnumerable<EmployersList> GetEmployers()
         {
             using (var ctx = new ApplicationDbContext())
@@ -75,7 +117,6 @@ namespace Services
                 return
                     new EmployerDetail
                     {
-                        EmployerId = entity.UserId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Email = entity.Email,
@@ -97,7 +138,6 @@ namespace Services
                 return
                     new FreelancerDetail
                     {
-                        FreelancerId = entity.UserId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
                         Email = entity.Email,
