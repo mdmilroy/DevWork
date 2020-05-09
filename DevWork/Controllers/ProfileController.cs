@@ -22,6 +22,8 @@ namespace DevWork.Controllers
             return profileService;
         }
 
+        [HttpGet]
+        [Route("GetEmployers")]
         public IHttpActionResult GetEmployers()
         {
             ProfileService profileService = CreateProfileService();
