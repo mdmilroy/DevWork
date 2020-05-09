@@ -57,6 +57,7 @@
     <Compile Include="CodingLanguageService.cs" />
     <Compile Include="JobPostService.cs" />
     <Compile Include="MessageService.cs" />
+    <Compile Include="ProfileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
