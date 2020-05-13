@@ -330,16 +330,12 @@ namespace DevWork.Controllers
                 return BadRequest(ModelState);
             }
 
-        var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName.ToLower(), LastName = model.LastName.ToLower(), UserRole = model.UserRole.ToLower(), State = model.State.ToUpper(), Organization = model.Organization, CodingLanguage = model.CodingLanguage.ToUpper() };
+        var user = new ApplicationUser() { UserName = model.Email, Email = model.Email};
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
-            }
-            else
-            {
-                result = UserManager.AddToRole(user.Id, user.UserRole.ToLower());
             }
 
             return Ok();
