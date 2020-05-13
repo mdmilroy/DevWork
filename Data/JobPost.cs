@@ -19,11 +19,5 @@ namespace Data
 
         [Display(Name = "Modified On")]
         public DateTimeOffset ModifiedUTC { get; set; }
-
-        [ForeignKey("EmployerId")]
-        public virtual Employer Employer { get; set; }
-
-        //[ForeignKey("FreelancerId")]
-        //public virtual Freelancer Freelancer { get; set; }
     }
 }

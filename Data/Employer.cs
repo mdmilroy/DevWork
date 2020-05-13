@@ -6,7 +6,6 @@ namespace Data
 {
     public class Employer
     {
-        //public int EmployerId { get; set; }
         public string EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

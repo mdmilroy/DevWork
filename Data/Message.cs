@@ -13,11 +13,5 @@ namespace Data
         public bool IsRead { get; set; } = false;
         public DateTimeOffset CreatedUTC { get; set; }
         public DateTimeOffset ModifiedUTC { get; set; }
-
-        [ForeignKey("Employer")]
-        public virtual Employer Employer { get; set; }
-
-        [ForeignKey("Freelancer")]
-        public virtual Freelancer Freelancer { get; set; }
     }
 }
