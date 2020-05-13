@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Message
 {
-    public class JobPostCreate
+    public class MessageUpdate
     {
-        public string JobTitle { get; set; }
+        public int MessageId { get; set; }
         public string Content { get; set; }
         public string EmployerId { get; set; }
-        public DateTimeOffset CreatedUTC { get; set; }
+        public string FreelancerId { get; set; }
+        public bool IsRead { get; set; }
     }
 }

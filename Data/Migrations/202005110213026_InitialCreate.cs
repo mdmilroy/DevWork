@@ -12,7 +12,7 @@ namespace Data.Migrations
                 c => new
                     {
                         LanguageId = c.Int(nullable: false, identity: true),
-                        LanguageName = c.String(),
+                        LanguageName = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.LanguageId);
             
@@ -21,24 +21,44 @@ namespace Data.Migrations
                 c => new
                     {
                         UserId = c.Guid(nullable: false),
-                        Organization = c.String(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Organization = c.String(),
+                        Email = c.String(),
                         Rating = c.Double(nullable: false),
+                        StateId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.UserId);
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.State", t => t.StateId, cascadeDelete: true)
+                .Index(t => t.StateId);
+            
+            CreateTable(
+                "dbo.State",
+                c => new
+                    {
+                        StateId = c.Int(nullable: false, identity: true),
+                        StateName = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.StateId);
             
             CreateTable(
                 "dbo.Freelancer",
                 c => new
                     {
                         UserId = c.Guid(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Email = c.String(),
                         JobsCompleted = c.Int(nullable: false),
                         Rating = c.Double(nullable: false),
+                        StateId = c.Int(nullable: false),
+                        LanguageId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.UserId);
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.CodingLanguage", t => t.LanguageId, cascadeDelete: true)
+                .ForeignKey("dbo.State", t => t.StateId, cascadeDelete: true)
+                .Index(t => t.StateId)
+                .Index(t => t.LanguageId);
             
             CreateTable(
                 "dbo.JobPost",
@@ -95,21 +115,13 @@ namespace Data.Migrations
                 .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
-                "dbo.State",
-                c => new
-                    {
-                        StateId = c.Int(nullable: false, identity: true),
-                        StateName = c.String(),
-                    })
-                .PrimaryKey(t => t.StateId);
-            
-            CreateTable(
                 "dbo.ApplicationUser",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         FirstName = c.String(),
                         LastName = c.String(),
+                        UserRole = c.String(),
                         Email = c.String(),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -159,19 +171,25 @@ namespace Data.Migrations
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
+            DropForeignKey("dbo.Freelancer", "StateId", "dbo.State");
+            DropForeignKey("dbo.Freelancer", "LanguageId", "dbo.CodingLanguage");
+            DropForeignKey("dbo.Employer", "StateId", "dbo.State");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.Freelancer", new[] { "LanguageId" });
+            DropIndex("dbo.Freelancer", new[] { "StateId" });
+            DropIndex("dbo.Employer", new[] { "StateId" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
-            DropTable("dbo.State");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
             DropTable("dbo.Message");
             DropTable("dbo.JobPost");
             DropTable("dbo.Freelancer");
+            DropTable("dbo.State");
             DropTable("dbo.Employer");
             DropTable("dbo.CodingLanguage");
         }

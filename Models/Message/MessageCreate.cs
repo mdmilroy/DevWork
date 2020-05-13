@@ -9,9 +9,8 @@ namespace Models.Message
 {
     public class MessageCreate
     {
-        [Required]
-        public string Recipient { get; set; }
-        [Required]
         public string Content { get; set; }
+        public string EmployerId { get; set; }
+        public string FreelancerId { get; set; }
     }
 }

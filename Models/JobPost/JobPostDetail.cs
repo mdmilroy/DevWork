@@ -8,10 +8,11 @@ namespace Models
 {
     public class JobPostDetail
     {
-        public int JobPostId{ get; set; }
-        public string Title { get; set; }
+        public string JobTitle { get; set; }
         public string Content { get; set; }
-        public DateTimeOffset CreatedUtc { get; set; }
-        public DateTimeOffset? ModifiedUtc { get; set; }
+        public string EmployerId { get; set; }
+        public bool IsAwarded { get; set; } = false;
+        public string FreelancerId { get; set; }
+        public DateTimeOffset CreatedUTC { get; set; }
     }
 }

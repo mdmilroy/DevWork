@@ -1,24 +1,23 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
     public class Message
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public int ConvoId { get; set; }
-        [Required]
-        [MinLength(1, ErrorMessage = "You must at least 1 character to send")]
+        public int MessageId { get; set; }
         public string Content { get; set; }
-        [Required]
-        public DateTimeOffset Timestamp { get; set; }
-        [Required]
-        public bool Unread { get; set; }
-        [Required]
-        public Guid Sender { get; set; }
-        [Required]
-        public Guid Recipient { get; set; }
+        public string EmployerId { get; set; }
+        public string FreelancerId { get; set; }
+        public bool IsRead { get; set; } = false;
+        public DateTimeOffset CreatedUTC { get; set; }
+        public DateTimeOffset ModifiedUTC { get; set; }
+
+        [ForeignKey("Employer")]
+        public virtual Employer Employer { get; set; }
+
+        [ForeignKey("Freelancer")]
+        public virtual Freelancer Freelancer { get; set; }
     }
 }

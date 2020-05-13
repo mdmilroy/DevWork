@@ -61,14 +61,14 @@ namespace DevWork.Models
         [Display(Name = "Freelancer or Employer?")]
         public string UserRole { get; set; }
 
-        [Required]
+        //[Required]
         [MaxLength(2, ErrorMessage = "Use your state's two letter abbreviation")]
         [Display(Name = "State")]
         public string State { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "Name of your organization (none if Freelancer)")]
         public string Organization { get; set; }
-        [Required]
+        //[Required]
         [Display(Name = "Primary coding language")]
         public string CodingLanguage { get; set; }
     }

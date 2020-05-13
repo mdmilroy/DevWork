@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Models.Profiles
 {
-    public class FreelancerDetail
+    public class EmployerUpdate
     {
-        public string FreelancerId { get; set; }
+        public string EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double Rating { get; set; }
-        public string CodingLanguage { get; set; }
-        public int JobsCompleted { get; set; }
-        public DateTimeOffset CreatedUTC { get; set; }
+        public string Organization { get; set; }
+        public DateTimeOffset ModifiedUTC { get; set; }
     }
 }
