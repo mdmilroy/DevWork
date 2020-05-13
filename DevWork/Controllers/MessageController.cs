@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace DevWork.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Message")]
+    [RoutePrefix("api/Messages")]
     public class MessageController : ApiController
     {
         private MessageService CreateMessageService()
@@ -22,13 +22,7 @@ namespace DevWork.Controllers
             return messageService;
         }
 
-        public IHttpActionResult Get()
-        {
-            MessageService messageService = CreateMessageService();
-            var notes = messageService.GetMessages();
-            return Ok(notes);
-        }
-
+        // api/Message/Create
         public IHttpActionResult Post(MessageCreate message)
         {
             if (!ModelState.IsValid)
@@ -42,6 +36,15 @@ namespace DevWork.Controllers
             return Ok();
         }
 
+        // api/Message/GetMessageList
+        public IHttpActionResult Get()
+        {
+            MessageService messageService = CreateMessageService();
+            var messages = messageService.GetMessages();
+            return Ok(messages);
+        }
+
+        // api/Message/GetMessageById
         public IHttpActionResult Get(int id)
         {
             MessageService messageService = CreateMessageService();
@@ -49,20 +52,22 @@ namespace DevWork.Controllers
             return Ok(message);
         }
 
-        public IHttpActionResult Put(MessageEdit messageToEdit)
+        // api/Message/Update
+        public IHttpActionResult Put(MessageUpdate message)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateMessageService();
 
-            if (!service.UpdateMessage(messageToEdit))
+            if (!service.UpdateMessage(message))
                 return InternalServerError();
 
             return Ok();
         }
 
-        public IHttpActionResult Delete(int id)
+        // api/Message/Delete
+        public IHttpActionResult Post(int id)
         {
             var service = CreateMessageService();
 
