@@ -1,6 +1,7 @@
 ﻿using Data;
 using Models.Profile;
 using Models.Profiles;
+using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,13 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class EmployerService
+    public class EmployerService : IEmployerService
     {
-        private readonly Guid _userId;
-
-        public EmployerService(Guid userId)
-        {
-            _userId = userId;
-        }
-
+      
         public bool CreateEmployer(EmployerCreate model)
         {
             var entity = new Employer()
             {
-                EmployerId = _userId.ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Organization = model.Organization,
@@ -42,7 +36,6 @@ namespace Services
             {
                 var query = ctx
                     .Employers
-                    .Where(e => e.EmployerId == _userId.ToString())
                     .Select(e => new EmployerList
                     {
                         EmployerId = e.EmployerId,
@@ -59,7 +52,7 @@ namespace Services
             {
                 var entity = ctx
                     .Employers
-                    .Single(e => e.EmployerId == id && e.EmployerId == _userId.ToString());
+                    .Single();
                 return
                     new EmployerDetail
                     {
@@ -79,7 +72,7 @@ namespace Services
             {
                 var entity = ctx
                     .Employers
-                    .Single(e => e.EmployerId == employerToUpdate.EmployerId && e.EmployerId == _userId.ToString());
+                    .Single();
 
                 entity.EmployerId = employerToUpdate.EmployerId;
                 entity.FirstName = employerToUpdate.FirstName;
@@ -99,7 +92,7 @@ namespace Services
                 var entity =
                     ctx
                         .Employers
-                        .Single(e => e.EmployerId == id && e.EmployerId == _userId.ToString());
+                        .Single();
 
                 ctx.Employers.Remove(entity);
 

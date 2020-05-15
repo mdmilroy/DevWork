@@ -22,7 +22,6 @@ namespace Services
         {
             var entity = new JobPost()
             {
-                EmployerId = model.EmployerId,
                 JobTitle = model.JobTitle,
                 Content = model.Content,
                 CreatedUTC = DateTimeOffset.UtcNow
