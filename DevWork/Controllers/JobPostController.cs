@@ -22,20 +22,6 @@ namespace DevWork.Controllers
             return jobPostService;
         }
 
-        // api/JobPost/Create
-        public IHttpActionResult Post(JobPostCreate jobPost)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var service = CreateJobPostService();
-
-            if (!service.CreateJobPost(jobPost))
-                return InternalServerError();
-
-            return Ok();
-        }
-
         // api/Freelancer/GetJobPostList
         public IHttpActionResult Get()
         {
@@ -50,6 +36,20 @@ namespace DevWork.Controllers
             NewJobPostService jobPostService = CreateJobPostService();
             var jobPost = jobPostService.GetJobPostById(id);
             return Ok(jobPost);
+        }
+
+        // api/JobPost/Create
+        public IHttpActionResult Post(JobPostCreate jobPost)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateJobPostService();
+
+            if (!service.CreateJobPost(jobPost))
+                return InternalServerError();
+
+            return Ok();
         }
 
         // api/JobPost/Update
@@ -67,7 +67,7 @@ namespace DevWork.Controllers
         }
 
         // api/JobPost/Delete
-        public IHttpActionResult Post(int id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateJobPostService();
 
