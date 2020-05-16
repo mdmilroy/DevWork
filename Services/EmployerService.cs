@@ -42,7 +42,6 @@ namespace Services
             {
                 var query = ctx
                     .Employers
-                    .Where(e => e.EmployerId == _userId.ToString())
                     .Select(e => new EmployerList
                     {
                         EmployerId = e.EmployerId,
@@ -59,7 +58,7 @@ namespace Services
             {
                 var entity = ctx
                     .Employers
-                    .Single(e => e.EmployerId == id && e.EmployerId == _userId.ToString());
+                    .Single(e => e.EmployerId == id);
                 return
                     new EmployerDetail
                     {

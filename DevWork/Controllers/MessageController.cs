@@ -15,10 +15,10 @@ namespace DevWork.Controllers
     [RoutePrefix("api/Messages")]
     public class MessageController : ApiController
     {
-        private MessageService CreateMessageService()
+        private NewMessageService CreateMessageService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var messageService = new MessageService(userId);
+            var messageService = new NewMessageService(userId);
             return messageService;
         }
 
@@ -39,7 +39,7 @@ namespace DevWork.Controllers
         // api/Message/GetMessageList
         public IHttpActionResult Get()
         {
-            MessageService messageService = CreateMessageService();
+            NewMessageService messageService = CreateMessageService();
             var messages = messageService.GetMessages();
             return Ok(messages);
         }
@@ -47,20 +47,20 @@ namespace DevWork.Controllers
         // api/Message/GetMessageById
         public IHttpActionResult Get(int id)
         {
-            MessageService messageService = CreateMessageService();
+            NewMessageService messageService = CreateMessageService();
             var message = messageService.GetMessageById(id);
             return Ok(message);
         }
 
         // api/Message/Update
-        public IHttpActionResult Put(MessageUpdate message)
+        public IHttpActionResult Put(int id, MessageUpdate message)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateMessageService();
 
-            if (!service.UpdateMessage(message))
+            if (!service.MessageUpdate(id, message))
                 return InternalServerError();
 
             return Ok();
@@ -71,7 +71,7 @@ namespace DevWork.Controllers
         {
             var service = CreateMessageService();
 
-            if (!service.DeleteMessage(id))
+            if (!service.MessageDelete(id))
                 return InternalServerError();
 
             return Ok();

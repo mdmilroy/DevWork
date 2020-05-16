@@ -42,7 +42,6 @@ namespace Services
             {
                 var query = ctx
                     .Freelancers
-                    .Where(e => e.FreelancerId == _userId.ToString())
                     .Select(e => new FreelancerList
                     {
                         FreelancerId = e.FreelancerId,
@@ -60,7 +59,7 @@ namespace Services
             {
                 var entity = ctx
                     .Freelancers
-                    .Single(e => e.FreelancerId == id && e.FreelancerId == _userId.ToString());
+                    .Single(e => e.FreelancerId == id);
                 return
                     new FreelancerDetail
                     {
