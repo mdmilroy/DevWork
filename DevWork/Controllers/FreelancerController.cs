@@ -20,21 +20,6 @@ namespace DevWork.Controllers
             var freelancerService = new FreelancerService(userId);
             return freelancerService;
         }
-
-        // api/Freelancer/Create
-        public IHttpActionResult Post(FreelancerCreate freelancer)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var service = CreateFreelancerService();
-
-            if (!service.CreateFreelancer(freelancer))
-                return InternalServerError();
-
-            return Ok();
-        }
-
         // api/Freelancer/GetFreelancerList
         public IHttpActionResult Get()
         {
@@ -51,6 +36,21 @@ namespace DevWork.Controllers
             return Ok(freelancer);
         }
 
+        // api/Freelancer/Create
+        public IHttpActionResult Post(FreelancerCreate freelancer)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateFreelancerService();
+
+            if (!service.CreateFreelancer(freelancer))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+
         // api/Freelancer/Update
         public IHttpActionResult Put(FreelancerUpdate freelancer)
         {
@@ -66,7 +66,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/Delete
-        public IHttpActionResult Post(string id)
+        public IHttpActionResult Delete(string id)
         {
             var service = CreateFreelancerService();
 

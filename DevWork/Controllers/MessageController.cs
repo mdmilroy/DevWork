@@ -22,20 +22,6 @@ namespace DevWork.Controllers
             return messageService;
         }
 
-        // api/Message/Create
-        public IHttpActionResult Post(MessageCreate message)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var service = CreateMessageService();
-
-            if (!service.CreateMessage(message))
-                return InternalServerError();
-
-            return Ok();
-        }
-
         // api/Message/GetMessageList
         public IHttpActionResult Get()
         {
@@ -50,6 +36,20 @@ namespace DevWork.Controllers
             NewMessageService messageService = CreateMessageService();
             var message = messageService.GetMessageById(id);
             return Ok(message);
+        }
+
+        // api/Message/Create
+        public IHttpActionResult Post(MessageCreate message)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateMessageService();
+
+            if (!service.CreateMessage(message))
+                return InternalServerError();
+
+            return Ok();
         }
 
         // api/Message/Update
@@ -67,7 +67,7 @@ namespace DevWork.Controllers
         }
 
         // api/Message/Delete
-        public IHttpActionResult Post(int id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateMessageService();
 

@@ -22,20 +22,6 @@ namespace DevWork.Controllers
             return employerService;
         }
 
-        // api/Employer/Create
-        public IHttpActionResult Post(EmployerCreate employer)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var service = CreateEmployerService();
-
-            if (!service.CreateEmployer(employer))
-                return InternalServerError();
-
-            return Ok();
-        }
-
         // api/Employer/GetEmployersList
         public IHttpActionResult Get()
         {
@@ -50,6 +36,20 @@ namespace DevWork.Controllers
             EmployerService employerService = CreateEmployerService();
             var employer = employerService.GetEmployerById(id);
             return Ok(employer);
+        }
+
+        // api/Employer/Create
+        public IHttpActionResult Post(EmployerCreate employer)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateEmployerService();
+
+            if (!service.CreateEmployer(employer))
+                return InternalServerError();
+
+            return Ok();
         }
 
         // api/Employer/Update
@@ -67,7 +67,7 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/Delete
-        public IHttpActionResult Post(string id)
+        public IHttpActionResult Delete(string id)
         {
             var service = CreateEmployerService();
 
