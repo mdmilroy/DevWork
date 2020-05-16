@@ -1,8 +1,6 @@
-﻿using Data;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Models.Profiles;
 using Services;
-using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +14,12 @@ namespace DevWork.Controllers
     [RoutePrefix("api/Employers")]
     public class EmployerController : ApiController
     {
-        private readonly IEmployerService _employerService;
-
-        public EmployerController(IEmployerService employerService)
+        private EmployerService CreateEmployerService()
         {
-            _employerService = employerService;
+            //UserManager<ApplicationUser> _userManager = new UserManager<ApplicationUser>();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var employerService = new EmployerService(userId);
+            return employerService;
         }
 
         // api/Employer/Create
@@ -29,8 +28,9 @@ namespace DevWork.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            var service = CreateEmployerService();
 
-            if (!_employerService.CreateEmployer(employer))
+            if (!service.CreateEmployer(employer))
                 return InternalServerError();
 
             return Ok();
@@ -39,14 +39,16 @@ namespace DevWork.Controllers
         // api/Employer/GetEmployersList
         public IHttpActionResult Get()
         {
-            var employers = _employerService.GetEmployers();
+            EmployerService employerService = CreateEmployerService();
+            var employers = employerService.GetEmployers();
             return Ok(employers);
         }
 
         // api/Employer/GetEmployerById
         public IHttpActionResult Get(string id)
         {
-            var employer = _employerService.GetEmployerById(id);
+            EmployerService employerService = CreateEmployerService();
+            var employer = employerService.GetEmployerById(id);
             return Ok(employer);
         }
 
@@ -56,8 +58,9 @@ namespace DevWork.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            var service = CreateEmployerService();
 
-            if (!_employerService.UpdateEmployer(employer))
+            if (!service.UpdateEmployer(employer))
                 return InternalServerError();
 
             return Ok();
@@ -66,8 +69,9 @@ namespace DevWork.Controllers
         // api/Employer/Delete
         public IHttpActionResult Post(string id)
         {
+            var service = CreateEmployerService();
 
-            if (!_employerService.DeleteEmployer(id))
+            if (!service.DeleteEmployer(id))
                 return InternalServerError();
 
             return Ok();
