@@ -20,15 +20,12 @@ namespace Services
 
         public bool CreateJobPost(JobPostCreate model)
         {
-
-            var entity =
-                new JobPost()
-                {
-                    OwnerId = _userId,
-                    Title = model.Title,
-                    Content = model.Content,
-                    CreatedUtc = DateTimeOffset.Now
-                };
+            var entity = new JobPost()
+            {
+                JobTitle = model.JobTitle,
+                Content = model.Content,
+                CreatedUTC = DateTimeOffset.UtcNow
+            };
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -37,24 +34,20 @@ namespace Services
             }
         }
 
-        public IEnumerable<JobPostListItem> GetAllJobPosts()
+        public IEnumerable<JobPostList> GetJobPosts()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                        .JobPosts
-                        .Where(e => e.OwnerId == _userId)
-                        .Select(
-                            e =>
-                                new JobPostListItem
-                                {
-                                    JobPostId = e.Id,
-                                    Title = e.Title,
-                                    CreatedUtc = e.CreatedUtc
-                                }
-                        );
-
+                var query = ctx
+                    .JobPosts
+                    .Where(e => e.EmployerId == _userId.ToString())
+                    .Select(e => new JobPostList
+                    {
+                        JobPostId = e.JobPostId,
+                        JobTitle = e.JobTitle,
+                        IsAwarded = e.IsAwarded,
+                        //FreelancerId = e.FreelancerId
+                    });
                 return query.ToArray();
             }
         }
@@ -63,46 +56,50 @@ namespace Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .JobPosts
-                        .Single(e => e.Id == id && e.OwnerId == _userId);
+                var entity = ctx
+                    .JobPosts
+                    .Single(e => e.JobPostId == id && e.EmployerId == _userId.ToString());
                 return
                     new JobPostDetail
                     {
-                        JobPostId = entity.Id,
-                        Title = entity.Title,
+                        JobTitle = entity.JobTitle,
                         Content = entity.Content,
-                        CreatedUtc = entity.CreatedUtc
+                        EmployerId = entity.EmployerId,
+                        IsAwarded = entity.IsAwarded,
+                        //FreelancerId = entity.FreelancerId,
+                        CreatedUTC = entity.CreatedUTC
                     };
             }
         }
 
-        public bool UpdateJobPost(JobPostEdit model)
+        public bool UpdateJobPost(JobPostUpdate jobPostToUpdate)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .JobPosts
-                        .Single(e => e.Id == model.JobPostId && e.OwnerId == _userId);
+                var entity = ctx
+                    .JobPosts
+                    .Single(e => e.JobPostId == jobPostToUpdate.JobPostId && e.EmployerId == _userId.ToString());
 
-                entity.Title = model.Title;
-                entity.Content = model.Content;
-                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+                entity.JobPostId = jobPostToUpdate.JobPostId;
+                entity.JobTitle = jobPostToUpdate.JobTitle;
+                entity.Content = jobPostToUpdate.Content;
+                entity.EmployerId = jobPostToUpdate.EmployerId;
+                entity.IsAwarded = jobPostToUpdate.IsAwarded;
+                //entity.FreelancerId = jobPostToUpdate.FreelancerId;
+                entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteJobPost(int jobPostId)
+        public bool DeleteJobPost(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .JobPosts
-                        .Single(e => e.Id == jobPostId && e.OwnerId == _userId);
+                        .Single(e => e.JobPostId == id && e.EmployerId == _userId.ToString());
 
                 ctx.JobPosts.Remove(entity);
 

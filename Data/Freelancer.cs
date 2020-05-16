@@ -6,29 +6,19 @@ namespace Data
 {
     public class Freelancer
     {
-        [Key]
-        public Guid UserId { get; set; }
-        
-        [Required]
+        //public int FreelancerId { get; set; }
+
+        public string FreelancerId { get; set; }
         public string FirstName { get; set; }
-        
-        [Required]
         public string LastName { get; set; }
-        
-        [Required]
-        public string Email { get; set; }
+        public double Rating { get; set; } = 0;
+        public string CodingLanguage { get; set; }
+        public int JobsCompleted { get; set; } = 0;
 
-        [Required]
-        public int JobsCompleted { get; set; }
-        public double Rating { get; set; }
+        [Display(Name = "Join Date")]
+        public DateTimeOffset CreatedUTC { get; set; }
 
-
-        [ForeignKey("State")]
-        public int StateId { get; set; }
-        public virtual State State { get; set; }
-
-        [ForeignKey("CodingLanguage")]
-        public int LanguageId { get; set; }
-        public virtual CodingLanguage CodingLanguage { get; set; }
+        [Display(Name = "Last Updated")]
+        public DateTimeOffset ModifiedUTC { get; set; }
     }
 }

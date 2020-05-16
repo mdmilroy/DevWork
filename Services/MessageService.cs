@@ -17,44 +17,35 @@ namespace Services
             _userId = userId;
         }
 
-        public bool CreateMessage(MessageCreate message)
+        public bool CreateMessage(MessageCreate model)
         {
-            var entity =
-                new Message()
-                {
-                    Sender = _userId,
-                    Recipient = Guid.Parse(message.Recipient),
-                    Content = message.Content,
-                    Timestamp = DateTimeOffset.Now
-                };
+            var entity = new Message()
+            {
+                Content = model.Content,
+                EmployerId = model.EmployerId,
+                FreelancerId = model.FreelancerId,
+                CreatedUTC = DateTimeOffset.UtcNow
+            };
 
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Messages.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
-
         }
 
         public IEnumerable<MessageListItem> GetMessages()
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                        .Messages
-                        .Where(e => e.Sender == _userId || e.Recipient == _userId)
-                        .Select(
-                            e =>
-                                new MessageListItem
-                                {
-                                    MessageId = e.Id,
-                                    Content = e.Content,
-                                    TimeSent = e.Timestamp,
-                                    Recipient = e.Recipient
-                                }
-                        );
-
+                var query = ctx
+                    .Messages
+                    .Where(e => e.EmployerId == _userId.ToString() || e.FreelancerId == _userId.ToString())
+                    .Select(e => new MessageListItem
+                    {
+                        MessageId = e.MessageId,
+                        IsRead = e.IsRead
+                    });
                 return query.ToArray();
             }
         }
@@ -63,50 +54,51 @@ namespace Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Messages
-                        .Single(e => e.Id == id && e.Sender == _userId || e.Recipient == _userId);
+                var entity = ctx
+                    .Messages
+                    .Single(e => e.MessageId == id && e.EmployerId == _userId.ToString() || e.FreelancerId == _userId.ToString());
                 return
                     new MessageDetail
                     {
-                        Id = entity.Id,
                         Content = entity.Content,
-                        Timestamp = entity.Timestamp
+                        EmployerId = entity.EmployerId,
+                        FreelancerId = entity.FreelancerId,
+                        IsRead = entity.IsRead,
+                        CreatedUTC = entity.CreatedUTC
                     };
             }
         }
 
-        public bool UpdateMessage(MessageEdit model)
+        public bool UpdateMessage(MessageUpdate messageToUpdate)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Messages
-                        .Single(e => e.Id == model.Id && e.Sender == _userId);
+                var entity = ctx
+                    .Messages
+                    .Single(e => e.MessageId == messageToUpdate.MessageId && e.EmployerId == _userId.ToString() || e.FreelancerId == _userId.ToString());
 
-                entity.Content = model.Content;
-                entity.Timestamp = DateTimeOffset.UtcNow;
+                entity.MessageId = messageToUpdate.MessageId;
+                entity.Content = messageToUpdate.Content;
+                entity.IsRead = messageToUpdate.IsRead;
+                entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteMessage(int messageToDelete)
+        public bool DeleteMessage(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Messages
-                        .Single(e => e.Id == messageToDelete && e.Sender == _userId);
+                        .Single(e => e.MessageId == id && e.EmployerId == _userId.ToString() || e.FreelancerId == _userId.ToString());
 
                 ctx.Messages.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
-
     }
 }

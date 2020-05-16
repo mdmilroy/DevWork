@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Models.Profile
 {
-    public class EmployersList
+    public class EmployerList
     {
+        public string EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Organization { get; set; }
-        public double Rating { get; set; }
     }
 }

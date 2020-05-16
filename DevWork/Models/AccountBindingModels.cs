@@ -48,29 +48,6 @@ namespace DevWork.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        [Required]
-        [Display(Name ="First Name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
-
-        [Required]
-        [Display(Name = "Freelancer or Employer?")]
-        public string UserRole { get; set; }
-
-        [Required]
-        [MaxLength(2, ErrorMessage = "Use your state's two letter abbreviation")]
-        [Display(Name = "State")]
-        public string State { get; set; }
-        [Required]
-        [Display(Name = "Name of your organization (none if Freelancer)")]
-        public string Organization { get; set; }
-        [Required]
-        [Display(Name = "Primary coding language")]
-        public string CodingLanguage { get; set; }
     }
 
     public class RegisterExternalBindingModel

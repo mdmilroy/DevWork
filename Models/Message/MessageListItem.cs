@@ -10,8 +10,7 @@ namespace Models.Message
     {
         public int MessageId { get; set; }
         public string Content { get; set; }
-        public DateTimeOffset TimeSent { get; set; }
-        public Guid Sender { get; set; }
-        public Guid Recipient { get; set; }
+        public bool IsRead { get; set; }
+        public DateTimeOffset ModifiedUTC { get; set; }
     }
 }

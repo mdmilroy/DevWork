@@ -3,7 +3,7 @@ namespace Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class lolwaht : DbMigration
     {
         public override void Up()
         {
@@ -20,55 +20,58 @@ namespace Data.Migrations
                 "dbo.Employer",
                 c => new
                     {
-                        UserId = c.Guid(nullable: false),
-                        Organization = c.String(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
+                        EmployerId = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
                         Rating = c.Double(nullable: false),
+                        Organization = c.String(),
+                        CreatedUTC = c.DateTimeOffset(nullable: false, precision: 7),
+                        ModifiedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                     })
-                .PrimaryKey(t => t.UserId);
+                .PrimaryKey(t => t.EmployerId);
             
             CreateTable(
                 "dbo.Freelancer",
                 c => new
                     {
-                        UserId = c.Guid(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
-                        JobsCompleted = c.Int(nullable: false),
+                        FreelancerId = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
                         Rating = c.Double(nullable: false),
+                        CodingLanguage = c.String(),
+                        JobsCompleted = c.Int(nullable: false),
+                        CreatedUTC = c.DateTimeOffset(nullable: false, precision: 7),
+                        ModifiedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                     })
-                .PrimaryKey(t => t.UserId);
+                .PrimaryKey(t => t.FreelancerId);
             
             CreateTable(
                 "dbo.JobPost",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        OwnerId = c.Guid(nullable: false),
-                        DatePosted = c.DateTimeOffset(nullable: false, precision: 7),
-                        Deadline = c.DateTimeOffset(nullable: false, precision: 7),
-                        Title = c.String(nullable: false),
-                        Content = c.String(nullable: false),
-                        Budget = c.Double(nullable: false),
-                        CreatedUtc = c.DateTimeOffset(nullable: false, precision: 7),
-                        ModifiedUtc = c.DateTimeOffset(nullable: false, precision: 7),
+                        JobPostId = c.Int(nullable: false, identity: true),
+                        JobTitle = c.String(),
+                        Content = c.String(),
+                        EmployerId = c.String(),
+                        IsAwarded = c.Boolean(nullable: false),
+                        CreatedUTC = c.DateTimeOffset(nullable: false, precision: 7),
+                        ModifiedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.JobPostId);
             
             CreateTable(
                 "dbo.Message",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        ConvoId = c.Int(nullable: false),
-                        Content = c.String(nullable: false),
-                        Timestamp = c.DateTimeOffset(nullable: false, precision: 7),
-                        Unread = c.Boolean(nullable: false),
-                        Sender = c.Guid(nullable: false),
-                        Recipient = c.Guid(nullable: false),
+                        MessageId = c.Int(nullable: false, identity: true),
+                        Content = c.String(),
+                        EmployerId = c.String(),
+                        FreelancerId = c.String(),
+                        IsRead = c.Boolean(nullable: false),
+                        CreatedUTC = c.DateTimeOffset(nullable: false, precision: 7),
+                        ModifiedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.MessageId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -108,8 +111,6 @@ namespace Data.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        FirstName = c.String(),
-                        LastName = c.String(),
                         Email = c.String(),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

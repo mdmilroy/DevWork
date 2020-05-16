@@ -6,25 +6,17 @@ namespace Data
 {
     public class Employer
     {
-        [Key]
-        public Guid UserId { get; set; }
-
-        [Required]
-        public string Organization { get; set; }
-        
-        [Required]
+        public string EmployerId { get; set; }
         public string FirstName { get; set; }
-        
-        [Required]
         public string LastName { get; set; }
+        public double Rating { get; set; } = 0;
+        public string Organization { get; set; }
 
-        [Required]
-        public string Email { get; set; }
+        [Display(Name = "Join Date")]
+        public DateTimeOffset CreatedUTC { get; set; }
 
-        public double Rating { get; set; }
+        [Display(Name = "Last Updated")]
+        public DateTimeOffset ModifiedUTC { get; set; }
 
-        [ForeignKey("State")]
-        public int StateId { get; set; }
-        public virtual State State { get; set; }
     }
 }

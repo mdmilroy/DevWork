@@ -11,8 +11,8 @@ using System.Web.Http;
 
 namespace DevWork.Controllers
 {
-    [Authorize(Roles = "employer")]
-    [RoutePrefix("api/JobPost")]
+    [Authorize]
+    [RoutePrefix("api/JobPosts")]
     public class JobPostController : ApiController
     {
         private JobPostService CreateJobPostService()
@@ -22,27 +22,29 @@ namespace DevWork.Controllers
             return jobPostService;
         }
 
-        public IHttpActionResult Get()
+        // api/JobPost/Create
+        public IHttpActionResult Post(JobPostCreate jobPost)
         {
-            JobPostService jobPostService = CreateJobPostService();
-            var jobpost = jobPostService.GetAllJobPosts();
-            return Ok(jobpost);
-        }
-
-        public IHttpActionResult Post(JobPostCreate post)
-        {
-            
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateJobPostService();
 
-            if (!service.CreateJobPost(post))
+            if (!service.CreateJobPost(jobPost))
                 return InternalServerError();
 
             return Ok();
         }
 
+        // api/Freelancer/GetJobPostList
+        public IHttpActionResult Get()
+        {
+            JobPostService jobPostService = CreateJobPostService();
+            var jobPosts = jobPostService.GetJobPosts();
+            return Ok(jobPosts);
+        }
+
+        // api/Freelancer/GetJobPostById
         public IHttpActionResult Get(int id)
         {
             JobPostService jobPostService = CreateJobPostService();
@@ -50,7 +52,8 @@ namespace DevWork.Controllers
             return Ok(jobPost);
         }
 
-        public IHttpActionResult Put(JobPostEdit jobPost)
+        // api/JobPost/Update
+        public IHttpActionResult Put(JobPostUpdate jobPost)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -63,7 +66,8 @@ namespace DevWork.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Delete(int id)
+        // api/JobPost/Delete
+        public IHttpActionResult Post(int id)
         {
             var service = CreateJobPostService();
 
