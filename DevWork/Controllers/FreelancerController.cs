@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Contracts;
+using Microsoft.AspNet.Identity;
 using Models.Profiles;
 using Services;
 using System;
@@ -20,6 +21,7 @@ namespace DevWork.Controllers
             var freelancerService = new FreelancerService(userId);
             return freelancerService;
         }
+
         // api/Freelancer/GetFreelancerList
         public IHttpActionResult Get()
         {
@@ -29,7 +31,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/GetFreelancerById
-        public IHttpActionResult Get(string id)
+        public IHttpActionResult Get(int id)
         {
             FreelancerService freelancerService = CreateFreelancerService();
             var freelancer = freelancerService.GetFreelancerById(id);
@@ -50,23 +52,22 @@ namespace DevWork.Controllers
             return Ok();
         }
 
-
         // api/Freelancer/Update
-        public IHttpActionResult Put(FreelancerUpdate freelancer)
+        public IHttpActionResult Put(int id, FreelancerUpdate freelancer)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateFreelancerService();
 
-            if (!service.UpdateFreelancer(freelancer))
+            if (!service.UpdateFreelancer(id, freelancer))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/Freelancer/Delete
-        public IHttpActionResult Delete(string id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateFreelancerService();
 

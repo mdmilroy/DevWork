@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Contracts;
+using Data;
+using Microsoft.AspNet.Identity;
 using Models.Profiles;
 using Services;
 using System;
@@ -16,13 +18,12 @@ namespace DevWork.Controllers
     {
         private EmployerService CreateEmployerService()
         {
-            //UserManager<ApplicationUser> _userManager = new UserManager<ApplicationUser>();
             var userId = Guid.Parse(User.Identity.GetUserId());
             var employerService = new EmployerService(userId);
             return employerService;
         }
 
-        // api/Employer/GetEmployersList
+        // api/Employer/GetEmployerList
         public IHttpActionResult Get()
         {
             EmployerService employerService = CreateEmployerService();
@@ -31,7 +32,7 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/GetEmployerById
-        public IHttpActionResult Get(string id)
+        public IHttpActionResult Get(int id)
         {
             EmployerService employerService = CreateEmployerService();
             var employer = employerService.GetEmployerById(id);
@@ -53,21 +54,21 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/Update
-        public IHttpActionResult Put(EmployerUpdate employer)
+        public IHttpActionResult Put(int id, EmployerUpdate employer)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateEmployerService();
 
-            if (!service.UpdateEmployer(employer))
+            if (!service.UpdateEmployer(id, employer))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/Employer/Delete
-        public IHttpActionResult Delete(string id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateEmployerService();
 

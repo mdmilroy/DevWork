@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
 
 namespace DevWork.Models
@@ -48,6 +49,13 @@ namespace DevWork.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name ="Role")]
+        public string UserRole { get; set; }
+
+        [Required]
+        [Display(Name ="Birthday")]
+        public int Age { get; set; }
     }
 
     public class RegisterExternalBindingModel

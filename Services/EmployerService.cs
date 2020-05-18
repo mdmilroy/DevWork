@@ -22,11 +22,9 @@ namespace Services
         {
             var entity = new Employer()
             {
-                EmployerId = _userId.ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Organization = model.Organization,
-                CreatedUTC = DateTimeOffset.UtcNow
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -52,7 +50,7 @@ namespace Services
             }
         }
 
-        public EmployerDetail GetEmployerById(string id)
+        public EmployerDetail GetEmployerById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -67,38 +65,36 @@ namespace Services
                         LastName = entity.LastName,
                         Rating = entity.Rating,
                         Organization = entity.Organization,
-                        CreatedUTC = entity.CreatedUTC
                     };
             }
         }
 
-        public bool UpdateEmployer(EmployerUpdate employerToUpdate)
+        public bool UpdateEmployer(int id, EmployerUpdate employerToUpdate)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
                     .Employers
-                    .Single(e => e.EmployerId == employerToUpdate.EmployerId && e.EmployerId == _userId.ToString());
+                    .Single(e => e.EmployerId == employerToUpdate.EmployerId);
 
                 entity.EmployerId = employerToUpdate.EmployerId;
                 entity.FirstName = employerToUpdate.FirstName;
                 entity.LastName = employerToUpdate.LastName;
                 entity.Rating = employerToUpdate.Rating;
                 entity.Organization = employerToUpdate.Organization;
-                entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteEmployer(string id)
+        public bool DeleteEmployer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Employers
-                        .Single(e => e.EmployerId == id && e.EmployerId == _userId.ToString());
+                        .Single(e => e.EmployerId == id);
 
                 ctx.Employers.Remove(entity);
 

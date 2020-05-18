@@ -330,16 +330,27 @@ namespace DevWork.Controllers
                 return BadRequest(ModelState);
             }
 
-        var user = new ApplicationUser() { UserName = model.Email, Email = model.Email};
+
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Age = model.Age, UserRole = model.UserRole};
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
 
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
             }
+            else
+            {
+                var currentUser = UserManager.FindByEmail(user.Email);
+                var roleResult = UserManager.AddToRole(currentUser.Id, currentUser.UserRole);
+            }
 
             return Ok();
         }
+
+        // add profile complete?
+
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]

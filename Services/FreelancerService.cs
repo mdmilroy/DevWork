@@ -22,11 +22,9 @@ namespace Services
         {
             var entity = new Freelancer()
             {
-                FreelancerId = _userId.ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 CodingLanguage = model.CodingLanguage,
-                CreatedUTC = DateTimeOffset.UtcNow
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -44,7 +42,6 @@ namespace Services
                     .Freelancers
                     .Select(e => new FreelancerList
                     {
-                        FreelancerId = e.FreelancerId,
                         FirstName = e.FirstName,
                         LastName = e.LastName,
                         Rating = e.Rating
@@ -53,7 +50,7 @@ namespace Services
             }
         }
 
-        public FreelancerDetail GetFreelancerById(string id)
+        public FreelancerDetail GetFreelancerById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -69,18 +66,17 @@ namespace Services
                         Rating = entity.Rating,
                         CodingLanguage = entity.CodingLanguage,
                         JobsCompleted = entity.JobsCompleted,
-                        CreatedUTC = entity.CreatedUTC
                     };
             }
         }
 
-        public bool UpdateFreelancer(FreelancerUpdate freelancerToUpdate)
+        public bool UpdateFreelancer(int id, FreelancerUpdate freelancerToUpdate)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
                     .Freelancers
-                    .Single(e => e.FreelancerId == freelancerToUpdate.FreelancerId && e.FreelancerId == _userId.ToString());
+                    .Single(e => e.FreelancerId == freelancerToUpdate.FreelancerId);
 
                 entity.FreelancerId = freelancerToUpdate.FreelancerId;
                 entity.FirstName = freelancerToUpdate.FirstName;
@@ -88,20 +84,19 @@ namespace Services
                 entity.Rating = freelancerToUpdate.Rating;
                 entity.CodingLanguage = freelancerToUpdate.CodingLanguage;
                 entity.JobsCompleted = freelancerToUpdate.JobsCompleted;
-                entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeleteFreelancer(string id)
+        public bool DeleteFreelancer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Freelancers
-                        .Single(e => e.FreelancerId == id && e.FreelancerId == _userId.ToString());
+                        .Single(e => e.FreelancerId == id);
 
                 ctx.Freelancers.Remove(entity);
 

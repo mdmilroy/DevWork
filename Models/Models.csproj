@@ -42,11 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Profiles\EmployerCreate.cs" />
-    <Compile Include="Profiles\EmployerUpdate.cs" />
-    <Compile Include="Profiles\FreelancerCreate.cs" />
-    <Compile Include="Profiles\EmployersList.cs" />
-    <Compile Include="Profiles\FreelancerList.cs" />
+    <Compile Include="EmployerCreate.cs" />
+    <Compile Include="EmployerDetail.cs" />
+    <Compile Include="EmployersList.cs" />
+    <Compile Include="EmployerUpdate.cs" />
+    <Compile Include="FreelancerCreate.cs" />
+    <Compile Include="FreelancerDetail.cs" />
+    <Compile Include="FreelancerList.cs" />
+    <Compile Include="FreelancerUpdate.cs" />
     <Compile Include="JobPost\JobPostCreate.cs" />
     <Compile Include="JobPost\JobPostDetail.cs" />
     <Compile Include="JobPost\JobPostUpdate.cs" />
@@ -58,9 +61,6 @@
     <Compile Include="CodingLang\LanguageCreate.cs" />
     <Compile Include="CodingLang\LanguageEdit.cs" />
     <Compile Include="CodingLang\LanguageListItem.cs" />
-    <Compile Include="Profiles\EmployerDetail.cs" />
-    <Compile Include="Profiles\FreelancerDetail.cs" />
-    <Compile Include="Profiles\FreelancerUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
