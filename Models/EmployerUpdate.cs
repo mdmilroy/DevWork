@@ -8,7 +8,7 @@ namespace Models.Profiles
 {
     public class EmployerUpdate
     {
-        public string EmployerId { get; set; }
+        public int EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Organization { get; set; }

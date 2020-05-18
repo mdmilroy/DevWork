@@ -7,7 +7,7 @@ namespace Data
 {
     public class Employer
     {
-        public string EmployerId { get; set; }
+        public int EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double Rating { get; set; } = 0;

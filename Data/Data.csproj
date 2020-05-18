@@ -88,6 +88,10 @@
     <Compile Include="Migrations\202005182255152_addedEmpAndFreeLancerInterfaces.Designer.cs">
       <DependentUpon>202005182255152_addedEmpAndFreeLancerInterfaces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005182330292_updatedControllers.cs" />
+    <Compile Include="Migrations\202005182330292_updatedControllers.Designer.cs">
+      <DependentUpon>202005182330292_updatedControllers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -116,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005182255152_addedEmpAndFreeLancerInterfaces.resx">
       <DependentUpon>202005182255152_addedEmpAndFreeLancerInterfaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005182330292_updatedControllers.resx">
+      <DependentUpon>202005182330292_updatedControllers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -56,31 +56,6 @@ namespace DevWork.Models
         [Required]
         [Display(Name ="Birthday")]
         public int Age { get; set; }
-        //private int _age;
-        //private int age;
-        //public DateTime Birthday
-        //{
-        //    get
-        //    {
-        //        var today = DateTime.Today;
-        //        age = today.Year - Birthday.Year ;
-        //        if (Birthday.Date > today.AddYears(-age)) age--;
-        //        return Convert.ToDateTime(age);
-        //    }
-
-        //    set
-        //    { 
-        //        if (age >= 0 && age < 126)
-        //        {
-        //            _age = age;
-        //        }
-        //        else
-        //        {
-        //            throw new ArgumentOutOfRangeException("value", "age needs to be between 0 and 126");
-        //        }
-        //    }
-        //}
-
     }
 
     public class RegisterExternalBindingModel

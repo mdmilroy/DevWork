@@ -22,7 +22,6 @@ namespace Services
         {
             var entity = new Employer()
             {
-                EmployerId = _userId.ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Organization = model.Organization,
@@ -51,7 +50,7 @@ namespace Services
             }
         }
 
-        public EmployerDetail GetEmployerById(string id)
+        public EmployerDetail GetEmployerById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -70,13 +69,13 @@ namespace Services
             }
         }
 
-        public bool UpdateEmployer(EmployerUpdate employerToUpdate)
+        public bool UpdateEmployer(int id, EmployerUpdate employerToUpdate)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx
                     .Employers
-                    .Single(e => e.EmployerId == employerToUpdate.EmployerId && e.EmployerId == _userId.ToString());
+                    .Single(e => e.EmployerId == employerToUpdate.EmployerId);
 
                 entity.EmployerId = employerToUpdate.EmployerId;
                 entity.FirstName = employerToUpdate.FirstName;
@@ -88,14 +87,14 @@ namespace Services
             }
         }
 
-        public bool DeleteEmployer(string id)
+        public bool DeleteEmployer(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Employers
-                        .Single(e => e.EmployerId == id && e.EmployerId == _userId.ToString());
+                        .Single(e => e.EmployerId == id);
 
                 ctx.Employers.Remove(entity);
 
