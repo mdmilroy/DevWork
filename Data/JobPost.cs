@@ -12,7 +12,7 @@ namespace Data
         public string EmployerId { get; set; }
         public bool IsAwarded { get; set; } = false;
 
-        //public string FreelancerId { get; set; }
+        public string FreelancerId { get; set; }
 
         [Display(Name = "Created On")]
         public DateTimeOffset CreatedUTC { get; set; }

@@ -15,11 +15,27 @@ namespace DevWork.Controllers
     [RoutePrefix("api/JobPosts")]
     public class JobPostController : ApiController
     {
-        private JobPostService CreateJobPostService()
+        private NewJobPostService CreateJobPostService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var jobPostService = new JobPostService(userId);
+            var jobPostService = new NewJobPostService(userId);
             return jobPostService;
+        }
+
+        // api/Freelancer/GetJobPostList
+        public IHttpActionResult Get()
+        {
+            NewJobPostService jobPostService = CreateJobPostService();
+            var jobPosts = jobPostService.GetJobs();
+            return Ok(jobPosts);
+        }
+
+        // api/Freelancer/GetJobPostById
+        public IHttpActionResult Get(int id)
+        {
+            NewJobPostService jobPostService = CreateJobPostService();
+            var jobPost = jobPostService.GetJobPostById(id);
+            return Ok(jobPost);
         }
 
         // api/JobPost/Create
@@ -36,42 +52,26 @@ namespace DevWork.Controllers
             return Ok();
         }
 
-        // api/Freelancer/GetJobPostList
-        public IHttpActionResult Get()
-        {
-            JobPostService jobPostService = CreateJobPostService();
-            var jobPosts = jobPostService.GetJobPosts();
-            return Ok(jobPosts);
-        }
-
-        // api/Freelancer/GetJobPostById
-        public IHttpActionResult Get(int id)
-        {
-            JobPostService jobPostService = CreateJobPostService();
-            var jobPost = jobPostService.GetJobPostById(id);
-            return Ok(jobPost);
-        }
-
         // api/JobPost/Update
-        public IHttpActionResult Put(JobPostUpdate jobPost)
+        public IHttpActionResult Put(int id, JobPostUpdate jobPost)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateJobPostService();
 
-            if (!service.UpdateJobPost(jobPost))
+            if (!service.JobPostUpdate(id, jobPost))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/JobPost/Delete
-        public IHttpActionResult Post(int id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateJobPostService();
 
-            if (!service.DeleteJobPost(id))
+            if (!service.JobPostDelete(id))
                 return InternalServerError();
 
             return Ok();

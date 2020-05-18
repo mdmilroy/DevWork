@@ -12,6 +12,5 @@ namespace Models
         public int JobPostId { get; set; }
         public string JobTitle { get; set; }
         public bool IsAwarded { get; set; } = false;
-        //public int FreelancerId { get; set; }
     }
 }

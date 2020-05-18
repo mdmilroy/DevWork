@@ -15,11 +15,27 @@ namespace DevWork.Controllers
     [RoutePrefix("api/Messages")]
     public class MessageController : ApiController
     {
-        private MessageService CreateMessageService()
+        private NewMessageService CreateMessageService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var messageService = new MessageService(userId);
+            var messageService = new NewMessageService(userId);
             return messageService;
+        }
+
+        // api/Message/GetMessageList
+        public IHttpActionResult Get()
+        {
+            NewMessageService messageService = CreateMessageService();
+            var messages = messageService.GetMessages();
+            return Ok(messages);
+        }
+
+        // api/Message/GetMessageById
+        public IHttpActionResult Get(int id)
+        {
+            NewMessageService messageService = CreateMessageService();
+            var message = messageService.GetMessageById(id);
+            return Ok(message);
         }
 
         // api/Message/Create
@@ -36,42 +52,26 @@ namespace DevWork.Controllers
             return Ok();
         }
 
-        // api/Message/GetMessageList
-        public IHttpActionResult Get()
-        {
-            MessageService messageService = CreateMessageService();
-            var messages = messageService.GetMessages();
-            return Ok(messages);
-        }
-
-        // api/Message/GetMessageById
-        public IHttpActionResult Get(int id)
-        {
-            MessageService messageService = CreateMessageService();
-            var message = messageService.GetMessageById(id);
-            return Ok(message);
-        }
-
         // api/Message/Update
-        public IHttpActionResult Put(MessageUpdate message)
+        public IHttpActionResult Put(int id, MessageUpdate message)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateMessageService();
 
-            if (!service.UpdateMessage(message))
+            if (!service.MessageUpdate(id, message))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/Message/Delete
-        public IHttpActionResult Post(int id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateMessageService();
 
-            if (!service.DeleteMessage(id))
+            if (!service.MessageDelete(id))
                 return InternalServerError();
 
             return Ok();
