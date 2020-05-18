@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEmployerService.cs" />
+    <Compile Include="IFreelancerService.cs" />
     <Compile Include="IJobPostService.cs" />
     <Compile Include="IMessageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

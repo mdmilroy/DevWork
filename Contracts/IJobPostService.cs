@@ -1,7 +1,5 @@
 ﻿using Models;
 using Models.JobPost;
-using Models.Profile;
-using Models.Profiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;

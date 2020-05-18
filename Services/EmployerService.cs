@@ -26,7 +26,6 @@ namespace Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Organization = model.Organization,
-                CreatedUTC = DateTimeOffset.UtcNow
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -67,7 +66,6 @@ namespace Services
                         LastName = entity.LastName,
                         Rating = entity.Rating,
                         Organization = entity.Organization,
-                        CreatedUTC = entity.CreatedUTC
                     };
             }
         }
@@ -85,7 +83,6 @@ namespace Services
                 entity.LastName = employerToUpdate.LastName;
                 entity.Rating = employerToUpdate.Rating;
                 entity.Organization = employerToUpdate.Organization;
-                entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }

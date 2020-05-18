@@ -15,6 +15,7 @@ namespace DevWork.Controllers
     [RoutePrefix("api/JobPosts")]
     public class JobPostController : ApiController
     {
+        [Authorize(Roles="employer")]
         private NewJobPostService CreateJobPostService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
