@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Contracts;
 using Models.Profiles;
-using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +9,13 @@ using System.Web.Http;
 
 namespace DevWork.Controllers
 {
-    [Authorize]
-    [RoutePrefix("api/Freelancers")]
     public class FreelancerController : ApiController
     {
-        private FreelancerService CreateFreelancerService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var freelancerService = new FreelancerService(userId);
-            return freelancerService;
-        }
-        // api/Freelancer/GetFreelancerList
-        public IHttpActionResult Get()
-        {
-            FreelancerService freelancerService = CreateFreelancerService();
-            var freelancers = freelancerService.GetFreelancers();
-            return Ok(freelancers);
-        }
+        private readonly IFreelancerService _freelancerService;
 
-        // api/Freelancer/GetFreelancerById
-        public IHttpActionResult Get(string id)
+        public FreelancerController(IFreelancerService freelancerService)
         {
-            FreelancerService freelancerService = CreateFreelancerService();
-            var freelancer = freelancerService.GetFreelancerById(id);
-            return Ok(freelancer);
+            _freelancerService = freelancerService;
         }
 
         // api/Freelancer/Create
@@ -42,14 +24,26 @@ namespace DevWork.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateFreelancerService();
 
-            if (!service.CreateFreelancer(freelancer))
+            if (!_freelancerService.CreateFreelancer(freelancer))
                 return InternalServerError();
 
             return Ok();
         }
 
+        // api/Freelancer/GetFreelancersList
+        public IHttpActionResult Get()
+        {
+            var freelancers = _freelancerService.GetFreelancers();
+            return Ok(freelancers);
+        }
+
+        // api/Freelancer/GetFreelancerById
+        public IHttpActionResult Get(string id)
+        {
+            var freelancer = _freelancerService.GetFreelancerById(id);
+            return Ok(freelancer);
+        }
 
         // api/Freelancer/Update
         public IHttpActionResult Put(FreelancerUpdate freelancer)
@@ -57,20 +51,18 @@ namespace DevWork.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateFreelancerService();
 
-            if (!service.UpdateFreelancer(freelancer))
+            if (!_freelancerService.UpdateFreelancer(freelancer))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/Freelancer/Delete
-        public IHttpActionResult Delete(string id)
+        public IHttpActionResult Delete (string id)
         {
-            var service = CreateFreelancerService();
 
-            if (!service.DeleteFreelancer(id))
+            if (!_freelancerService.DeleteFreelancer(id))
                 return InternalServerError();
 
             return Ok();

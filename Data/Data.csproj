@@ -72,6 +72,22 @@
     <Compile Include="Migrations\202005161700572_removedStatesAndLanguagesClassToReplaceWithEnum.Designer.cs">
       <DependentUpon>202005161700572_removedStatesAndLanguagesClassToReplaceWithEnum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005161744237_addedCreateUserRoles.cs" />
+    <Compile Include="Migrations\202005161744237_addedCreateUserRoles.Designer.cs">
+      <DependentUpon>202005161744237_addedCreateUserRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005161845189_NewAccountsMgmt.cs" />
+    <Compile Include="Migrations\202005161845189_NewAccountsMgmt.Designer.cs">
+      <DependentUpon>202005161845189_NewAccountsMgmt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005161850446_revertAccountController.cs" />
+    <Compile Include="Migrations\202005161850446_revertAccountController.Designer.cs">
+      <DependentUpon>202005161850446_revertAccountController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005182255152_addedEmpAndFreeLancerInterfaces.cs" />
+    <Compile Include="Migrations\202005182255152_addedEmpAndFreeLancerInterfaces.Designer.cs">
+      <DependentUpon>202005182255152_addedEmpAndFreeLancerInterfaces.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +105,24 @@
     <EmbeddedResource Include="Migrations\202005161700572_removedStatesAndLanguagesClassToReplaceWithEnum.resx">
       <DependentUpon>202005161700572_removedStatesAndLanguagesClassToReplaceWithEnum.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005161744237_addedCreateUserRoles.resx">
+      <DependentUpon>202005161744237_addedCreateUserRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005161845189_NewAccountsMgmt.resx">
+      <DependentUpon>202005161845189_NewAccountsMgmt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005161850446_revertAccountController.resx">
+      <DependentUpon>202005161850446_revertAccountController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005182255152_addedEmpAndFreeLancerInterfaces.resx">
+      <DependentUpon>202005182255152_addedEmpAndFreeLancerInterfaces.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{49F9F93E-429D-4A01-A818-1C52CEFA363F}</Project>
+      <Name>Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

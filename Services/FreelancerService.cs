@@ -26,7 +26,6 @@ namespace Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 CodingLanguage = model.CodingLanguage,
-                CreatedUTC = DateTimeOffset.UtcNow
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -69,7 +68,6 @@ namespace Services
                         Rating = entity.Rating,
                         CodingLanguage = entity.CodingLanguage,
                         JobsCompleted = entity.JobsCompleted,
-                        CreatedUTC = entity.CreatedUTC
                     };
             }
         }
@@ -88,7 +86,6 @@ namespace Services
                 entity.Rating = freelancerToUpdate.Rating;
                 entity.CodingLanguage = freelancerToUpdate.CodingLanguage;
                 entity.JobsCompleted = freelancerToUpdate.JobsCompleted;
-                entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
