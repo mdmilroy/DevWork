@@ -59,7 +59,7 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/Delete
-        public IHttpActionResult Post(string id)
+        public IHttpActionResult Delete(string id)
         {
 
             if (!_employerService.DeleteEmployer(id))

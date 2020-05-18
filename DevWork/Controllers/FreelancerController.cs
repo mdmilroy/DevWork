@@ -59,7 +59,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/Delete
-        public IHttpActionResult Post(string id)
+        public IHttpActionResult Delete (string id)
         {
 
             if (!_freelancerService.DeleteFreelancer(id))
