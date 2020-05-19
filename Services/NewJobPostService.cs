@@ -28,7 +28,6 @@ namespace Services
                 JobTitle = jobPostCreate.JobTitle,
                 Content = jobPostCreate.Content,
                 EmployerId = jobPostCreate.EmployerId,
-                CreatedUTC = DateTimeOffset.UtcNow
             };
 
             ctx.JobPosts.Add(entity);
@@ -46,7 +45,6 @@ namespace Services
                 EmployerId = post.EmployerId,
                 IsAwarded = post.IsAwarded,
                 FreelancerId = post.FreelancerId,
-                CreatedUTC = post.CreatedUTC
             };
 
             return entity;
@@ -80,7 +78,6 @@ namespace Services
             post.EmployerId = jobPostUpdate.EmployerId;
             post.IsAwarded = jobPostUpdate.IsAwarded;
             post.FreelancerId = jobPostUpdate.FreelancerId;
-            post.ModifiedUTC = DateTimeOffset.UtcNow;
 
             return ctx.SaveChanges() == 1;
         }

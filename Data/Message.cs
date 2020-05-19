@@ -11,7 +11,5 @@ namespace Data
         public int SenderId { get; set; }
         public int RecipientId { get; set; }
         public bool IsRead { get; set; } = false;
-        public DateTimeOffset CreatedUTC { get; set; }
-        public DateTimeOffset ModifiedUTC { get; set; }
     }
 }

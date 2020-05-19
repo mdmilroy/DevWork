@@ -60,6 +60,15 @@
     <Compile Include="IdentityModels.cs" />
     <Compile Include="JobPost.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Migrations\202005190114062_InitialCreate.cs" />
+    <Compile Include="Migrations\202005190114062_InitialCreate.Designer.cs">
+      <DependentUpon>202005190114062_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005190122370_removedCreatedAndModifiedDates.cs" />
+    <Compile Include="Migrations\202005190122370_removedCreatedAndModifiedDates.Designer.cs">
+      <DependentUpon>202005190122370_removedCreatedAndModifiedDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +80,14 @@
       <Project>{49F9F93E-429D-4A01-A818-1C52CEFA363F}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202005190114062_InitialCreate.resx">
+      <DependentUpon>202005190114062_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005190122370_removedCreatedAndModifiedDates.resx">
+      <DependentUpon>202005190122370_removedCreatedAndModifiedDates.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
