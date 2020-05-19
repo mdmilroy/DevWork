@@ -29,7 +29,6 @@ namespace DevWork.Models
                 FullName = string.Format("{0} {1}", appUser.FirstName, appUser.LastName),
                 Email = appUser.Email,
                 EmailConfirmed = appUser.EmailConfirmed,
-                JoinDate = appUser.JoinedDate,
                 Roles = _AppUserManager.GetRolesAsync(appUser.Id).Result,
                 Claims = _AppUserManager.GetClaimsAsync(appUser.Id).Result
             };
