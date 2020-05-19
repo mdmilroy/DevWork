@@ -24,7 +24,7 @@ namespace Services
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Organization = model.Organization,
+                Organization = model.Organization
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -77,7 +77,6 @@ namespace Services
                     .Employers
                     .Single(e => e.EmployerId == employerToUpdate.EmployerId);
 
-                entity.EmployerId = employerToUpdate.EmployerId;
                 entity.FirstName = employerToUpdate.FirstName;
                 entity.LastName = employerToUpdate.LastName;
                 entity.Rating = employerToUpdate.Rating;

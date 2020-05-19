@@ -13,7 +13,6 @@ namespace Data
         {
             CSS=1, HTML, Java, JavaScript, ObjectiveC, Python, 
             Ruby, Rust, Scala, SQL, Swift, TypeScript
-
         }
 
         public enum StateNames
@@ -21,11 +20,6 @@ namespace Data
             AL=1, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, 
             LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, 
             OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY
-        }
-
-        public enum Roles
-        {
-            employer=1, freelancer
         }
     }
 }

@@ -11,7 +11,8 @@ namespace Models
     {
         public string JobTitle { get; set; }
         public string Content { get; set; }
-        public string EmployerId { get; set; }
+        public int EmployerId { get; set; }
+        public int State { get; set; }
         public DateTimeOffset CreatedUTC { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 CodingLanguage = model.CodingLanguage,
+                State = model.State
             };
 
             using (var ctx = new ApplicationDbContext())
