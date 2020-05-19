@@ -17,7 +17,6 @@ namespace Data
         public int Age { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime JoinedDate { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
