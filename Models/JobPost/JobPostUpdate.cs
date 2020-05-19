@@ -11,9 +11,11 @@ namespace Models.JobPost
         public int JobPostId { get; set; }
         public string JobTitle { get; set; }
         public string Content { get; set; }
-        public string EmployerId { get; set; }
+        public int EmployerId { get; set; }
         public bool IsAwarded { get; set; } = false;
-        public string FreelancerId { get; set; }
+        public int FreelancerId { get; set; }
+        public int State { get; set; }
+
         public DateTimeOffset ModifiedUTC { get; set; }
     }
 }

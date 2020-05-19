@@ -11,7 +11,8 @@ namespace Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double Rating { get; set; } = 0;
-        public string CodingLanguage { get; set; }
+        public int CodingLanguage { get; set; }
         public int JobsCompleted { get; set; } = 0;
+        public int State { get; set; }
     }
 }

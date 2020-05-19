@@ -10,6 +10,7 @@ namespace Models.Profiles
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string CodingLanguage { get; set; }
+        public int CodingLanguage { get; set; }
+        public int State { get; set; }
     }
 }

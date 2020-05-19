@@ -11,6 +11,8 @@ namespace Models
     {
         public int JobPostId { get; set; }
         public string JobTitle { get; set; }
+        public int State { get; set; }
+
         public bool IsAwarded { get; set; } = false;
     }
 }

@@ -12,6 +12,6 @@ namespace Data
         public string LastName { get; set; }
         public double Rating { get; set; } = 0;
         public string Organization { get; set; }
-
+        public int State { get; set; }
     }
 }
