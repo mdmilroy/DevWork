@@ -14,6 +14,5 @@ namespace Models
         public bool IsAwarded { get; set; } = false;
         public int FreelancerId { get; set; }
         public int State { get; set; }
-        public DateTimeOffset CreatedUTC { get; set; }
     }
 }

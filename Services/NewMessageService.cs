@@ -41,7 +41,6 @@ namespace Services
                 SenderId = message.SenderId,
                 RecipientId = message.RecipientId,
                 IsRead = message.IsRead,
-                CreatedUTC = DateTimeOffset.UtcNow
             };
 
             return entity;

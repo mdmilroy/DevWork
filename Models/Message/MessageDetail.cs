@@ -12,6 +12,5 @@ namespace Models.Message
         public int SenderId { get; set; }
         public int RecipientId { get; set; }
         public bool IsRead { get; set; }
-        public DateTimeOffset CreatedUTC { get; set; }
     }
 }

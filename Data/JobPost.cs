@@ -13,11 +13,5 @@ namespace Data
         public bool IsAwarded { get; set; } = false;
         public int State { get; set; }
         public int FreelancerId { get; set; }
-
-        [Display(Name = "Created On")]
-        public DateTimeOffset CreatedUTC { get; set; }
-
-        [Display(Name = "Modified On")]
-        public DateTimeOffset ModifiedUTC { get; set; }
     }
 }

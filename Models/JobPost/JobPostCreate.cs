@@ -13,6 +13,5 @@ namespace Models
         public string Content { get; set; }
         public int EmployerId { get; set; }
         public int State { get; set; }
-        public DateTimeOffset CreatedUTC { get; set; }
     }
 }

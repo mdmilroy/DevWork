@@ -16,6 +16,5 @@ namespace Models.JobPost
         public int FreelancerId { get; set; }
         public int State { get; set; }
 
-        public DateTimeOffset ModifiedUTC { get; set; }
     }
 }
