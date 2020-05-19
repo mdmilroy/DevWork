@@ -341,8 +341,7 @@ namespace DevWork.Controllers
             }
             else
             {
-                var currentUser = UserManager.FindByEmail(user.Email);
-                var roleResult = UserManager.AddToRole(currentUser.Id, currentUser.UserRole);
+                UserManager.AddToRole(user.Id, user.UserRole);
             }
 
             return Ok();
