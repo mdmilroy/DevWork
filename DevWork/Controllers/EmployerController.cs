@@ -54,14 +54,14 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/Update
-        public IHttpActionResult Put(int id, EmployerUpdate employer)
+        public IHttpActionResult Put(EmployerUpdate employer)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateEmployerService();
 
-            if (!service.UpdateEmployer(id, employer))
+            if (!service.UpdateEmployer(employer))
                 return InternalServerError();
 
             return Ok();

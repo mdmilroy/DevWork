@@ -25,7 +25,7 @@ namespace Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Organization = model.Organization,
-                StateId = model.State
+                StateId = model.StateId
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -46,6 +46,7 @@ namespace Services
                         EmployerId = e.EmployerId,
                         FirstName = e.FirstName,
                         LastName = e.LastName,
+                        StateName = e.State.StateName
                     });
                 return query.ToArray();
             }
@@ -57,7 +58,9 @@ namespace Services
             {
                 var entity = ctx
                     .Employers
+                    //.Include("States")
                     .Single(e => e.EmployerId == id);
+                var stateEntity = ctx.States.Single(e => e.StateId == entity.StateId);
                 return
                     new EmployerDetail
                     {
@@ -66,12 +69,12 @@ namespace Services
                         LastName = entity.LastName,
                         Rating = entity.Rating,
                         Organization = entity.Organization,
-                        State = entity.StateId
+                        StateName = stateEntity.StateName
                     };
             }
         }
 
-        public bool UpdateEmployer(int id, EmployerUpdate employerToUpdate)
+        public bool UpdateEmployer(EmployerUpdate employerToUpdate)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -83,6 +86,7 @@ namespace Services
                 entity.LastName = employerToUpdate.LastName;
                 entity.Rating = employerToUpdate.Rating;
                 entity.Organization = employerToUpdate.Organization;
+                entity.StateId = employerToUpdate.StateId;
 
                 return ctx.SaveChanges() == 1;
             }

@@ -24,7 +24,8 @@ namespace Services
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                CodingLanguage = model.CodingLanguage,
+                CodingLanguageId = model.CodingLanguage,
+                StateId = model.StateId
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -44,7 +45,8 @@ namespace Services
                     {
                         FirstName = e.FirstName,
                         LastName = e.LastName,
-                        Rating = e.Rating
+                        Rating = e.Rating,
+                        StateId = e.StateId
                     });
                 return query.ToArray();
             }
@@ -57,15 +59,17 @@ namespace Services
                 var entity = ctx
                     .Freelancers
                     .Single(e => e.FreelancerId == id);
+                var stateEntity = ctx.States.Single(e => e.StateId == entity.StateId);
                 return
                     new FreelancerDetail
                     {
                         FreelancerId = entity.FreelancerId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        Rating = entity.Rating,
-                        CodingLanguage = entity.CodingLanguage,
+                        CodingLanguage = entity.CodingLanguageId,
                         JobsCompleted = entity.JobsCompleted,
+                        Rating = entity.Rating,
+                        StateName = stateEntity.StateName
                     };
             }
         }
@@ -82,8 +86,9 @@ namespace Services
                 entity.FirstName = freelancerToUpdate.FirstName;
                 entity.LastName = freelancerToUpdate.LastName;
                 entity.Rating = freelancerToUpdate.Rating;
-                entity.CodingLanguage = freelancerToUpdate.CodingLanguage;
+                entity.CodingLanguageId = freelancerToUpdate.CodingLanguage;
                 entity.JobsCompleted = freelancerToUpdate.JobsCompleted;
+                entity.StateId = freelancerToUpdate.StateId;
 
                 return ctx.SaveChanges() == 1;
             }
