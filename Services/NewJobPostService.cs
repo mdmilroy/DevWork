@@ -28,6 +28,7 @@ namespace Services
                 JobTitle = jobPostCreate.JobTitle,
                 Content = jobPostCreate.Content,
                 EmployerId = jobPostCreate.EmployerId,
+                StateId = jobPostCreate.StateId
             };
 
             ctx.JobPosts.Add(entity);
@@ -38,6 +39,7 @@ namespace Services
         public JobPostDetail GetJobPostById(int jobPostId)
         {
             var post = ctx.JobPosts.Single(e => e.JobPostId == jobPostId);
+            var stateEntity = ctx.States.Single(e => e.StateId == post.StateId);
             var entity = new JobPostDetail()
             {
                 JobTitle = post.JobTitle,
@@ -45,6 +47,7 @@ namespace Services
                 EmployerId = post.EmployerId,
                 IsAwarded = post.IsAwarded,
                 FreelancerId = post.FreelancerId,
+                StateName = stateEntity.StateName
             };
 
             return entity;
@@ -56,7 +59,8 @@ namespace Services
             {
                 JobPostId = e.JobPostId,
                 JobTitle = e.JobTitle,
-                IsAwarded = e.IsAwarded
+                IsAwarded = e.IsAwarded,
+                StateName = e.State.StateName
             }).ToArray();
 
             return jobsList;
@@ -78,6 +82,7 @@ namespace Services
             post.EmployerId = jobPostUpdate.EmployerId;
             post.IsAwarded = jobPostUpdate.IsAwarded;
             post.FreelancerId = jobPostUpdate.FreelancerId;
+            post.StateId = jobPostUpdate.StateId;
 
             return ctx.SaveChanges() == 1;
         }

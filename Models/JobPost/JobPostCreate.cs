@@ -12,6 +12,6 @@ namespace Models
         public string JobTitle { get; set; }
         public string Content { get; set; }
         public int EmployerId { get; set; }
-        public int State { get; set; }
+        public int StateId { get; set; }
     }
 }
