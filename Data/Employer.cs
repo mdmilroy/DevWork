@@ -28,8 +28,8 @@ namespace Data
         //public virtual ApplicationUser User { get; set; }
 
 
-        //[ForeignKey("State")]
+        [ForeignKey("State")]
         public int StateId { get; set; }
-        //public virtual State State { get; set; }
+        public virtual State State { get; set; }
     }
 }

@@ -14,6 +14,6 @@ namespace Models.Profiles
         public double Rating { get; set; }
         public int CodingLanguage { get; set; }
         public int JobsCompleted { get; set; }
-        public int StateId { get; set; }
+        public string StateName { get; set; }
     }
 }
