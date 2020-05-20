@@ -13,6 +13,6 @@ namespace Models.Profiles
         public string LastName { get; set; }
         public string Organization { get; set; }
         public double Rating { get; set; }
-        public int State { get; set; }
+        public int StateId { get; set; }
     }
 }

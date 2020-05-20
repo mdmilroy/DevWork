@@ -7,11 +7,15 @@ namespace Data
 {
     public class Employer
     {
+        [Key]
         public int EmployerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double Rating { get; set; } = 0;
         public string Organization { get; set; }
-        public int State { get; set; }
+
+        //[ForeignKey("State")]
+        public int StateId { get; set; }
+        //public virtual State State { get; set; }
     }
 }

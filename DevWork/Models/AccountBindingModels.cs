@@ -52,10 +52,6 @@ namespace DevWork.Models
 
         [Display(Name ="Role")]
         public string UserRole { get; set; }
-
-        [Required]
-        [Display(Name ="Birthday")]
-        public int Age { get; set; }
     }
 
     public class RegisterExternalBindingModel

@@ -24,7 +24,8 @@ namespace Services
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Organization = model.Organization
+                Organization = model.Organization,
+                StateId = model.State
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -44,7 +45,7 @@ namespace Services
                     {
                         EmployerId = e.EmployerId,
                         FirstName = e.FirstName,
-                        LastName = e.LastName
+                        LastName = e.LastName,
                     });
                 return query.ToArray();
             }
@@ -65,6 +66,7 @@ namespace Services
                         LastName = entity.LastName,
                         Rating = entity.Rating,
                         Organization = entity.Organization,
+                        State = entity.StateId
                     };
             }
         }

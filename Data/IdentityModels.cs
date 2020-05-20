@@ -14,9 +14,6 @@ namespace Data
     public class ApplicationUser : IdentityUser
     {
         public string UserRole { get; set; }
-        public int Age { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
@@ -43,6 +40,8 @@ namespace Data
         public DbSet<Employer> Employers { get; set; }
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<CodingLanguage> CodingLanguages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
