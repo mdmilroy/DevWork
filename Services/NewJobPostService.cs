@@ -13,8 +13,9 @@ namespace Services
 {
     public class NewJobPostService : IJobPostService
     {
-        private readonly ApplicationDbContext ctx = new ApplicationDbContext();
         private readonly Guid _userId;
+        private readonly ApplicationDbContext ctx = new ApplicationDbContext();
+
 
         public NewJobPostService(Guid userId)
         {
@@ -27,27 +28,28 @@ namespace Services
             {
                 JobTitle = jobPostCreate.JobTitle,
                 Content = jobPostCreate.Content,
-                EmployerId = jobPostCreate.EmployerId,
-                StateId = jobPostCreate.StateId
+                StateName = jobPostCreate.StateName,
+                EmployerId = _userId.ToString(),
+                CreatedUTC = DateTimeOffset.UtcNow
             };
-
             ctx.JobPosts.Add(entity);
             return ctx.SaveChanges() == 1;
 
         }
 
-        public JobPostDetail GetJobPostById(int jobPostId)
+        public JobPostDetail GetJobPostById(string jobPostId)
         {
             var post = ctx.JobPosts.Single(e => e.JobPostId == jobPostId);
-            var stateEntity = ctx.States.Single(e => e.StateId == post.StateId);
             var entity = new JobPostDetail()
             {
                 JobTitle = post.JobTitle,
                 Content = post.Content,
                 EmployerId = post.EmployerId,
                 IsAwarded = post.IsAwarded,
-                FreelancerId = post.FreelancerId,
-                StateName = stateEntity.StateName
+                FreelancerId = post.Freelancer.FreelancerId,
+                StateName = post.StateName,
+                CreatedUTC = post.CreatedUTC
+
             };
 
             return entity;
@@ -60,29 +62,30 @@ namespace Services
                 JobPostId = e.JobPostId,
                 JobTitle = e.JobTitle,
                 IsAwarded = e.IsAwarded,
-                StateName = e.State.StateName
+                StateName = e.StateName
             }).ToArray();
 
             return jobsList;
         }
 
-        public bool JobPostDelete(int jobPostId)
+        public bool JobPostDelete(string jobPostId)
         {
             var post = ctx.JobPosts.Single(e => e.JobPostId == jobPostId);
             ctx.JobPosts.Remove(post);
             return ctx.SaveChanges() == 1;
         }
 
-        public bool JobPostUpdate(int jobPostId, JobPostUpdate jobPostUpdate)
+        public bool JobPostUpdate(JobPostUpdate jobPostUpdate)
         {
-            var post = ctx.JobPosts.Single(e => e.JobPostId == jobPostId);
+            var post = ctx.JobPosts.Single(e => e.JobPostId == jobPostUpdate.JobPostId);
 
             post.JobTitle = jobPostUpdate.JobTitle;
             post.Content = jobPostUpdate.Content;
             post.EmployerId = jobPostUpdate.EmployerId;
             post.IsAwarded = jobPostUpdate.IsAwarded;
-            post.FreelancerId = jobPostUpdate.FreelancerId;
-            post.StateId = jobPostUpdate.StateId;
+            post.Freelancer.FreelancerId = jobPostUpdate.FreelancerId;
+            post.StateName = jobPostUpdate.StateName;
+            post.ModifiedUTC = DateTimeOffset.UtcNow;
 
             return ctx.SaveChanges() == 1;
         }

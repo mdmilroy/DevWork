@@ -10,9 +10,10 @@ namespace Models
     {
         public string JobTitle { get; set; }
         public string Content { get; set; }
-        public int EmployerId { get; set; }
+        public string EmployerId { get; set; }
         public bool IsAwarded { get; set; } = false;
-        public int FreelancerId { get; set; }
+        public string FreelancerId { get; set; }
         public string StateName { get; set; }
+        public DateTimeOffset CreatedUTC { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/GetJobPostById
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(string id)
         {
             NewJobPostService jobPostService = CreateJobPostService();
             var jobPost = jobPostService.GetJobPostById(id);
@@ -54,21 +54,21 @@ namespace DevWork.Controllers
         }
 
         // api/JobPost/Update
-        public IHttpActionResult Put(int id, JobPostUpdate jobPost)
+        public IHttpActionResult Put(JobPostUpdate jobPost)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateJobPostService();
 
-            if (!service.JobPostUpdate(id, jobPost))
+            if (!service.JobPostUpdate(jobPost))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/JobPost/Delete
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(string id)
         {
             var service = CreateJobPostService();
 

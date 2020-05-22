@@ -9,7 +9,7 @@ namespace Models
 {
     public class JobPostList
     {
-        public int JobPostId { get; set; }
+        public string JobPostId { get; set; }
         public string JobTitle { get; set; }
         public string StateName { get; set; }
 

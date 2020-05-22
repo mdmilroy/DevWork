@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using Contracts;
+using Data;
 using Models.Profile;
 using Models.Profiles;
 using System;
@@ -7,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Services
 {
-    public class FreelancerService
+    public class FreelancerService : IFreelancerService
     {
         private readonly Guid _userId;
+        private readonly ApplicationDbContext ctx = new ApplicationDbContext();
 
         public FreelancerService(Guid userId)
         {
@@ -22,23 +25,22 @@ namespace Services
         {
             var entity = new Freelancer()
             {
+                FreelancerId = _userId.ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                CodingLanguageId = model.CodingLanguage,
-                StateId = model.StateId
+                StateId = model.StateId,
+                CreatedUTC = DateTimeOffset.UtcNow
             };
+            var language = (CodingLanguage) ctx.CodingLanguages.Where(e => e.CodingLanguageId == model.CodingLanguage).Select(e => e);
+            entity.CodingLanguages.Add(language);
 
-            using (var ctx = new ApplicationDbContext())
-            {
+
                 ctx.Freelancers.Add(entity);
                 return ctx.SaveChanges() == 1;
-            }
         }
 
         public IEnumerable<FreelancerList> GetFreelancers()
         {
-            using (var ctx = new ApplicationDbContext())
-            {
                 var query = ctx
                     .Freelancers
                     .Select(e => new FreelancerList
@@ -49,13 +51,10 @@ namespace Services
                         StateId = e.StateId
                     });
                 return query.ToArray();
-            }
         }
 
-        public FreelancerDetail GetFreelancerById(int id)
+        public FreelancerDetail GetFreelancerById(string id)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
                 var entity = ctx
                     .Freelancers
                     .Single(e => e.FreelancerId == id);
@@ -66,18 +65,17 @@ namespace Services
                         FreelancerId = entity.FreelancerId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        CodingLanguage = entity.CodingLanguageId,
+                        CodingLanguage = (List<string>) entity.CodingLanguages,
                         JobsCompleted = entity.JobsCompleted,
                         Rating = entity.Rating,
-                        StateName = stateEntity.StateName
+                        StateName = stateEntity.StateName,
+                        CreatedUTC = DateTimeOffset.UtcNow
+
                     };
-            }
         }
 
-        public bool UpdateFreelancer(int id, FreelancerUpdate freelancerToUpdate)
+        public bool UpdateFreelancer(FreelancerUpdate freelancerToUpdate)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
                 var entity = ctx
                     .Freelancers
                     .Single(e => e.FreelancerId == freelancerToUpdate.FreelancerId);
@@ -86,18 +84,15 @@ namespace Services
                 entity.FirstName = freelancerToUpdate.FirstName;
                 entity.LastName = freelancerToUpdate.LastName;
                 entity.Rating = freelancerToUpdate.Rating;
-                entity.CodingLanguageId = freelancerToUpdate.CodingLanguage;
                 entity.JobsCompleted = freelancerToUpdate.JobsCompleted;
                 entity.StateId = freelancerToUpdate.StateId;
+                entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
-            }
         }
 
-        public bool DeleteFreelancer(int id)
+        public bool DeleteFreelancer(string id)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
                 var entity =
                     ctx
                         .Freelancers
@@ -106,7 +101,6 @@ namespace Services
                 ctx.Freelancers.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
-            }
         }
     }
 }

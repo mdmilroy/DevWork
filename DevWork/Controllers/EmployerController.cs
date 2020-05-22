@@ -32,7 +32,7 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/GetEmployerById
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(string id)
         {
             EmployerService employerService = CreateEmployerService();
             var employer = employerService.GetEmployerById(id);
@@ -68,7 +68,7 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/Delete
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(string id)
         {
             var service = CreateEmployerService();
 

@@ -14,7 +14,6 @@ namespace Data
     public class ApplicationUser : IdentityUser
     {
         public string UserRole { get; set; }
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -53,6 +52,24 @@ namespace Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+
+            modelBuilder.Entity<Employer>()
+                .HasMany(j => j.JobPosts)
+                .WithRequired(e => e.Employer)
+                .HasForeignKey(i => i.EmployerId)
+                .WillCascadeOnDelete(false);
+            
+            modelBuilder.Entity<State>()
+                .HasMany(f => f.Freelancers)
+                .WithRequired(e => e.State)
+                .HasForeignKey(i => i.StateId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<State>()
+                .HasMany(e => e.Employers)
+                .WithRequired(e => e.State)
+                .HasForeignKey(i => i.StateId)
+                .WillCascadeOnDelete(false);
         }
     }
 
