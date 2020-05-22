@@ -24,7 +24,6 @@ namespace Services
             var entity = new Message()
             {
                 Content = messageCreate.Content,
-                SenderId = messageCreate.SenderId,
                 RecipientId = messageCreate.RecipientId
             };
 

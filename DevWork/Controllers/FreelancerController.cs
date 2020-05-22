@@ -31,7 +31,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/GetFreelancerById
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(string id)
         {
             FreelancerService freelancerService = CreateFreelancerService();
             var freelancer = freelancerService.GetFreelancerById(id);
@@ -53,21 +53,21 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/Update
-        public IHttpActionResult Put(int id, FreelancerUpdate freelancer)
+        public IHttpActionResult Put(FreelancerUpdate freelancer)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateFreelancerService();
 
-            if (!service.UpdateFreelancer(id, freelancer))
+            if (!service.UpdateFreelancer(freelancer))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/Freelancer/Delete
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(string id)
         {
             var service = CreateFreelancerService();
 

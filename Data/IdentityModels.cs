@@ -53,6 +53,30 @@ namespace Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+
+            modelBuilder.Entity<Employer>()
+                .HasMany(j => j.JobPosts)
+                .WithRequired(e => e.Employer)
+                .HasForeignKey(i => i.EmployerId)
+                .WillCascadeOnDelete(false);
+            
+            modelBuilder.Entity<State>()
+                .HasMany(f => f.Freelancers)
+                .WithRequired(e => e.State)
+                .HasForeignKey(i => i.StateId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<State>()
+                .HasMany(e => e.Employers)
+                .WithRequired(e => e.State)
+                .HasForeignKey(i => i.StateId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Freelancer>()
+                .HasMany(c => c.CodingLanguages)
+                .WithRequired(l => l.Freelancer)
+                .HasForeignKey(i => i.FreelancerId)
+                .WillCascadeOnDelete(false);
         }
     }
 

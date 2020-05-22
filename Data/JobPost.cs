@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,17 +7,27 @@ namespace Data
 {
     public class JobPost
     {
-        [Key]
+        [ForeignKey("Freelancer")]
         public int JobPostId { get; set; }
+
+        [Required]
         public string JobTitle { get; set; }
+        
+        [Required]
         public string Content { get; set; }
-        public int EmployerId { get; set; }
+
+        public string StateName { get; set; }
         public bool IsAwarded { get; set; } = false;
-        public int FreelancerId { get; set; }
+        
+        [Required]
+        public DateTimeOffset CreatedUTC { get; set; }
+        public DateTimeOffset ModifiedUTC { get; set; }
+
+        public string EmployerId { get; set; }
+        public Employer Employer { get; set; }
 
 
-        [ForeignKey("State")]
-        public int StateId { get; set; }
-        public virtual State State { get; set; }
+        public virtual Freelancer Freelancer { get; set; }
+
     }
 }
