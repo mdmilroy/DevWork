@@ -12,7 +12,8 @@ namespace Models.Profiles
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public double Rating { get; set; }
-        public string CodingLanguage { get; set; }
+
+        public List<string> CodingLanguage { get; set; }
         public int JobsCompleted { get; set; }
         public string StateName { get; set; }
         public DateTimeOffset CreatedUTC { get; set; }

@@ -34,10 +34,13 @@ namespace Data
 
 
         public virtual JobPost JobPost { get; set; }
-        public virtual CodingLanguage CodingLanguage { get; set; }
 
 
-        public ICollection<CodingLanguage> CodingLanguages { get; set; }
+        public Freelancer()
+        {
+            this.CodingLanguages = new HashSet<CodingLanguage>();
+        }
+        public virtual ICollection<CodingLanguage> CodingLanguages { get; set; }
 
     }
 }

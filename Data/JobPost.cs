@@ -8,7 +8,7 @@ namespace Data
     public class JobPost
     {
         [ForeignKey("Freelancer")]
-        public int JobPostId { get; set; }
+        public string JobPostId { get; set; }
 
         [Required]
         public string JobTitle { get; set; }

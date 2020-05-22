@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
@@ -9,7 +10,11 @@ namespace Data
         public int CodingLanguageId { get; set; }
         public string CodingLanguageName { get; set; }
 
-        public string FreelancerId { get; set; }
-        public Freelancer Freelancer { get; set; }
+
+        public CodingLanguage()
+        {
+            this.Freelancers = new HashSet<Freelancer>();
+        }
+        public ICollection<Freelancer> Freelancers { get; set; }
     }
 }

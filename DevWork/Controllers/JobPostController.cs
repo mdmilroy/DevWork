@@ -32,7 +32,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/GetJobPostById
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(string id)
         {
             NewJobPostService jobPostService = CreateJobPostService();
             var jobPost = jobPostService.GetJobPostById(id);
@@ -68,7 +68,7 @@ namespace DevWork.Controllers
         }
 
         // api/JobPost/Delete
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(string id)
         {
             var service = CreateJobPostService();
 

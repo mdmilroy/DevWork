@@ -8,7 +8,7 @@ namespace Models.JobPost
 {
     public class JobPostUpdate
     {
-        public int JobPostId { get; set; }
+        public string JobPostId { get; set; }
         public string JobTitle { get; set; }
         public string Content { get; set; }
         public string EmployerId { get; set; }

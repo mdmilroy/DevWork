@@ -12,8 +12,8 @@ namespace Contracts
     {
         bool CreateJobPost(JobPostCreate jobPostCreate);
         IEnumerable<JobPostList> GetJobs();
-        JobPostDetail GetJobPostById(int jobPostId);
+        JobPostDetail GetJobPostById(string jobPostId);
         bool JobPostUpdate(JobPostUpdate jobPostUpdate);
-        bool JobPostDelete(int jobPostId);
+        bool JobPostDelete(string jobPostId);
     }
 }

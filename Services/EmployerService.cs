@@ -88,7 +88,7 @@ namespace Services
 
                 entity.FirstName = employerToUpdate.FirstName;
                 entity.LastName = employerToUpdate.LastName;
-                entity.Rating = employerToUpdate.Rating;
+                entity.Rating = employerToUpdate.Rating; // TODO this is not updating...
                 entity.Organization = employerToUpdate.Organization;
                 entity.StateId = employerToUpdate.StateId;
                 entity.ModifiedUTC = DateTimeOffset.UtcNow;

@@ -65,7 +65,7 @@ namespace Services
                         FreelancerId = entity.FreelancerId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        CodingLanguage = entity.CodingLanguage.CodingLanguageName,
+                        CodingLanguage = (List<string>) entity.CodingLanguages,
                         JobsCompleted = entity.JobsCompleted,
                         Rating = entity.Rating,
                         StateName = stateEntity.StateName,
@@ -84,7 +84,6 @@ namespace Services
                 entity.FirstName = freelancerToUpdate.FirstName;
                 entity.LastName = freelancerToUpdate.LastName;
                 entity.Rating = freelancerToUpdate.Rating;
-                entity.CodingLanguage.CodingLanguageId = freelancerToUpdate.CodingLanguage;
                 entity.JobsCompleted = freelancerToUpdate.JobsCompleted;
                 entity.StateId = freelancerToUpdate.StateId;
                 entity.ModifiedUTC = DateTimeOffset.UtcNow;

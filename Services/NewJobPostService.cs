@@ -37,7 +37,7 @@ namespace Services
 
         }
 
-        public JobPostDetail GetJobPostById(int jobPostId)
+        public JobPostDetail GetJobPostById(string jobPostId)
         {
             var post = ctx.JobPosts.Single(e => e.JobPostId == jobPostId);
             var entity = new JobPostDetail()
@@ -68,7 +68,7 @@ namespace Services
             return jobsList;
         }
 
-        public bool JobPostDelete(int jobPostId)
+        public bool JobPostDelete(string jobPostId)
         {
             var post = ctx.JobPosts.Single(e => e.JobPostId == jobPostId);
             ctx.JobPosts.Remove(post);
