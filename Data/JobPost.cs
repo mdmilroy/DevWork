@@ -24,7 +24,7 @@ namespace Data
         public DateTimeOffset ModifiedUTC { get; set; }
 
         public string EmployerId { get; set; }
-        public Employer Employer { get; set; }
+        public virtual Employer Employer { get; set; }
 
 
         public virtual Freelancer Freelancer { get; set; }

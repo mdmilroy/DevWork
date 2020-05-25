@@ -55,27 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodingLanguage.cs" />
     <Compile Include="Employer.cs" />
     <Compile Include="Freelancer.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="JobPost.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="Migrations\202005220253581_InitialCreate.cs" />
-    <Compile Include="Migrations\202005220253581_InitialCreate.Designer.cs">
-      <DependentUpon>202005220253581_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005220314134_initialMigration.cs" />
-    <Compile Include="Migrations\202005220314134_initialMigration.Designer.cs">
-      <DependentUpon>202005220314134_initialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005220316306_addedUserRolePropBackIn.cs" />
-    <Compile Include="Migrations\202005220316306_addedUserRolePropBackIn.Designer.cs">
-      <DependentUpon>202005220316306_addedUserRolePropBackIn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005220338492_changedFreelancerCodingLangFK.cs" />
-    <Compile Include="Migrations\202005220338492_changedFreelancerCodingLangFK.Designer.cs">
-      <DependentUpon>202005220338492_changedFreelancerCodingLangFK.cs</DependentUpon>
+    <Compile Include="Migrations\202005252235259_removedTables.cs" />
+    <Compile Include="Migrations\202005252235259_removedTables.Designer.cs">
+      <DependentUpon>202005252235259_removedTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,17 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005220253581_InitialCreate.resx">
-      <DependentUpon>202005220253581_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005220314134_initialMigration.resx">
-      <DependentUpon>202005220314134_initialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005220316306_addedUserRolePropBackIn.resx">
-      <DependentUpon>202005220316306_addedUserRolePropBackIn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005220338492_changedFreelancerCodingLangFK.resx">
-      <DependentUpon>202005220338492_changedFreelancerCodingLangFK.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005252235259_removedTables.resx">
+      <DependentUpon>202005252235259_removedTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
