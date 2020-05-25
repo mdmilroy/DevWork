@@ -33,7 +33,7 @@ namespace Services
                 CreatedUTC = DateTimeOffset.UtcNow
             };
             ctx.JobPosts.Add(entity);
-            return ctx.SaveChanges() == 1;
+            return ctx.SaveChanges() == 1; //TODO AUTO-INCREMENT JOBPOSTID
 
         }
 

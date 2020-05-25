@@ -31,7 +31,8 @@ namespace Services
                 StateId = model.StateId,
                 CreatedUTC = DateTimeOffset.UtcNow
             };
-            var language = (CodingLanguage) ctx.CodingLanguages.Where(e => e.CodingLanguageId == model.CodingLanguage).Select(e => e);
+            //TODO SET TO RETRIEVE VALUE NOT ENTITY
+            var language = ctx.CodingLanguages.Where(e => e.CodingLanguageId == model.CodingLanguage).Select(e => e.CodingLanguageName);
             entity.CodingLanguages.Add(language);
 
 
