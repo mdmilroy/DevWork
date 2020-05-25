@@ -36,11 +36,7 @@ namespace Data
         public virtual JobPost JobPost { get; set; }
 
 
-        public Freelancer()
-        {
-            this.CodingLanguages = new HashSet<CodingLanguage>();
-        }
-        public virtual ICollection<CodingLanguage> CodingLanguages { get; set; }
+        public List<string> CodingLanguages { get; set; }
 
     }
 }

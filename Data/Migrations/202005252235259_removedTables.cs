@@ -3,41 +3,26 @@ namespace Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class removedTables : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.CodingLanguage",
+                "dbo.Employer",
                 c => new
                     {
-                        CodingLanguageId = c.Int(nullable: false, identity: true),
-                        CodingLanguageName = c.String(),
-                        FreelancerId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.CodingLanguageId)
-                .ForeignKey("dbo.Freelancer", t => t.FreelancerId)
-                .Index(t => t.FreelancerId);
-            
-            CreateTable(
-                "dbo.Freelancer",
-                c => new
-                    {
-                        FreelancerId = c.String(nullable: false, maxLength: 128),
+                        EmployerId = c.String(nullable: false, maxLength: 128),
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
-                        JobsCompleted = c.Int(nullable: false),
+                        Organization = c.String(nullable: false),
                         Rating = c.Double(nullable: false),
                         CreatedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         StateId = c.Int(nullable: false),
-                        CodingLanguage_CodingLanguageId = c.Int(),
                     })
-                .PrimaryKey(t => t.FreelancerId)
-                .ForeignKey("dbo.CodingLanguage", t => t.CodingLanguage_CodingLanguageId)
+                .PrimaryKey(t => t.EmployerId)
                 .ForeignKey("dbo.State", t => t.StateId)
-                .Index(t => t.StateId)
-                .Index(t => t.CodingLanguage_CodingLanguageId);
+                .Index(t => t.StateId);
             
             CreateTable(
                 "dbo.JobPost",
@@ -53,25 +38,25 @@ namespace Data.Migrations
                         EmployerId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.JobPostId)
-                .ForeignKey("dbo.Employer", t => t.EmployerId)
                 .ForeignKey("dbo.Freelancer", t => t.JobPostId)
+                .ForeignKey("dbo.Employer", t => t.EmployerId)
                 .Index(t => t.JobPostId)
                 .Index(t => t.EmployerId);
             
             CreateTable(
-                "dbo.Employer",
+                "dbo.Freelancer",
                 c => new
                     {
-                        EmployerId = c.String(nullable: false, maxLength: 128),
+                        FreelancerId = c.String(nullable: false, maxLength: 128),
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
-                        Organization = c.String(nullable: false),
+                        JobsCompleted = c.Int(nullable: false),
                         Rating = c.Double(nullable: false),
                         CreatedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         ModifiedUTC = c.DateTimeOffset(nullable: false, precision: 7),
                         StateId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.EmployerId)
+                .PrimaryKey(t => t.FreelancerId)
                 .ForeignKey("dbo.State", t => t.StateId)
                 .Index(t => t.StateId);
             
@@ -175,22 +160,18 @@ namespace Data.Migrations
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
+            DropForeignKey("dbo.JobPost", "EmployerId", "dbo.Employer");
             DropForeignKey("dbo.JobPost", "JobPostId", "dbo.Freelancer");
             DropForeignKey("dbo.Freelancer", "StateId", "dbo.State");
             DropForeignKey("dbo.Employer", "StateId", "dbo.State");
-            DropForeignKey("dbo.JobPost", "EmployerId", "dbo.Employer");
-            DropForeignKey("dbo.CodingLanguage", "FreelancerId", "dbo.Freelancer");
-            DropForeignKey("dbo.Freelancer", "CodingLanguage_CodingLanguageId", "dbo.CodingLanguage");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
-            DropIndex("dbo.Employer", new[] { "StateId" });
+            DropIndex("dbo.Freelancer", new[] { "StateId" });
             DropIndex("dbo.JobPost", new[] { "EmployerId" });
             DropIndex("dbo.JobPost", new[] { "JobPostId" });
-            DropIndex("dbo.Freelancer", new[] { "CodingLanguage_CodingLanguageId" });
-            DropIndex("dbo.Freelancer", new[] { "StateId" });
-            DropIndex("dbo.CodingLanguage", new[] { "FreelancerId" });
+            DropIndex("dbo.Employer", new[] { "StateId" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
@@ -198,10 +179,9 @@ namespace Data.Migrations
             DropTable("dbo.IdentityRole");
             DropTable("dbo.Message");
             DropTable("dbo.State");
-            DropTable("dbo.Employer");
-            DropTable("dbo.JobPost");
             DropTable("dbo.Freelancer");
-            DropTable("dbo.CodingLanguage");
+            DropTable("dbo.JobPost");
+            DropTable("dbo.Employer");
         }
     }
 }

@@ -31,11 +31,7 @@ namespace Services
                 StateId = model.StateId,
                 CreatedUTC = DateTimeOffset.UtcNow
             };
-            //TODO SET TO RETRIEVE VALUE NOT ENTITY
-            var language = ctx.CodingLanguages.Where(e => e.CodingLanguageId == model.CodingLanguage).Select(e => e.CodingLanguageName);
-            entity.CodingLanguages.Add(language);
-
-
+            entity.CodingLanguages
                 ctx.Freelancers.Add(entity);
                 return ctx.SaveChanges() == 1;
         }
@@ -54,7 +50,7 @@ namespace Services
                 return query.ToArray();
         }
 
-        public FreelancerDetail GetFreelancerById(string id)
+        public FreelancerDetail GetFreelancerById(string id) // FreelancerId returns null...
         {
                 var entity = ctx
                     .Freelancers
@@ -66,7 +62,7 @@ namespace Services
                         FreelancerId = entity.FreelancerId,
                         FirstName = entity.FirstName,
                         LastName = entity.LastName,
-                        CodingLanguage = (List<string>) entity.CodingLanguages,
+                        CodingLanguage = entity.CodingLanguages,
                         JobsCompleted = entity.JobsCompleted,
                         Rating = entity.Rating,
                         StateName = stateEntity.StateName,
@@ -81,12 +77,12 @@ namespace Services
                     .Freelancers
                     .Single(e => e.FreelancerId == freelancerToUpdate.FreelancerId);
 
-                entity.FreelancerId = freelancerToUpdate.FreelancerId;
                 entity.FirstName = freelancerToUpdate.FirstName;
                 entity.LastName = freelancerToUpdate.LastName;
                 entity.Rating = freelancerToUpdate.Rating;
                 entity.JobsCompleted = freelancerToUpdate.JobsCompleted;
                 entity.StateId = freelancerToUpdate.StateId;
+            entity.CodingLanguages.Add(freelancerToUpdate.CodingLanguage);
                 entity.ModifiedUTC = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;

@@ -61,7 +61,6 @@ namespace Services
             {
                 var entity = ctx
                     .Employers
-                    //.Include("States")
                     .Single(e => e.EmployerId == id);
                 var stateEntity = ctx.States.Single(e => e.StateId == entity.StateId);
                 return

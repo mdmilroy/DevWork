@@ -40,7 +40,6 @@ namespace Data
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<State> States { get; set; }
-        public DbSet<CodingLanguage> CodingLanguages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
