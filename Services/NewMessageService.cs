@@ -4,8 +4,6 @@ using Models.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -24,7 +22,6 @@ namespace Services
             var entity = new Message()
             {
                 Content = messageCreate.Content,
-                SenderId = messageCreate.SenderId,
                 RecipientId = messageCreate.RecipientId
             };
 

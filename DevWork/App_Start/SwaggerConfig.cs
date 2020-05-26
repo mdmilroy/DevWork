@@ -1,12 +1,12 @@
-using System.Web.Http;
-using WebActivatorEx;
+using DevWork;
 using Swashbuckle.Application;
-using System.Linq;
 using Swashbuckle.Swagger;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Filters;
-using DevWork;
+using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 

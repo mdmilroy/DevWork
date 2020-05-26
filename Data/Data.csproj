@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,19 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodingLanguage.cs" />
     <Compile Include="Employer.cs" />
     <Compile Include="Freelancer.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="JobPost.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="Migrations\202005200037070_InitialCreate.cs" />
-    <Compile Include="Migrations\202005200037070_InitialCreate.Designer.cs">
-      <DependentUpon>202005200037070_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005200154102_initialMigration.cs" />
-    <Compile Include="Migrations\202005200154102_initialMigration.Designer.cs">
-      <DependentUpon>202005200154102_initialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202005252235259_removedTables.cs" />
+    <Compile Include="Migrations\202005252235259_removedTables.Designer.cs">
+      <DependentUpon>202005252235259_removedTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,11 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005200037070_InitialCreate.resx">
-      <DependentUpon>202005200037070_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005200154102_initialMigration.resx">
-      <DependentUpon>202005200154102_initialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005252235259_removedTables.resx">
+      <DependentUpon>202005252235259_removedTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

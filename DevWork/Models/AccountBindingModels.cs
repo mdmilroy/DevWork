@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Newtonsoft.Json;
 
 namespace DevWork.Models
 {
@@ -50,7 +48,7 @@ namespace DevWork.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name ="Role")]
+        [Display(Name = "Role")]
         public string UserRole { get; set; }
     }
 
