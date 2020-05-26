@@ -12,8 +12,7 @@ namespace Models.JobPost
         public string Content { get; set; }
         public string StateName { get; set; }
         public bool IsAwarded { get; set; }
-        public DateTimeOffset CreatedUTC { get; set; }
-        public DateTimeOffset ModifiedUTC { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
         public string EmployerId { get; set; }
         public string FreelancerId { get; set; }
     }

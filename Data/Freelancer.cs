@@ -27,7 +27,7 @@ namespace Data
         public virtual State State { get; set; }
 
 
-        public virtual JobPost JobPost { get; set; }
+        public List<JobPost> JobPosts { get; set; }
 
         public List<string> CodingLanguages { get; set; }
     }

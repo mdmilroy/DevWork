@@ -11,7 +11,7 @@ namespace Services
     public class EmployerService : IEmployerService
     {
         private readonly Guid _userId;
-        private readonly ApplicationDbContext _ctx;
+        private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
         public EmployerService(Guid userId)
         {
             _userId = userId;
@@ -25,9 +25,9 @@ namespace Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Organization = model.Organization,
+                CreatedDate = DateTimeOffset.UtcNow
             };
             entity.State.StateId = _ctx.States.Where(s => s.StateName == model.State).Select(s => s.StateId).Single();
-            entity.CreatedDate = DateTimeOffset.UtcNow;
 
             _ctx.Employers.Add(entity);
             return _ctx.SaveChanges() == 1;
@@ -50,8 +50,7 @@ namespace Services
         public EmployerDetail GetEmployerById(string id)
         {
             var entity = _ctx.Employers.Single(e => e.EmployerId == id);
-            return
-            new EmployerDetail
+            return new EmployerDetail
             {
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,

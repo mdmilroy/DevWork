@@ -9,6 +9,7 @@ namespace Contracts
         bool CreateJobPost(JobPostCreate jobPostCreate);
         List<JobPostListItem> GetJobs();
         JobPostDetail GetJobPostById(int jobPostId);
+        List<JobPostListItem> GetJobsByEmployerId(string employerId);
         bool JobPostUpdate(JobPostUpdate jobPostUpdate);
         bool JobPostDelete(int jobPostId);
     }

@@ -17,7 +17,6 @@ namespace Models.Employer
         [MaxLength(2)]
         public string State { get; set; }
 
-        public DateTimeOffset CreatedDate { get; set; }
 
     }
 }

@@ -8,9 +8,9 @@ namespace Models.JobPost
 {
     public class JobPostListItem
     {
-        public string JobPostId { get; set; }
+        public int JobPostId { get; set; }
         public string JobTitle { get; set; }
         public string StateName { get; set; }
-        public DateTimeOffset CreatedUTC { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
     }
 }

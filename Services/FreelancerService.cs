@@ -11,7 +11,7 @@ namespace Services
     public class FreelancerService : IFreelancerService
     {
         private readonly Guid _userId;
-        private readonly ApplicationDbContext _ctx;
+        private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
         public FreelancerService(Guid userId)
         {
             _userId = userId;
@@ -24,10 +24,10 @@ namespace Services
                 FreelancerId = _userId.ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-        };
+                CreatedDate = DateTimeOffset.UtcNow
+            };
             entity.CodingLanguages.Add(model.CodingLanguage);
             entity.State.StateId = _ctx.States.Where(s => s.StateName == model.State).Select(s => s.StateId).Single();
-            entity.CreatedDate = DateTimeOffset.UtcNow;
             _ctx.Freelancers.Add(entity);
             return _ctx.SaveChanges() == 1;
         }
