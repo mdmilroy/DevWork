@@ -2,6 +2,7 @@
 using Data;
 using Microsoft.AspNet.Identity;
 using Models;
+using Models.Employer;
 using Models.JobPost;
 using System;
 using System.Collections.Generic;
