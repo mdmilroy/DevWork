@@ -38,6 +38,7 @@ namespace Data
         public DbSet<JobPost> JobPosts { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<CodingLanguage> CodingLanguages { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -67,6 +68,16 @@ namespace Data
                 .WithRequired(e => e.State)
                 .HasForeignKey(i => i.StateId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Freelancer>()
+                .HasMany(e => e.CodingLanguages)
+                .WithMany(s => s.Freelancers)
+                .Map(fc =>
+                {
+                    fc.MapRightKey("CodingLanguageId");
+                    fc.MapLeftKey("FreelancerId");
+                    fc.ToTable("CodingLanguageFreelancer");
+                });
         }
     }
 

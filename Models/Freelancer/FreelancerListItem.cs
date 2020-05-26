@@ -12,5 +12,6 @@ namespace Models.Freelancer
         public string LastName { get; set; }
         public string State { get; set; }
         public int JobPostsCompleted { get; set; }
+        public List<string> CodingLanguages { get; set; }
     }
 }

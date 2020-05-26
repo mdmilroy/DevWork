@@ -77,6 +77,18 @@
     <Compile Include="Migrations\202005261917173_setJobPostIdToAutoIncrement.Designer.cs">
       <DependentUpon>202005261917173_setJobPostIdToAutoIncrement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005262107016_rekeyedFreelancerLanguages.cs" />
+    <Compile Include="Migrations\202005262107016_rekeyedFreelancerLanguages.Designer.cs">
+      <DependentUpon>202005262107016_rekeyedFreelancerLanguages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005262144428_manyToManyFreelancerCodingLang.cs" />
+    <Compile Include="Migrations\202005262144428_manyToManyFreelancerCodingLang.Designer.cs">
+      <DependentUpon>202005262144428_manyToManyFreelancerCodingLang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005262253144_swappedKeysInCodingFreelancerTable.cs" />
+    <Compile Include="Migrations\202005262253144_swappedKeysInCodingFreelancerTable.Designer.cs">
+      <DependentUpon>202005262253144_swappedKeysInCodingFreelancerTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="State.cs" />
@@ -103,6 +115,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005261917173_setJobPostIdToAutoIncrement.resx">
       <DependentUpon>202005261917173_setJobPostIdToAutoIncrement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005262107016_rekeyedFreelancerLanguages.resx">
+      <DependentUpon>202005262107016_rekeyedFreelancerLanguages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005262144428_manyToManyFreelancerCodingLang.resx">
+      <DependentUpon>202005262144428_manyToManyFreelancerCodingLang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005262253144_swappedKeysInCodingFreelancerTable.resx">
+      <DependentUpon>202005262253144_swappedKeysInCodingFreelancerTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

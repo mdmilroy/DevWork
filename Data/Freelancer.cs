@@ -27,8 +27,14 @@ namespace Data
         public virtual State State { get; set; }
 
 
+
         public List<JobPost> JobPosts { get; set; }
 
-        public List<string> CodingLanguages { get; set; }
+        public Freelancer()
+        {
+            CodingLanguages = new HashSet<CodingLanguage>();
+        }
+
+        public virtual ICollection<CodingLanguage> CodingLanguages { get; set; }
     }
 }

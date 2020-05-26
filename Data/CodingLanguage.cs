@@ -12,5 +12,12 @@ namespace Data
         [Key]
         public int CodingLanguageId { get; set; }
         public string CodingLanguageName { get; set; }
+
+        public CodingLanguage()
+        {
+            this.Freelancers = new HashSet<Freelancer>();
+        }
+
+        public virtual ICollection<Freelancer> Freelancers { get; set; }
     }
 }
