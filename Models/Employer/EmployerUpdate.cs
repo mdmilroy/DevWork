@@ -15,6 +15,5 @@ namespace Models.Employer
         public int JobPostsActive { get; set; }
         public int JobsCompleted { get; set; }
         public double Rating { get; set; }
-        public DateTimeOffset ModifiedDate { get; set; }
     }
 }
