@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Dynamic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Data
 {
@@ -29,7 +27,7 @@ namespace Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -57,7 +55,7 @@ namespace Data
                 .WithRequired(e => e.Employer)
                 .HasForeignKey(i => i.EmployerId)
                 .WillCascadeOnDelete(false);
-            
+
             modelBuilder.Entity<State>()
                 .HasMany(f => f.Freelancers)
                 .WithRequired(e => e.State)

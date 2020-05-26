@@ -3,10 +3,6 @@ using Models;
 using Models.JobPost;
 using Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace DevWork.Controllers
@@ -15,7 +11,7 @@ namespace DevWork.Controllers
     [RoutePrefix("api/JobPosts")]
     public class JobPostController : ApiController
     {
-        [Authorize(Roles="employer")]
+        [Authorize(Roles = "employer")]
         private NewJobPostService CreateJobPostService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

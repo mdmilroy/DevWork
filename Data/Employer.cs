@@ -1,9 +1,6 @@
-﻿using Contracts;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
@@ -14,10 +11,10 @@ namespace Data
 
         [Required]
         public string FirstName { get; set; }
-        
+
         [Required]
         public string LastName { get; set; }
-        
+
         [Required]
         public string Organization { get; set; }
 
@@ -26,7 +23,7 @@ namespace Data
 
         [Required]
         public DateTimeOffset CreatedUTC { get; set; }
-        
+
         public DateTimeOffset ModifiedUTC { get; set; }
 
 

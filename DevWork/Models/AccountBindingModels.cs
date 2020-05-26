@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Newtonsoft.Json;
 
 namespace DevWork.Models
 {

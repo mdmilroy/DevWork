@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using DevWork.Models;
-using Data;
 
 namespace DevWork
 {

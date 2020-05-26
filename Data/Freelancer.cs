@@ -1,8 +1,6 @@
-﻿using Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data
 {
@@ -11,21 +9,21 @@ namespace Data
         [Key]
         public string FreelancerId { get; set; }
 
-        [Required] 
+        [Required]
         public string FirstName { get; set; }
 
-        [Required] 
+        [Required]
         public string LastName { get; set; }
 
-        [Required] 
+        [Required]
         public int JobsCompleted { get; set; } = 0;
 
-        [Required] 
+        [Required]
         public double Rating { get; set; } = 0;
 
         [Required]
         public DateTimeOffset CreatedUTC { get; set; }
-        
+
         public DateTimeOffset ModifiedUTC { get; set; }
 
 

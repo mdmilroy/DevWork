@@ -1,8 +1,8 @@
+using DevWork.Areas.HelpPage.ModelDescriptions;
+using DevWork.Areas.HelpPage.Models;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using DevWork.Areas.HelpPage.ModelDescriptions;
-using DevWork.Areas.HelpPage.Models;
 
 namespace DevWork.Areas.HelpPage.Controllers
 {
