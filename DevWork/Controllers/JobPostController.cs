@@ -12,29 +12,36 @@ namespace DevWork.Controllers
     public class JobPostController : ApiController
     {
         [Authorize(Roles = "employer")]
-        private NewJobPostService CreateJobPostService()
+        private JobPostService CreateJobPostService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var jobPostService = new NewJobPostService(userId);
+            var jobPostService = new JobPostService(userId);
             return jobPostService;
         }
 
         // api/Freelancer/GetJobPostList
         public IHttpActionResult Get()
         {
-            NewJobPostService jobPostService = CreateJobPostService();
+            JobPostService jobPostService = CreateJobPostService();
             var jobPosts = jobPostService.GetJobs();
             return Ok(jobPosts);
         }
 
         // api/Freelancer/GetJobPostById
-        public IHttpActionResult Get(string id)
+        public IHttpActionResult Get(int id)
         {
-            NewJobPostService jobPostService = CreateJobPostService();
+            JobPostService jobPostService = CreateJobPostService();
             var jobPost = jobPostService.GetJobPostById(id);
             return Ok(jobPost);
         }
 
+        // api/Freelancer/GetJobPostByEmployerId
+        public IHttpActionResult Get(string employerId)
+        {
+            JobPostService jobPostService = CreateJobPostService();
+            var jobPosts = jobPostService.GetJobsByEmployerId(employerId);
+            return Ok(jobPosts);
+        }
         // api/JobPost/Create
         public IHttpActionResult Post(JobPostCreate jobPost)
         {
@@ -64,7 +71,7 @@ namespace DevWork.Controllers
         }
 
         // api/JobPost/Delete
-        public IHttpActionResult Delete(string id)
+        public IHttpActionResult Delete(int id)
         {
             var service = CreateJobPostService();
 

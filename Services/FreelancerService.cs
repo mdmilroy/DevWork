@@ -1,7 +1,6 @@
 ﻿using Contracts;
 using Data;
-using Models.Profile;
-using Models.Profiles;
+using Models.Freelancer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +11,7 @@ namespace Services
     public class FreelancerService : IFreelancerService
     {
         private readonly Guid _userId;
-        private readonly ApplicationDbContext ctx = new ApplicationDbContext();
-
+        private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
         public FreelancerService(Guid userId)
         {
             _userId = userId;
@@ -26,75 +24,60 @@ namespace Services
                 FreelancerId = _userId.ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                StateId = model.StateId,
-                CreatedUTC = DateTimeOffset.UtcNow
+                CreatedDate = DateTimeOffset.UtcNow
             };
-            ctx.Freelancers.Add(entity);
-            return ctx.SaveChanges() == 1;
+            entity.CodingLanguages.Add(model.CodingLanguage);
+            entity.State.StateId = _ctx.States.Where(s => s.StateName == model.State).Select(s => s.StateId).Single();
+            _ctx.Freelancers.Add(entity);
+            return _ctx.SaveChanges() == 1;
         }
 
-        public IEnumerable<FreelancerList> GetFreelancers()
+        public List<FreelancerListItem> GetFreelancers()
         {
-            var query = ctx
-                .Freelancers
-                .Select(e => new FreelancerList
-                {
-                    FirstName = e.FirstName,
-                    LastName = e.LastName,
-                    Rating = e.Rating,
-                    StateId = e.StateId
-                });
-            return query.ToArray();
+            var query = _ctx.Freelancers.Select(e => new FreelancerListItem
+            {
+                FreelancerId = e.FreelancerId,
+                LastName = e.LastName,
+                State = e.State.StateName,
+                JobPostsCompleted = e.JobsCompleted
+            });
+
+            return query.ToList();
         }
 
-        public FreelancerDetail GetFreelancerById(string id) // FreelancerId returns null...
+        public FreelancerDetail GetFreelancerById(string id)
         {
-            var entity = ctx
-                .Freelancers
-                .Single(e => e.FreelancerId == id);
-            var stateEntity = ctx.States.Single(e => e.StateId == entity.StateId);
+            var entity = _ctx.Freelancers.Single(e => e.FreelancerId == id);
             return
-                new FreelancerDetail
-                {
-                    FreelancerId = entity.FreelancerId,
-                    FirstName = entity.FirstName,
-                    LastName = entity.LastName,
-                    CodingLanguage = entity.CodingLanguages,
-                    JobsCompleted = entity.JobsCompleted,
-                    Rating = entity.Rating,
-                    StateName = stateEntity.StateName,
-                    CreatedUTC = DateTimeOffset.UtcNow
-
-                };
+            new FreelancerDetail
+            {
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Rating = entity.Rating,
+                CodingLanguages = entity.CodingLanguages,
+                State = entity.State.StateName,
+                CreatedDate = entity.CreatedDate
+            };
         }
 
         public bool UpdateFreelancer(FreelancerUpdate freelancerToUpdate)
         {
-            var entity = ctx
-                .Freelancers
-                .Single(e => e.FreelancerId == freelancerToUpdate.FreelancerId);
-
+            var entity = _ctx.Freelancers.Single(e => e.FreelancerId == _userId.ToString());
             entity.FirstName = freelancerToUpdate.FirstName;
             entity.LastName = freelancerToUpdate.LastName;
             entity.Rating = freelancerToUpdate.Rating;
-            entity.JobsCompleted = freelancerToUpdate.JobsCompleted;
-            entity.StateId = freelancerToUpdate.StateId;
             entity.CodingLanguages.Add(freelancerToUpdate.CodingLanguage);
-            entity.ModifiedUTC = DateTimeOffset.UtcNow;
+            entity.StateId = _ctx.States.Where(s => s.StateName == freelancerToUpdate.State).Select(s => s.StateId).Single();
+            entity.ModifiedDate = DateTimeOffset.UtcNow;
 
-            return ctx.SaveChanges() == 1;
+            return _ctx.SaveChanges() == 1;
         }
 
         public bool DeleteFreelancer(string id)
         {
-            var entity =
-                ctx
-                    .Freelancers
-                    .Single(e => e.FreelancerId == id);
-
-            ctx.Freelancers.Remove(entity);
-
-            return ctx.SaveChanges() == 1;
+            var entity = _ctx.Freelancers.Single(e => e.FreelancerId == id);
+            _ctx.Freelancers.Remove(entity);
+            return _ctx.SaveChanges() == 1;
         }
     }
 }

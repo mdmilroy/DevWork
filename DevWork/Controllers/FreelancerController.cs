@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using Models.Profiles;
+using Models.Freelancer;
 using Services;
 using System;
 using System.Web.Http;

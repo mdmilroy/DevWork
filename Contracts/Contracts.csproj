@@ -45,6 +45,7 @@
     <Compile Include="IFreelancerService.cs" />
     <Compile Include="IJobPostService.cs" />
     <Compile Include="IMessageService.cs" />
+    <Compile Include="IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

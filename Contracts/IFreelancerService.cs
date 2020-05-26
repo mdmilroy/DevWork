@@ -1,5 +1,4 @@
-﻿using Models.Profile;
-using Models.Profiles;
+﻿using Models.Freelancer;
 using System.Collections.Generic;
 
 namespace Contracts
@@ -7,7 +6,7 @@ namespace Contracts
     public interface IFreelancerService
     {
         bool CreateFreelancer(FreelancerCreate model);
-        IEnumerable<FreelancerList> GetFreelancers();
+        List<FreelancerListItem> GetFreelancers();
         FreelancerDetail GetFreelancerById(string id);
         bool UpdateFreelancer(FreelancerUpdate freelancerToUpdate);
         bool DeleteFreelancer(string id);
