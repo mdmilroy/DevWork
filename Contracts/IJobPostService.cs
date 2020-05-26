@@ -7,9 +7,10 @@ namespace Contracts
     public interface IJobPostService
     {
         bool CreateJobPost(JobPostCreate jobPostCreate);
-        IEnumerable<JobPostList> GetJobs();
-        JobPostDetail GetJobPostById(string jobPostId);
+        List<JobPostListItem> GetJobs();
+        JobPostDetail GetJobPostById(int jobPostId);
+        List<JobPostListItem> GetJobsByEmployerId(string employerId);
         bool JobPostUpdate(JobPostUpdate jobPostUpdate);
-        bool JobPostDelete(string jobPostId);
+        bool JobPostDelete(int jobPostId);
     }
 }

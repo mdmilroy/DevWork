@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data
 {
@@ -10,5 +11,7 @@ namespace Data
         public string SenderId { get; set; }
         public string RecipientId { get; set; }
         public bool IsRead { get; set; } = false;
+        public DateTimeOffset SentDate { get; set; }
+        public DateTimeOffset ModifiedDate { get; set; }
     }
 }

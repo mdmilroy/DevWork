@@ -10,17 +10,17 @@ namespace DevWork.Controllers
     [RoutePrefix("api/Messages")]
     public class MessageController : ApiController
     {
-        private NewMessageService CreateMessageService()
+        private MessageService CreateMessageService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var messageService = new NewMessageService(userId);
+            var messageService = new MessageService(userId);
             return messageService;
         }
 
         // api/Message/GetMessageList
         public IHttpActionResult Get()
         {
-            NewMessageService messageService = CreateMessageService();
+            MessageService messageService = CreateMessageService();
             var messages = messageService.GetMessages();
             return Ok(messages);
         }
@@ -28,7 +28,7 @@ namespace DevWork.Controllers
         // api/Message/GetMessageById
         public IHttpActionResult Get(int id)
         {
-            NewMessageService messageService = CreateMessageService();
+            MessageService messageService = CreateMessageService();
             var message = messageService.GetMessageById(id);
             return Ok(message);
         }
@@ -48,14 +48,14 @@ namespace DevWork.Controllers
         }
 
         // api/Message/Update
-        public IHttpActionResult Put(int id, MessageUpdate message)
+        public IHttpActionResult Put(MessageUpdate message)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateMessageService();
 
-            if (!service.MessageUpdate(id, message))
+            if (!service.MessageUpdate(message))
                 return InternalServerError();
 
             return Ok();

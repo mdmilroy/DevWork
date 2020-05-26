@@ -1,5 +1,4 @@
-﻿using Models.Profile;
-using Models.Profiles;
+﻿using Models.Employer;
 using System.Collections.Generic;
 
 namespace Contracts
@@ -7,7 +6,7 @@ namespace Contracts
     public interface IEmployerService
     {
         bool CreateEmployer(EmployerCreate model);
-        IEnumerable<EmployerList> GetEmployers();
+        List<EmployerListItem> GetEmployers();
         EmployerDetail GetEmployerById(string id);
         bool UpdateEmployer(EmployerUpdate employerToUpdate);
         bool DeleteEmployer(string id);
