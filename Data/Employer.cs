@@ -1,35 +1,34 @@
-﻿using System;
+﻿using Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Data
 {
-    public class Employer
+    public class Employer : IUser
     {
         [Key]
         public string EmployerId { get; set; }
 
-        [Required]
         public string FirstName { get; set; }
 
-        [Required]
         public string LastName { get; set; }
 
-        [Required]
         public string Organization { get; set; }
 
-        [Required]
         public double Rating { get; set; } = 0;
 
-        [Required]
-        public DateTimeOffset CreatedUTC { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
 
-        public DateTimeOffset ModifiedUTC { get; set; }
+        public DateTimeOffset ModifiedDate { get; set; }
 
 
         public int StateId { get; set; }
         public virtual State State { get; set; }
 
-        public ICollection<JobPost> JobPosts { get; set; }
+        public List<JobPost> JobPosts { get; set; }
+
+
+        public int JobsCompleted { get; set; } = 0;
     }
 }
