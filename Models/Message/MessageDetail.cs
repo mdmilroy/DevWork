@@ -15,5 +15,6 @@ namespace Models.Message
         public bool IsRead { get; set; }
         public DateTimeOffset SentDate { get; set; }
         public DateTimeOffset ModifiedDate { get; set; }
+        public bool IsActive { get; set; }
     }
 }

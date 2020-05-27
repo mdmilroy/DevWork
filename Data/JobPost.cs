@@ -15,7 +15,9 @@ namespace Data
         public bool IsAwarded { get; set; } = false;
         public DateTimeOffset CreatedDate { get; set; }
         public DateTimeOffset ModifiedDate { get; set; }
-        
+        public bool IsActive { get; set; } = true;
+
+
         public string EmployerId { get; set; }
         public virtual Employer Employer { get; set; }
 

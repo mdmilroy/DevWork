@@ -1,4 +1,5 @@
 ﻿using Models.Employer;
+using System;
 using System.Collections.Generic;
 
 namespace Contracts

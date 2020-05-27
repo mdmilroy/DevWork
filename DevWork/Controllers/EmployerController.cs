@@ -48,6 +48,7 @@ namespace DevWork.Controllers
         }
 
         // api/Employer/Update
+        [Authorize(Roles="employer")]
         public IHttpActionResult Put(EmployerUpdate employer)
         {
             if (!ModelState.IsValid)

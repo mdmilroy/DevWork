@@ -15,5 +15,6 @@ namespace Models.JobPost
         public DateTimeOffset CreatedDate { get; set; }
         public string EmployerId { get; set; }
         public string FreelancerId { get; set; }
+        public bool IsActive { get; set; }
     }
 }

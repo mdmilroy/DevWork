@@ -12,5 +12,6 @@ namespace Models.JobPost
         public string JobTitle { get; set; }
         public string StateName { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
+        public bool IsActive { get; set; }
     }
 }
