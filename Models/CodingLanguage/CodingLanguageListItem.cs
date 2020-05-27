@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models.CodingLanguage
 {
-    public class CodingLanguageCreate
+    public class CodingLanguageListItem
     {
+        public int CodingLanguageId { get; set; }
         public string CodingLanguageName { get; set; }
     }
 }
