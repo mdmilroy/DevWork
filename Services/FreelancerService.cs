@@ -36,7 +36,7 @@ namespace Services
 
         public ICollection<FreelancerListItem> GetFreelancers()
         {
-            var query = _ctx.Freelancers.Include(nameof(CodingLanguage)).Select(e => new FreelancerListItem
+            var query = _ctx.Freelancers.Include(nameof(CodingLanguage)).Where(m => m.IsActive == true).Select(e => new FreelancerListItem
             {
                 FreelancerId = e.FreelancerId,
                 LastName = e.LastName,
@@ -50,7 +50,7 @@ namespace Services
 
         public FreelancerDetail GetFreelancerById(string id)
         {
-            var entity = _ctx.Freelancers.Include(nameof(CodingLanguage)).Single(e => e.FreelancerId == id);
+            var entity = _ctx.Freelancers.Single(e => e.FreelancerId == id);
             return
             new FreelancerDetail
             {
@@ -59,10 +59,13 @@ namespace Services
                 Rating = entity.Rating,
                 CodingLanguages = entity.CodingLanguages.Select(c => c.CodingLanguageName).ToList(),
                 State = entity.State.StateName,
-                CreatedDate = entity.CreatedDate
+                CreatedDate = entity.CreatedDate,
+                IsActive = entity.IsActive
             };
         }
 
+
+        // TODO ability add or remove just coding languages
         public bool UpdateFreelancer(FreelancerUpdate freelancerToUpdate)
         {
             var entity = _ctx.Freelancers.Single(e => e.FreelancerId == _userId.ToString());
@@ -74,7 +77,24 @@ namespace Services
 
             var lang = _ctx.CodingLanguages.Where(c => c.CodingLanguageId == freelancerToUpdate.CodingLanguageId).Select(c => c).FirstOrDefault();
             entity.CodingLanguages.Add(lang);
-            //entity.CodingLanguages = freelancerToUpdate.CodingLanguage;
+
+            return _ctx.SaveChanges() == 1;
+        }
+
+        public bool AddCodingLanguage(FreelancerAddCodingLanguage codingLanguageId)
+        {
+            var entity = _ctx.Freelancers.Single(e => e.FreelancerId == _userId.ToString());
+            var lang = _ctx.CodingLanguages.Where(c => c.CodingLanguageId == codingLanguageId.CodingLanguageId).Select(c => c).FirstOrDefault();
+            entity.CodingLanguages.Add(lang);
+
+            return _ctx.SaveChanges() == 1;
+        }
+
+        public bool RemoveCodingLanguage(FreelancerRemoveCodingLanguage codingLanguageId)
+        {
+            var entity = _ctx.Freelancers.Single(e => e.FreelancerId == _userId.ToString());
+            var lang = _ctx.CodingLanguages.Where(c => c.CodingLanguageId == codingLanguageId.CodingLanguageId).Select(c => c).FirstOrDefault();
+            entity.CodingLanguages.Remove(lang);
 
             return _ctx.SaveChanges() == 1;
         }
@@ -82,7 +102,8 @@ namespace Services
         public bool DeleteFreelancer(string id)
         {
             var entity = _ctx.Freelancers.Single(e => e.FreelancerId == id);
-            _ctx.Freelancers.Remove(entity);
+            entity.IsActive = false;
+            //_ctx.Freelancers.Remove(entity);
             return _ctx.SaveChanges() == 1;
         }
     }

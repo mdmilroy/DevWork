@@ -13,5 +13,6 @@ namespace Data
         public bool IsRead { get; set; } = false;
         public DateTimeOffset SentDate { get; set; }
         public DateTimeOffset ModifiedDate { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

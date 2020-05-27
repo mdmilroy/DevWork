@@ -16,5 +16,6 @@ namespace Models.Employer
         public DateTimeOffset CreatedDate { get; set; }
         public int JobPostsActive { get; set; }
         public int JobsCompleted { get; set; }
+        public bool IsActive { get; set; }
     }
 }

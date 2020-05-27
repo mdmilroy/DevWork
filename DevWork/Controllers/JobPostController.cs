@@ -11,7 +11,7 @@ namespace DevWork.Controllers
     [RoutePrefix("api/JobPosts")]
     public class JobPostController : ApiController
     {
-        [Authorize(Roles = "employer")]
+        [Authorize(Roles="employer")]
         private JobPostService CreateJobPostService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -20,6 +20,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/GetJobPostList
+        [Route("GetAllPosts")]
         public IHttpActionResult Get()
         {
             JobPostService jobPostService = CreateJobPostService();
@@ -28,6 +29,7 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/GetJobPostById
+        [Route("GetPostsById")]
         public IHttpActionResult Get(int id)
         {
             JobPostService jobPostService = CreateJobPostService();
@@ -36,13 +38,16 @@ namespace DevWork.Controllers
         }
 
         // api/Freelancer/GetJobPostByEmployerId
+        [Route("GetByEmployerId")]
         public IHttpActionResult Get(string employerId)
         {
             JobPostService jobPostService = CreateJobPostService();
             var jobPosts = jobPostService.GetJobsByEmployerId(employerId);
             return Ok(jobPosts);
         }
+
         // api/JobPost/Create
+        [Route("Create")]
         public IHttpActionResult Post(JobPostCreate jobPost)
         {
             if (!ModelState.IsValid)
@@ -57,6 +62,7 @@ namespace DevWork.Controllers
         }
 
         // api/JobPost/Update
+        [Route("UpdateById")]
         public IHttpActionResult Put(JobPostUpdate jobPost)
         {
             if (!ModelState.IsValid)
@@ -71,6 +77,7 @@ namespace DevWork.Controllers
         }
 
         // api/JobPost/Delete
+        [Route("DeleteById")]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateJobPostService();

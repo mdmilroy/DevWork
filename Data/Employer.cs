@@ -11,16 +11,13 @@ namespace Data
         public string EmployerId { get; set; }
 
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
-
         public string Organization { get; set; }
-
         public double Rating { get; set; } = 0;
-
         public DateTimeOffset CreatedDate { get; set; }
-
         public DateTimeOffset ModifiedDate { get; set; }
+        public int JobsCompleted { get; set; } = 0;
+        public bool IsActive { get; set; } = true;
 
 
         public int StateId { get; set; }
@@ -29,6 +26,5 @@ namespace Data
         public List<JobPost> JobPosts { get; set; }
 
 
-        public int JobsCompleted { get; set; } = 0;
     }
 }
