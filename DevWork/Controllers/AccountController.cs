@@ -49,30 +49,6 @@ namespace DevWork.Controllers
             }
         }
 
-        //private ApplicationRoleManager _roleManager;
-        /////...
-        //public AccountController(ApplicationUserManager userManager,
-        //    ISecureDataFormat<AuthenticationTicket> accessTokenFormat, ApplicationRoleManager roleManager)
-        //{
-        //    ///Make an instance of the user manager in the controller to avoid null reference exception
-        //    UserManager = userManager;
-        //    AccessTokenFormat = accessTokenFormat;
-        //    ///Make an instance of the role manager in the constructor to avoid null reference exception
-        //    RoleManager = roleManager;
-        //}
-        /////...
-        //public ApplicationRoleManager RoleManager
-        //{
-        //    get
-        //    {
-        //        return _roleManager ?? Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
-        //    }
-        //    private set
-        //    {
-        //        _roleManager = value;
-        //    }
-        //}
-
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
