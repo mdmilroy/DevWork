@@ -17,23 +17,8 @@ namespace DevWork.Controllers
             return freelancerService;
         }
 
-        // api/Freelancer/GetFreelancerList
-        public IHttpActionResult Get()
-        {
-            FreelancerService freelancerService = CreateFreelancerService();
-            var freelancers = freelancerService.GetFreelancers();
-            return Ok(freelancers);
-        }
-
-        // api/Freelancer/GetFreelancerById
-        public IHttpActionResult Get(string id)
-        {
-            FreelancerService freelancerService = CreateFreelancerService();
-            var freelancer = freelancerService.GetFreelancerById(id);
-            return Ok(freelancer);
-        }
-
         // api/Freelancer/Create
+        [Route("Create")]
         public IHttpActionResult Post(FreelancerCreate freelancer)
         {
             if (!ModelState.IsValid)
@@ -47,7 +32,27 @@ namespace DevWork.Controllers
             return Ok();
         }
 
+        // api/Freelancer/GetFreelancerList
+        [Route("GetAllFreelancers")]
+        public IHttpActionResult Get()
+        {
+            FreelancerService freelancerService = CreateFreelancerService();
+            var freelancers = freelancerService.GetFreelancers();
+            return Ok(freelancers);
+        }
+
+        // api/Freelancer/GetFreelancerById
+        [Route("GetById")]
+        public IHttpActionResult Get(string id)
+        {
+            FreelancerService freelancerService = CreateFreelancerService();
+            var freelancer = freelancerService.GetFreelancerById(id);
+            return Ok(freelancer);
+        }
+
         // api/Freelancer/Update
+        [Authorize(Roles="freelancer")]
+        [Route("Update")]
         public IHttpActionResult Put(FreelancerUpdate freelancer)
         {
             if (!ModelState.IsValid)
@@ -61,7 +66,40 @@ namespace DevWork.Controllers
             return Ok();
         }
 
+        // api/Freelancer/AddCodingLanguage
+        [Authorize(Roles="freelancer")]
+        [Route("AddCodingLanguage")]
+        public IHttpActionResult Put(FreelancerAddCodingLanguage codingLanguageId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateFreelancerService();
+
+            if (!service.AddCodingLanguage(codingLanguageId))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        // api/Freelancer/RemoveCodingLanguage
+        [Authorize(Roles="freelancer")]
+        [Route("RemoveCodingLanguage")]
+        public IHttpActionResult Put(FreelancerRemoveCodingLanguage codingLanguageId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateFreelancerService();
+
+            if (!service.RemoveCodingLanguage(codingLanguageId))
+                return InternalServerError();
+
+            return Ok();
+        }
+
         // api/Freelancer/Delete
+        [Route("Delete")]
         public IHttpActionResult Delete(string id)
         {
             var service = CreateFreelancerService();

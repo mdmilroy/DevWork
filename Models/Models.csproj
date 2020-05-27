@@ -46,9 +46,11 @@
     <Compile Include="Employer\EmployerDetail.cs" />
     <Compile Include="Employer\EmployerListItem.cs" />
     <Compile Include="Employer\EmployerUpdate.cs" />
+    <Compile Include="Freelancer\FreelancerAddCodingLanguage.cs" />
     <Compile Include="Freelancer\FreelancerCreate.cs" />
     <Compile Include="Freelancer\FreelancerDetail.cs" />
     <Compile Include="Freelancer\FreelancerListItem.cs" />
+    <Compile Include="Freelancer\FreelancerRemoveCodingLanguage.cs" />
     <Compile Include="Freelancer\FreelancerUpdate.cs" />
     <Compile Include="JobPost\JobPostCreate.cs" />
     <Compile Include="JobPost\JobPostDetail.cs" />

@@ -33,7 +33,7 @@ namespace Services
 
         public List<MessageListItem> GetMessages()
         {
-            var query = _ctx.Messages.Select(m => new MessageListItem
+            var query = _ctx.Messages.Where(m => m.IsActive == true).Select(m => new MessageListItem
             {
                 MessageId = m.MessageId,
                 SenderId = m.SenderId,
@@ -55,7 +55,8 @@ namespace Services
                 RecipientId = entity.RecipientId,
                 IsRead = entity.IsRead,
                 SentDate = entity.SentDate,
-                ModifiedDate = entity.ModifiedDate
+                ModifiedDate = entity.ModifiedDate,
+                IsActive = entity.IsActive
             };
         }
 
@@ -73,7 +74,8 @@ namespace Services
         public bool MessageDelete(int messageId)
         {
             var entity = _ctx.Messages.Single(m => m.MessageId == messageId);
-            _ctx.Messages.Remove(entity);
+            entity.IsActive = false;
+            //_ctx.Messages.Remove(entity);
             return _ctx.SaveChanges() == 1;
         }
     }

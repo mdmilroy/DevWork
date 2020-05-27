@@ -9,6 +9,8 @@ namespace Contracts
         ICollection<FreelancerListItem> GetFreelancers();
         FreelancerDetail GetFreelancerById(string id);
         bool UpdateFreelancer(FreelancerUpdate freelancerToUpdate);
+        bool AddCodingLanguage(FreelancerAddCodingLanguage codingLanguageId);
+        bool RemoveCodingLanguage(FreelancerRemoveCodingLanguage codingLanguageId);
         bool DeleteFreelancer(string id);
     }
 }
