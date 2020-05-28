@@ -30,6 +30,10 @@ namespace DevWork.Controllers
         {
             MessageService messageService = CreateMessageService();
             var message = messageService.GetMessageById(id);
+
+            if (message == null)
+                return NotFound();
+
             return Ok(message);
         }
 

@@ -30,6 +30,10 @@ namespace DevWork.Controllers
         {
             EmployerService employerService = CreateEmployerService();
             var employer = employerService.GetEmployerById(id);
+
+            if (employer == null)
+                return NotFound();
+
             return Ok(employer);
         }
 

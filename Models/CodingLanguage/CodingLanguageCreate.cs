@@ -8,6 +8,7 @@ namespace Models.CodingLanguage
 {
     public class CodingLanguageCreate
     {
+        public int CodingLangaugeId { get; set; }
         public string CodingLanguageName { get; set; }
     }
 }
