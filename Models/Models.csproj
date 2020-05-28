@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodingLanguage\CodingLanguageCreate.cs" />
+    <Compile Include="CodingLanguage\CodingLanguageListItem.cs" />
     <Compile Include="Employer\EmployerCreate.cs" />
     <Compile Include="Employer\EmployerDetail.cs" />
     <Compile Include="Employer\EmployerListItem.cs" />

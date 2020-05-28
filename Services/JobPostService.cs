@@ -39,7 +39,6 @@ namespace Services
         {
             var query = _ctx.JobPosts.Where(m => m.IsActive == true).Select(e => new JobPostListItem
             {
-                // TODO implement soft delete, adding bool isActive and only returning Active ones here
                 JobPostId = e.JobPostId,
                 JobTitle = e.JobTitle,
                 StateName = e.StateName,
@@ -70,7 +69,6 @@ namespace Services
         {
             var query = _ctx.JobPosts.Where(e => e.EmployerId == employerId).Select(e => new JobPostListItem
             {
-                // TODO implement soft delete, adding bool isActive and only returning Active ones here
                 JobPostId = e.JobPostId,
                 JobTitle = e.JobTitle,
                 StateName = e.StateName,
@@ -99,9 +97,7 @@ namespace Services
         {
             var entity = _ctx.JobPosts.Single(j => j.JobPostId == jobPostId);
             entity.IsActive = false;
-            //_ctx.JobPosts.Remove(entity); // TODO replace this with soft delete by updating isActive to false
             return _ctx.SaveChanges() == 1;
         }
-
     }
 }
