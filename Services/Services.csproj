@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodingLanguageService.cs" />
     <Compile Include="EmployerService.cs" />
     <Compile Include="FreelancerService.cs" />
     <Compile Include="JobPostService.cs" />

@@ -47,6 +47,10 @@ namespace DevWork.Controllers
         {
             FreelancerService freelancerService = CreateFreelancerService();
             var freelancer = freelancerService.GetFreelancerById(id);
+
+            if (freelancer == null)
+                return NotFound();
+
             return Ok(freelancer);
         }
 

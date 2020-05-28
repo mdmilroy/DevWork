@@ -34,6 +34,10 @@ namespace DevWork.Controllers
         {
             JobPostService jobPostService = CreateJobPostService();
             var jobPost = jobPostService.GetJobPostById(id);
+
+            if (jobPost == null)
+                return NotFound();
+
             return Ok(jobPost);
         }
 
