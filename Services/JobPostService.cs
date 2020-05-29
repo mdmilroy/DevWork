@@ -12,10 +12,10 @@ namespace Services
 {
     public class JobPostService : IJobPostService
     {
-        private readonly Guid _userId;
+        private readonly string _userId;
         private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
 
-        public JobPostService(Guid userId)
+        public JobPostService(string userId)
         {
             _userId = userId;
         }
@@ -28,7 +28,8 @@ namespace Services
                 Content = jobPostCreate.Content,
                 StateName = jobPostCreate.StateName,
                 CreatedDate = DateTimeOffset.UtcNow,
-                EmployerId = _userId.ToString()
+                ModifiedDate = DateTimeOffset.UtcNow,
+                EmployerId = _userId
             };
 
             _ctx.JobPosts.Add(entity);

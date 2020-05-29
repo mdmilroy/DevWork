@@ -12,7 +12,7 @@ namespace DevWork.Controllers
     {
         private MessageService CreateMessageService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            var userId = User.Identity.GetUserId();
             var messageService = new MessageService(userId);
             return messageService;
         }

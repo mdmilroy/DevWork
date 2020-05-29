@@ -12,7 +12,7 @@ namespace DevWork.Controllers
     {
         private EmployerService CreateEmployerService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            var userId = User.Identity.GetUserId();
             var employerService = new EmployerService(userId);
             return employerService;
         }

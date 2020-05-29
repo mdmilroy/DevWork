@@ -9,10 +9,10 @@ namespace Services
 {
     public class MessageService : IMessageService
     {
-        private readonly Guid _userId;
+        private readonly string _userId;
         private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
 
-        public MessageService(Guid userId)
+        public MessageService(string userId)
         {
             _userId = userId;
         }
@@ -22,9 +22,10 @@ namespace Services
             var entity = new Message()
             {
                 Content = messageCreate.Content,
-                SenderId = _userId.ToString(),
+                SenderId = _userId,
                 RecipientId = messageCreate.RecipientId,
-                SentDate = DateTimeOffset.UtcNow
+                SentDate = DateTimeOffset.UtcNow,
+                ModifiedDate = DateTimeOffset.UtcNow
             };
 
             _ctx.Messages.Add(entity);
