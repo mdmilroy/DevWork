@@ -15,7 +15,7 @@ namespace MVC.Controllers
 {
     public class EmployersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
         private EmployerService _employerService;
         private string _userId;
 

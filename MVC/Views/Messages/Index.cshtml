@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RecipientId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Content)
         </th>
         <th>
@@ -25,6 +22,15 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SenderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecipientId)
         </th>
         <th></th>
     </tr>
@@ -32,19 +38,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayNameFor(model => model.RecipientId)
+            @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayFor(modelItem => item.IsRead)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.IsRead)
+            @Html.DisplayFor(modelItem => item.SentDate)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.SentDate)
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SenderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecipientId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MessageId }) |

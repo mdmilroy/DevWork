@@ -337,10 +337,10 @@ namespace DevWork.Controllers
             {
                 return GetErrorResult(result);
             }
-            else
-            {
-                UserManager.AddToRole(user.Id, user.UserRole);
-            }
+            //else
+            //{
+            //    UserManager.AddToRole(user.Id, user.UserRole);
+            //}
 
             return Ok();
         }
