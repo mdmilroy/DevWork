@@ -23,7 +23,7 @@ namespace MVC.Controllers
         // GET: Messages1
         public ActionResult Index()
         {
-            var users = db.Messages.Include(e => e.Recipient);
+            var users = db.Messages.Where(e => e.IsActive == true).Include(e => e.Recipient);
             return View(db.Messages.ToList());
         }
 
