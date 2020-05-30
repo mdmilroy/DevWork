@@ -10,12 +10,18 @@ namespace Models.Employer
     public class EmployerCreate
     {
         public string EmployerId { get; set; }
+
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+
+        [Display(Name = "Organization")]
         public string Organization { get; set; }
 
-        [MaxLength(2)]
-        public string State { get; set; }
+        [Display(Name = "State")]
+        public int StateId { get; set; }
 
 
     }

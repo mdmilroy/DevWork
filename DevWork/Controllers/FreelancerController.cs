@@ -12,7 +12,7 @@ namespace DevWork.Controllers
     {
         private FreelancerService CreateFreelancerService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            var userId = User.Identity.GetUserId();
             var freelancerService = new FreelancerService(userId);
             return freelancerService;
         }

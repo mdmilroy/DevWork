@@ -10,9 +10,9 @@ namespace Services
 {
     public class EmployerService : IEmployerService
     {
-        private readonly Guid _userId;
+        private readonly string _userId;
         private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
-        public EmployerService(Guid userId)
+        public EmployerService(string userId)
         {
             _userId = userId;
         }
@@ -21,13 +21,14 @@ namespace Services
         {
             var entity = new Employer()
             {
-                EmployerId = _userId.ToString(),
+                EmployerId = _userId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Organization = model.Organization,
-                CreatedDate = DateTimeOffset.UtcNow
+                StateId = model.StateId,
+                CreatedDate = DateTimeOffset.UtcNow,
+                ModifiedDate = DateTimeOffset.UtcNow
             };
-            entity.State.StateId = _ctx.States.Where(s => s.StateName == model.State).Select(s => s.StateId).Single();
 
             _ctx.Employers.Add(entity);
             return _ctx.SaveChanges() == 1;
@@ -57,7 +58,7 @@ namespace Services
                 Rating = entity.Rating,
                 Organization = entity.Organization,
                 State = entity.State.StateName,
-                CreatedDate = entity.CreatedDate,
+                CreatedDate = entity.CreatedDate.Date,
                 IsActive = entity.IsActive
             };
         }
@@ -67,9 +68,9 @@ namespace Services
             var entity = _ctx.Employers.Single(e => e.EmployerId == _userId.ToString());
                 entity.FirstName = employerToUpdate.FirstName;
                 entity.LastName = employerToUpdate.LastName;
-                entity.Rating = employerToUpdate.Rating; // TODO this is not updating...
+                entity.Rating = employerToUpdate.Rating;
                 entity.Organization = employerToUpdate.Organization;
-                entity.StateId = _ctx.States.Where(s => s.StateName == employerToUpdate.State).Select(s => s.StateId).Single();
+                entity.StateId = employerToUpdate.State;
                 entity.ModifiedDate = DateTimeOffset.UtcNow;
 
             return _ctx.SaveChanges() == 1;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,43 +9,25 @@ namespace Models.Freelancer
 {
     public class FreelancerUpdate
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string State { get; set; }
-        public int JobsCompleted { get; set; }
-        public double Rating { get; set; }
-        public int CodingLanguageId { get; set; }
+        [Display(Name = "Freelancer ID")]
+        public string FreelancerId { get; set; }
 
-        //private List<string> _codingLanguage = new List<string>();
-        //public List<string> CodingLanguage
-        //{
-        //    get
-        //    {
-        //        return _codingLanguage;
-        //    }
-        //    set
-        //    {
-        //        if (value != null)
-        //        {
-        //            if (value.Contains(","))
-        //            {
-        //                string stringToSplit = value.ToString();
-        //                string[] languages = stringToSplit.Split(',');
-        //                foreach (var language in languages)
-        //                {
-        //                    _codingLanguage.Add(language);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                throw new ArgumentException("Coding languages must be separated by a comma and a space.");
-        //            };
-        //        }
-        //        else
-        //        {
-        //            throw new ArgumentException("The coding language field cannot be blank!");
-        //        }
-        //    }
-        //}
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Rating")]
+        public double Rating { get; set; }
+
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Display(Name = "Completed Job Postings")]
+        public int JobsCompleted { get; set; }
+
+        [Display(Name = "Coding Language")]
+        public int CodingLanguageId { get; set; }
     }
 }

@@ -11,9 +11,9 @@ namespace Services
 {
     public class FreelancerService : IFreelancerService
     {
-        private readonly Guid _userId;
+        private readonly string _userId;
         private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
-        public FreelancerService(Guid userId)
+        public FreelancerService(string userId)
         {
             _userId = userId;
         }
@@ -22,14 +22,15 @@ namespace Services
         {
             var entity = new Freelancer()
             {
-                FreelancerId = _userId.ToString(),
+                FreelancerId = _userId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                CreatedDate = DateTimeOffset.UtcNow
+                StateId = model.StateId,
+                CreatedDate = DateTimeOffset.UtcNow,
+                ModifiedDate = DateTimeOffset.UtcNow
             };
-            var lang = _ctx.CodingLanguages.Where(c => c.CodingLanguageId == model.CodingLanguageId).Select(c => c).FirstOrDefault();
-            entity.CodingLanguages.Add(lang);
-            entity.State.StateId = _ctx.States.Where(s => s.StateName == model.State).Select(s => s.StateId).FirstOrDefault();
+            //var lang = _ctx.CodingLanguages.Where(c => c.CodingLanguageId == model.CodingLanguageId).Select(c => c).FirstOrDefault();
+            //entity.CodingLanguages.Add(lang);
             _ctx.Freelancers.Add(entity);
             return _ctx.SaveChanges() == 1;
         }
@@ -72,7 +73,7 @@ namespace Services
             entity.FirstName = freelancerToUpdate.FirstName;
             entity.LastName = freelancerToUpdate.LastName;
             entity.Rating = freelancerToUpdate.Rating;
-            entity.StateId = _ctx.States.Where(s => s.StateName == freelancerToUpdate.State).Select(s => s.StateId).Single();
+            entity.StateId = _ctx.States.Select(s => s.StateId).Single();
             entity.ModifiedDate = DateTimeOffset.UtcNow;
 
             var lang = _ctx.CodingLanguages.Where(c => c.CodingLanguageId == freelancerToUpdate.CodingLanguageId).Select(c => c).FirstOrDefault();
