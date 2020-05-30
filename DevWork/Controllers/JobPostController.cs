@@ -14,7 +14,7 @@ namespace DevWork.Controllers
         [Authorize(Roles="employer")]
         private JobPostService CreateJobPostService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+            var userId = User.Identity.GetUserId();
             var jobPostService = new JobPostService(userId);
             return jobPostService;
         }
