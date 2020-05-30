@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Data
 {
@@ -13,14 +16,9 @@ namespace Data
         public DateTimeOffset SentDate { get; set; }
         public DateTimeOffset ModifiedDate { get; set; }
         public bool IsActive { get; set; } = true;
-
-        [ForeignKey("Sender")]
         public string SenderId { get; set; }
-        public virtual ApplicationUser Sender { get; set; }
-
-        [ForeignKey("Recipient")]
         public string RecipientId { get; set; }
-        public virtual ApplicationUser Recipient { get; set; }
 
+        public virtual ApplicationUser Recipient { get; set; }
     }
 }

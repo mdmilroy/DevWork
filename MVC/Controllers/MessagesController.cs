@@ -8,122 +8,119 @@ using System.Web;
 using System.Web.Mvc;
 using Data;
 using Microsoft.AspNet.Identity;
-using Models.JobPost;
+using Models.Message;
 using Services;
 
 namespace MVC.Controllers
 {
-    public class MessageController : Controller
+    public class MessagesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-        private JobPostService _jobPostService;
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
+        private MessageService _messageService;
         private string _userId;
 
-        // GET: JobPosts
+        // GET: Message
         public ActionResult Index()
         {
-            var jobPosts = db.JobPosts.Include(j => j.Employer).Include(j => j.Freelancer);
-            return View(jobPosts.ToList());
+            var messages = db.Messages.Include(j => j.Recipient);
+            return View(messages.ToList());
         }
 
-        // GET: JobPosts/Details/5
+        // GET: Message/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JobPost jobPost = db.JobPosts.Find(id);
-            if (jobPost == null)
+            Message message = db.Messages.Find(id);
+            if (message == null)
             {
                 return HttpNotFound();
             }
-            return View(jobPost);
+            return View(message);
         }
 
-        // GET: JobPosts/Create
+        // GET: Message/Create
         public ActionResult Create()
         {
-            ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "FirstName");
-            ViewBag.FreelancerId = new SelectList(db.Freelancers, "FreelancerId", "FirstName");
+            ViewBag.EmployerId = new SelectList(db.Users, "Id", "Username");
             return View();
         }
 
-        // POST: JobPosts/Create
+        // POST: Message/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(JobPostCreate jobPost)
+        public ActionResult Create(MessageCreate message)
         {
             if (ModelState.IsValid)
             {
                 _userId = User.Identity.GetUserId();
-                _jobPostService = new JobPostService(_userId);
-                _jobPostService.CreateJobPost(jobPost);
+                _messageService = new MessageService(_userId);
+                _messageService.CreateMessage(message);
                 return RedirectToAction("Index");
             }
 
-            return View(jobPost);
+            return View(message);
         }
 
-        // GET: JobPosts/Edit/5
+        // GET: Message/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JobPost jobPost = db.JobPosts.Find(id);
-            if (jobPost == null)
+            Message message = db.Messages.Find(id);
+            if (message == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "FirstName", jobPost.EmployerId);
-            ViewBag.FreelancerId = new SelectList(db.Freelancers, "FreelancerId", "FirstName", jobPost.FreelancerId);
-            return View(jobPost);
+            ViewBag.EmployerId = new SelectList(db.Users, "Id", "Username");
+            return View(message);
         }
 
-        // POST: JobPosts/Edit/5
+        // POST: Message/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobPostId,JobTitle,Content,StateName,IsAwarded,CreatedDate,ModifiedDate,IsActive,EmployerId,FreelancerId")] JobPost jobPost)
+        public ActionResult Edit([Bind(Include = "MessageId,JobTitle,Content,StateName,IsAwarded,CreatedDate,ModifiedDate,IsActive,EmployerId,FreelancerId")] Message message)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(jobPost).State = EntityState.Modified;
+                db.Entry(message).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "FirstName", jobPost.EmployerId);
-            ViewBag.FreelancerId = new SelectList(db.Freelancers, "FreelancerId", "FirstName", jobPost.FreelancerId);
-            return View(jobPost);
+            ViewBag.EmployerId = new SelectList(db.Users, "Id", "Username");
+            return View(message);
         }
 
-        // GET: JobPosts/Delete/5
+        // GET: Message/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JobPost jobPost = db.JobPosts.Find(id);
-            if (jobPost == null)
+            Message message = db.Messages.Find(id);
+            if (message == null)
             {
                 return HttpNotFound();
             }
-            return View(jobPost);
+            return View(message);
         }
 
-        // POST: JobPosts/Delete/5
+        // POST: Message/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            JobPost jobPost = db.JobPosts.Find(id);
-            db.JobPosts.Remove(jobPost);
+            Message message = db.Messages.Find(id);
+            db.Messages.Remove(message);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

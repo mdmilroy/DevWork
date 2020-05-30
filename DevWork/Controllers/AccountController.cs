@@ -329,7 +329,7 @@ namespace DevWork.Controllers
             }
 
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, UserRole = model.UserRole };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, UserRole = model.UserRole.ToLower() };
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
 
