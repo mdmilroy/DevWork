@@ -22,7 +22,7 @@ namespace MVC.Controllers
         // GET: Freelancers
         public ActionResult Index()
         {
-            var freelancers = db.Freelancers.Include(f => f.State);
+            var freelancers = db.Freelancers.Where(e => e.IsActive == true).Include(f => f.State);
             return View(freelancers.ToList());
         }
 
