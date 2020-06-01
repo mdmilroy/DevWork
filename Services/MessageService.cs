@@ -27,7 +27,6 @@ namespace Services
                 SentDate = DateTimeOffset.UtcNow,
                 ModifiedDate = DateTimeOffset.UtcNow
             };
-
             _ctx.Messages.Add(entity);
             return _ctx.SaveChanges() == 1;
         }

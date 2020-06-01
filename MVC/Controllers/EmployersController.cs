@@ -15,7 +15,7 @@ namespace MVC.Controllers
 {
     public class EmployersController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db = new ApplicationDbContext();
         private EmployerService _employerService;
         private string _userId;
 
@@ -23,7 +23,7 @@ namespace MVC.Controllers
         // GET: Employers
         public ActionResult Index()
         {
-            var employers = db.Employers.Include(e => e.State);
+            var employers = db.Employers.Where(e => e.IsActive == true).Include(e => e.State);
             return View(employers.ToList());
         }
 

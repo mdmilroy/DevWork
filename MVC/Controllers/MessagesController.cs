@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using Data;
@@ -19,14 +20,14 @@ namespace MVC.Controllers
         private MessageService _messageService;
         private string _userId;
 
-        // GET: Message
+        // GET: Messages1
         public ActionResult Index()
         {
-            var messages = db.Messages.Include(j => j.Recipient);
-            return View(messages.ToList());
+            var users = db.Messages.Where(e => e.IsActive == true).Include(e => e.Recipient);
+            return View(db.Messages.ToList());
         }
 
-        // GET: Message/Details/5
+        // GET: Messages1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,14 +42,14 @@ namespace MVC.Controllers
             return View(message);
         }
 
-        // GET: Message/Create
+        // GET: Messages1/Create
         public ActionResult Create()
         {
-            ViewBag.EmployerId = new SelectList(db.Users, "Id", "Username");
+            ViewBag.RecipientId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
-        // POST: Message/Create
+        // POST: Messages1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,7 +67,7 @@ namespace MVC.Controllers
             return View(message);
         }
 
-        // GET: Message/Edit/5
+        // GET: Messages1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,16 +79,15 @@ namespace MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployerId = new SelectList(db.Users, "Id", "Username");
             return View(message);
         }
 
-        // POST: Message/Edit/5
+        // POST: Messages1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MessageId,JobTitle,Content,StateName,IsAwarded,CreatedDate,ModifiedDate,IsActive,EmployerId,FreelancerId")] Message message)
+        public ActionResult Edit([Bind(Include = "MessageId,Content,IsRead,SentDate,ModifiedDate,IsActive,SenderId,RecipientId")] Message message)
         {
             if (ModelState.IsValid)
             {
@@ -95,11 +95,10 @@ namespace MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployerId = new SelectList(db.Users, "Id", "Username");
             return View(message);
         }
 
-        // GET: Message/Delete/5
+        // GET: Messages1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,7 +113,7 @@ namespace MVC.Controllers
             return View(message);
         }
 
-        // POST: Message/Delete/5
+        // POST: Messages1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

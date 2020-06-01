@@ -79,6 +79,8 @@ namespace Data
                     fc.ToTable("CodingLanguageFreelancer");
                 });
         }
+
+        //public System.Data.Entity.DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>

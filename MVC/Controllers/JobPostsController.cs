@@ -22,7 +22,7 @@ namespace MVC.Controllers
         // GET: JobPosts
         public ActionResult Index()
         {
-            var jobPosts = db.JobPosts.Include(j => j.Employer).Include(j => j.Freelancer);
+            var jobPosts = db.JobPosts.Where(e => e.IsActive == true).Include(j => j.Employer).Include(j => j.Freelancer);
             return View(jobPosts.ToList());
         }
 
