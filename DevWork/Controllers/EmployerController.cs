@@ -1,7 +1,13 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Contracts;
+using Data;
+using Microsoft.AspNet.Identity;
 using Models.Employer;
 using Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace DevWork.Controllers
@@ -10,31 +16,11 @@ namespace DevWork.Controllers
     [RoutePrefix("api/Employers")]
     public class EmployerController : ApiController
     {
-        private EmployerService CreateEmployerService()
+        private readonly IEmployerService _employerService;
+
+        public EmployerController(IEmployerService employerService)
         {
-            var userId = User.Identity.GetUserId();
-            var employerService = new EmployerService(userId);
-            return employerService;
-        }
-
-        // api/Employer/GetEmployerList
-        public IHttpActionResult Get()
-        {
-            EmployerService employerService = CreateEmployerService();
-            var employers = employerService.GetEmployers();
-            return Ok(employers);
-        }
-
-        // api/Employer/GetEmployerById
-        public IHttpActionResult Get(string id)
-        {
-            EmployerService employerService = CreateEmployerService();
-            var employer = employerService.GetEmployerById(id);
-
-            if (employer == null)
-                return NotFound();
-
-            return Ok(employer);
+            _employerService = employerService;
         }
 
         // api/Employer/Create
@@ -43,35 +29,45 @@ namespace DevWork.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateEmployerService();
 
-            if (!service.CreateEmployer(employer))
+            if (!_employerService.CreateEmployer(employer))
                 return InternalServerError();
 
             return Ok();
         }
 
+        // api/Employer/GetEmployersList
+        public IHttpActionResult Get()
+        {
+            var employers = _employerService.GetEmployers();
+            return Ok(employers);
+        }
+
+        // api/Employer/GetEmployerById
+        public IHttpActionResult Get(string id)
+        {
+            var employer = _employerService.GetEmployerById(id);
+            return Ok(employer);
+        }
+
         // api/Employer/Update
-        [Authorize(Roles="employer")]
         public IHttpActionResult Put(EmployerUpdate employer)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateEmployerService();
 
-            if (!service.UpdateEmployer(employer))
+            if (!_employerService.UpdateEmployer(employer))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/Employer/Delete
-        public IHttpActionResult Delete(string id)
+        public IHttpActionResult Post(string id)
         {
-            var service = CreateEmployerService();
 
-            if (!service.DeleteEmployer(id))
+            if (!_employerService.DeleteEmployer(id))
                 return InternalServerError();
 
             return Ok();

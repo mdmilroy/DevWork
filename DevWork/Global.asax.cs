@@ -1,7 +1,10 @@
-﻿using System.Web.Http;
+﻿using Contracts;
+using Services;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Unity;
 
 namespace DevWork
 {
@@ -14,6 +17,14 @@ namespace DevWork
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+            var container = new UnityContainer();
+            var resolver = new UnityResolver(container);
+
+            container.RegisterType<IEmployerService, EmployerService>();
+
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
     }
 }
