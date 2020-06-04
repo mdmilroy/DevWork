@@ -69,6 +69,12 @@ namespace Data
                 .HasForeignKey(i => i.StateId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<State>()
+                .HasMany(e => e.JobPosts)
+                .WithRequired(e => e.State)
+                .HasForeignKey(i => i.StateId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Freelancer>()
                 .HasMany(e => e.CodingLanguages)
                 .WithMany(s => s.Freelancers)

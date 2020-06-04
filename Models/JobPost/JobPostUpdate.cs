@@ -11,7 +11,7 @@ namespace Models.JobPost
         public int JobPostId { get; set; }
         public string JobTitle { get; set; }
         public string Content { get; set; }
-        public string StateName { get; set; }
+        public int State { get; set; }
         public bool IsAwarded { get; set; } = false;
         public string FreelancerId { get; set; }
     }

@@ -10,7 +10,7 @@ namespace Models.JobPost
     {
         public string JobTitle { get; set; }
         public string Content { get; set; }
-        public string StateName { get; set; }
+        public string State { get; set; }
         public bool IsAwarded { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public string EmployerId { get; set; }
