@@ -10,7 +10,7 @@ namespace Models.JobPost
     {
         public int JobPostId { get; set; }
         public string JobTitle { get; set; }
-        public string StateName { get; set; }
+        public string State { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public bool IsActive { get; set; }
     }

@@ -9,11 +9,8 @@ namespace Models.Freelancer
 {
     public class FreelancerDetail
     {
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
 
         [Display(Name = "Rating")]
         public double Rating { get; set; }
