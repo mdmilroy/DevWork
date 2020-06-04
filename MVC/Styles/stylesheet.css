@@ -2,7 +2,6 @@
     margin: 0px;
     padding: 0px;
 }
-
 body {
 
 }
@@ -105,13 +104,19 @@ navbar-light {
     font-family: Arial;
 }
 
+a {
+    color: #00c6ea;
+}
 
 a:hover {
     color: black;
     background-color: #EDAE49;
-    opacity: 100;
 }
 
+a:active {
+    background-color: black;
+    background-color: #EDAE49;
+}
 
 .nav-item {
     position: sticky;
@@ -131,10 +136,6 @@ a:hover {
         opacity: 50;
     }
 
-a:active {
-    background-color: black;
-    opacity: 0.5;
-}
 
 .dropdown-menu {
     background-color: #2C3E50 !important;
@@ -155,5 +156,15 @@ a:active {
     .dropdown-item:active{
         color: black;
     }
+
+#CreateNewButton {
+    outline: 1px solid gray;
+    color: white !important;
+    height: 2.5em;
+    background-color: #2C3E50 !important;
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
 
 
