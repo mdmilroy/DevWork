@@ -1,0 +1,159 @@
+﻿html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+
+}
+
+p {
+    color: black;
+}
+
+h1 { 
+    color: #66FCF1;
+}
+
+h2 {
+    color: #0B0C10;
+}
+
+.btn{
+    margin-top: .5em;
+    margin-right: .5em;
+    margin-bottom: .5em;
+    margin-left: .5em;
+}
+
+.btn:hover {
+    color: black;
+    opacity: 100;
+}
+
+    .btn:active {
+        color: white !important;
+        opacity: 100;
+    }
+
+.jumbotron {
+    margin-top: 1.25em;
+    margin-right: .75em;
+    margin-bottom: .75em;
+    margin-left: .75em;
+    border: solid 1px #1C1018;
+    background-color: #2C3E50;
+    -webkit-box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4); /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4); /* Firefox 3.5 - 3.6 */
+    box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+
+}
+
+
+.jumbotron p {
+    color: #EEE;
+    font-family: Tahoma;
+    margin-top: 1.5%;
+    margin-right: 1.5%;
+    margin-bottom: 1.5%;
+    margin-left: 1.5%;
+}
+
+.jumbotron h1 {
+    font-size: xx-large;
+    color: #EDAE49;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.jumbotron h2{
+    color: #fd7014;
+}
+
+.lead {
+    color: #fd7014;
+    text-shadow: 0 3px 0 #b2a98f,0 14px 10px rgba(0,0,0,0.15), 0 24px 2px rgba(0,0,0,0.1), 0 34px 30px rgba(0,0,0,0.1);
+    opacity: 0.5;
+    font-family: 'Agency FB';
+    font-size: 2.5em;
+}
+
+.row {
+    padding-top: 2.5%;
+    padding-right: 2.5%;
+    padding-bottom: 2.5%;
+    padding-left: 2.5%;
+}
+
+navbar-light {
+    color: red !important;
+    outline: 5px solid white;
+}
+
+.navbar {
+    font-family: Raleway;
+    font-size: 1.4em;
+    margin-bottom: 2em;
+}
+
+.nav-link {
+    color: white;
+    position: sticky;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-family: Arial;
+}
+
+
+a:hover {
+    color: black;
+    background-color: #EDAE49;
+    opacity: 100;
+}
+
+
+.nav-item {
+    position: sticky;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-brand {
+    color: #EDAE49 !important;
+    font-family: 'Trebuchet MS';
+    font-size: 1.9em;
+}
+
+    .navbar-brand:hover {
+        background-color: #2C3E50;
+        opacity: 50;
+    }
+
+a:active {
+    background-color: black;
+    opacity: 0.5;
+}
+
+.dropdown-menu {
+    background-color: #2C3E50 !important;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px 18px #black;
+}
+.dropdown-item{
+    color: white;
+}
+
+    .dropdown-item:hover {
+        color: #EDAE49;
+        background-color: #0B0C10;
+        opacity: 0.7;
+        border-radius: 2px;
+    }
+    .dropdown-item:active{
+        color: black;
+    }
+
+
