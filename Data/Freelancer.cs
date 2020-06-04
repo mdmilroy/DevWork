@@ -15,7 +15,10 @@ namespace Data
         
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        
+
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
+
         [Display(Name = "Number of Jobs Completed")]
         public int JobsCompleted { get; set; } = 0;
         

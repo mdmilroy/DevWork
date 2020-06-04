@@ -24,6 +24,7 @@ namespace Services
                 EmployerId = _userId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                FullName = $"{model.FirstName} {model.LastName}",
                 Organization = model.Organization,
                 StateId = model.StateId,
                 CreatedDate = DateTimeOffset.UtcNow,
@@ -39,7 +40,7 @@ namespace Services
             var query = _ctx.Employers.Where(m => m.IsActive == true).Select(e => new EmployerListItem
             {
                 EmployerId = e.EmployerId,
-                LastName = e.LastName,
+                FullName = $"{e.FirstName} {e.LastName}",
                 Organization = e.Organization,
                 State = e.State.StateName,
                 JobPostsActive = e.JobPosts.Count()
@@ -53,8 +54,7 @@ namespace Services
             var entity = _ctx.Employers.Single(e => e.EmployerId == id);
             return new EmployerDetail
             {
-                FirstName = entity.FirstName,
-                LastName = entity.LastName,
+                FullName = entity.FullName,
                 Rating = entity.Rating,
                 Organization = entity.Organization,
                 State = entity.State.StateName,

@@ -26,7 +26,7 @@ namespace Services
             {
                 JobTitle = jobPostCreate.JobTitle,
                 Content = jobPostCreate.Content,
-                StateName = jobPostCreate.StateName,
+                StateId = jobPostCreate.StateId,
                 CreatedDate = DateTimeOffset.UtcNow,
                 ModifiedDate = DateTimeOffset.UtcNow,
                 EmployerId = _userId
@@ -42,7 +42,7 @@ namespace Services
             {
                 JobPostId = e.JobPostId,
                 JobTitle = e.JobTitle,
-                StateName = e.StateName,
+                State = e.State.StateName,
                 CreatedDate = e.CreatedDate
             });
 
@@ -56,7 +56,7 @@ namespace Services
             {
                 JobTitle = entity.JobTitle,
                 Content = entity.Content,
-                StateName = entity.StateName,
+                State = entity.State.StateName,
                 IsAwarded = entity.IsAwarded,
                 CreatedDate = entity.CreatedDate,
                 EmployerId = entity.EmployerId,
@@ -72,7 +72,7 @@ namespace Services
             {
                 JobPostId = e.JobPostId,
                 JobTitle = e.JobTitle,
-                StateName = e.StateName,
+                State = e.State.StateName,
                 CreatedDate = e.CreatedDate,
                 IsActive = e.IsActive
             });
@@ -86,7 +86,7 @@ namespace Services
             entity.JobPostId = jobPostUpdate.JobPostId;
             entity.JobTitle = jobPostUpdate.JobTitle;
             entity.Content = jobPostUpdate.Content;
-            entity.StateName = jobPostUpdate.StateName;
+            entity.StateId = jobPostUpdate.State;
             entity.IsAwarded = jobPostUpdate.IsAwarded;
             entity.ModifiedDate = DateTimeOffset.UtcNow;
             entity.FreelancerId = jobPostUpdate.FreelancerId;

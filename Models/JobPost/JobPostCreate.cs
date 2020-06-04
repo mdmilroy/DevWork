@@ -10,6 +10,6 @@ namespace Models.JobPost
     {
         public string JobTitle { get; set; }
         public string Content { get; set; }
-        public string StateName { get; set; }
+        public int StateId { get; set; }
     }
 }
