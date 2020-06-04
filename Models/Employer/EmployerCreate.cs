@@ -9,6 +9,7 @@ namespace Models.Employer
 {
     public class EmployerCreate
     {
+        
         public string EmployerId { get; set; }
 
         [Display(Name = "First Name")]
@@ -21,8 +22,8 @@ namespace Models.Employer
         public string Organization { get; set; }
 
         [Display(Name = "State")]
+        
         public int StateId { get; set; }
-
 
     }
 }

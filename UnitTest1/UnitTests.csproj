@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmployerControllerTests.cs" />
+    <Compile Include="FreelancerControllerTest.cs" />
     <Compile Include="MessageControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

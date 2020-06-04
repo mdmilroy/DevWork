@@ -11,7 +11,6 @@ namespace Services
     {
         private readonly string _userId;
         private readonly ApplicationDbContext _ctx = new ApplicationDbContext();
-
         public MessageService(string userId)
         {
             _userId = userId;
