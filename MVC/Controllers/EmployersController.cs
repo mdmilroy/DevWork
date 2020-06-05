@@ -61,6 +61,7 @@ namespace MVC.Controllers
                 _userId = User.Identity.GetUserId();
                 _employerService = new EmployerService(_userId);
                 _employerService.CreateEmployer(employer);
+                
                 return RedirectToAction("Index");
             }
 
