@@ -157,18 +157,17 @@ namespace MVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    //UserManager.AddToRole(user.Id, user.UserRole);
-
+                    var roleresult = UserManager.AddToRole(user.Id, user.UserRole);
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    if (user.UserRole.ToLower() == "employer")
+                    if (user.UserRole == "employer")
                     {
                         return RedirectToAction("Create", "Employers");
                     }
-                    else if (user.UserRole.ToLower() == "freelancer")
+                    else if (user.UserRole == "freelancer")
                     {
                         return RedirectToAction("Create", "Freelancers");
                     }
