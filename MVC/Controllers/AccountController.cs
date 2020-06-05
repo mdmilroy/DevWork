@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -7,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Data;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MVC.Models;
@@ -140,6 +143,13 @@ namespace MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var roles = db.Roles.ToList();
+            ViewBag.UserRole = roles.Select(s => new SelectListItem
+            {
+                Value = s.Name.ToString(),
+                Text = s.Name.ToString(),
+            });
             return View();
         }
 
