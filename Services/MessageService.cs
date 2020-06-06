@@ -21,11 +21,33 @@ namespace Services
             var entity = new Message()
             {
                 Content = messageCreate.Content,
-                SenderId = _userId,
-                RecipientId = messageCreate.RecipientId,
                 SentDate = DateTimeOffset.UtcNow,
                 ModifiedDate = DateTimeOffset.UtcNow
             };
+
+            var user = _ctx.Users.Find(_userId);
+            if (user.UserRole == "employer")
+            {
+                var sender = _ctx.Employers.Where(e => e.EmployerId == _userId).Select(e => e.FirstName).FirstOrDefault();
+                entity.Sender = sender;
+            }
+            else if (user.UserRole == "freelancer")
+            {
+                var sender = _ctx.Freelancers.Where(e => e.FreelancerId == _userId).Select(e => e.FirstName).FirstOrDefault();
+                entity.Sender = sender;
+            }
+
+            if (user.UserRole == "employer")
+            {
+                var recipient = _ctx.Employers.Where(e => e.EmployerId == messageCreate.RecipientId).Select(e => e.FirstName).FirstOrDefault();
+                entity.Receiver = recipient;
+            }
+            else if (user.UserRole == "freelancer")
+            {
+                var recipient = _ctx.Freelancers.Where(e => e.FreelancerId == messageCreate.RecipientId).Select(e => e.FirstName).FirstOrDefault();
+                entity.Receiver = recipient;
+            }
+
             _ctx.Messages.Add(entity);
             return _ctx.SaveChanges() == 1;
         }
@@ -35,8 +57,8 @@ namespace Services
             var query = _ctx.Messages.Where(m => m.IsActive == true).Select(m => new MessageListItem
             {
                 MessageId = m.MessageId,
-                SenderId = m.SenderId,
-                RecipientId = m.RecipientId,
+                Sender = m.Sender,
+                Recipient = m.Receiver,
                 IsRead = m.IsRead,
                 SentDate = m.SentDate
             });
@@ -50,8 +72,8 @@ namespace Services
             return new MessageDetail()
             {
                 Content = entity.Content,
-                SenderId = entity.SenderId,
-                RecipientId = entity.RecipientId,
+                Sender = entity.Sender,
+                Recipient = entity.Receiver,
                 IsRead = entity.IsRead,
                 SentDate = entity.SentDate,
                 ModifiedDate = entity.ModifiedDate,

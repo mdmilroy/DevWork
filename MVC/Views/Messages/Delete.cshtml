@@ -52,19 +52,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SenderId)
+            @Html.DisplayNameFor(model => model.Sender)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SenderId)
+            @Html.DisplayFor(model => model.Sender)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RecipientId)
+            @Html.DisplayNameFor(model => model.Recipient)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RecipientId)
+            @Html.DisplayFor(model => model.Recipient)
         </dd>
 
     </dl>
@@ -73,7 +73,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-warning" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

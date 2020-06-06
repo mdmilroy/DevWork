@@ -12,6 +12,7 @@ namespace Data
     public class ApplicationUser : IdentityUser
     {
         public string UserRole { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -69,6 +70,12 @@ namespace Data
                 .HasForeignKey(i => i.StateId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<State>()
+                .HasMany(e => e.JobPosts)
+                .WithRequired(e => e.State)
+                .HasForeignKey(i => i.StateId)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Freelancer>()
                 .HasMany(e => e.CodingLanguages)
                 .WithMany(s => s.Freelancers)
@@ -80,7 +87,6 @@ namespace Data
                 });
         }
 
-        //public System.Data.Entity.DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>

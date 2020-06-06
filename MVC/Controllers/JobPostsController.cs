@@ -45,7 +45,7 @@ namespace MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "FirstName");
-            ViewBag.FreelancerId = new SelectList(db.Freelancers, "FreelancerId", "FirstName");
+            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
             return View();
         }
 
@@ -81,6 +81,7 @@ namespace MVC.Controllers
             }
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "FirstName", jobPost.EmployerId);
             ViewBag.FreelancerId = new SelectList(db.Freelancers, "FreelancerId", "FirstName", jobPost.FreelancerId);
+            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
             return View(jobPost);
         }
 
@@ -99,6 +100,7 @@ namespace MVC.Controllers
             }
             ViewBag.EmployerId = new SelectList(db.Employers, "EmployerId", "FirstName", jobPost.EmployerId);
             ViewBag.FreelancerId = new SelectList(db.Freelancers, "FreelancerId", "FirstName", jobPost.FreelancerId);
+            ViewBag.StateId = new SelectList(db.States, "StateId", "StateName");
             return View(jobPost);
         }
 

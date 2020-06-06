@@ -25,6 +25,7 @@ namespace Services
                 FreelancerId = _userId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                FullName = $"{model.FirstName} {model.LastName}",
                 StateId = model.StateId,
                 CreatedDate = DateTimeOffset.UtcNow,
                 ModifiedDate = DateTimeOffset.UtcNow
@@ -40,7 +41,7 @@ namespace Services
             var query = _ctx.Freelancers.Include(nameof(CodingLanguage)).Where(m => m.IsActive == true).Select(e => new FreelancerListItem
             {
                 FreelancerId = e.FreelancerId,
-                LastName = e.LastName,
+                FullName = $"{e.FirstName} {e.LastName}",
                 State = e.State.StateName,
                 CodingLanguages = e.CodingLanguages.Select(c => c.CodingLanguageName).ToList(),
                 JobPostsCompleted = e.JobsCompleted,
@@ -55,8 +56,7 @@ namespace Services
             return
             new FreelancerDetail
             {
-                FirstName = entity.FirstName,
-                LastName = entity.LastName,
+                FullName = $"{entity.FirstName} {entity.LastName}",
                 Rating = entity.Rating,
                 CodingLanguages = entity.CodingLanguages.Select(c => c.CodingLanguageName).ToList(),
                 State = entity.State.StateName,

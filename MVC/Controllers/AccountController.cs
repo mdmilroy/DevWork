@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -7,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Data;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MVC.Models;
@@ -140,6 +143,13 @@ namespace MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var roles = db.Roles.ToList();
+            ViewBag.UserRole = roles.Select(s => new SelectListItem
+            {
+                Value = s.Name.ToString(),
+                Text = s.Name.ToString(),
+            });
             return View();
         }
 
@@ -157,15 +167,24 @@ namespace MVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    //UserManager.AddToRole(user.Id, user.UserRole);
-
+                    var roleresult = UserManager.AddToRole(user.Id, user.UserRole);
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    if (user.UserRole == "employer")
+                    {
+                        return RedirectToAction("Create", "Employers");
+                    }
+                    else if (user.UserRole == "freelancer")
+                    {
+                        return RedirectToAction("Create", "Freelancers");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 AddErrors(result);
             }

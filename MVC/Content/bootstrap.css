@@ -83,14 +83,22 @@ hr {
   overflow: visible;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+.equalHeightColumns {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10rem;
 }
 
-p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+.equalColumnContent {
+    height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
 abbr[title],
@@ -162,7 +170,7 @@ sup {
 }
 
 a {
-  color: #18BC9C;
+  color: white;
   text-decoration: none;
   background-color: transparent;
 }
