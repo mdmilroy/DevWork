@@ -33,11 +33,11 @@
                         Get Started
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Employers", "Index", "Employers", null, new { @class = "dropdown-item" })</a>
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Freelancers", "Index", "Freelancers", null, new { @class = "dropdown-item" })</a>
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Job Posts", "Index", "JobPosts", null, new { @class = "dropdown-item" })</a>
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Messages", "Index", "Messages", null, new { @class = "dropdown-item" })</a>
-                        <a class="dropdown-item" href="#">@Html.ActionLink("Coding Languages", "Index", "CodingLanguages", null, new { @class = "dropdown-item" })</a>
+                        @Html.ActionLink("Employers", "Index", "Employers", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Freelancers", "Index", "Freelancers", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Job Posts", "Index", "JobPosts", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Messages", "Index", "Messages", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Coding Languages", "Index", "CodingLanguages", null, new { @class = "dropdown-item" })
                     </div>
                 </li>
             </ul>
