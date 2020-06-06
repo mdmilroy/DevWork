@@ -1,4 +1,4 @@
-﻿using Contracts;
+using Contracts;
 using Data;
 using Models.Message;
 using System;
