@@ -1,4 +1,4 @@
-﻿using Contracts;
+using Contracts;
 using Data;
 using Models.Employer;
 using System;
@@ -24,7 +24,7 @@ namespace Services
                 EmployerId = _userId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                FullName = $"{model.FirstName} {model.LastName}",
+                FullName = model.FirstName + " " + model.LastName,
                 Organization = model.Organization,
                 StateId = model.StateId,
                 CreatedDate = DateTimeOffset.UtcNow,
@@ -40,7 +40,7 @@ namespace Services
             var query = _ctx.Employers.Where(m => m.IsActive == true).Select(e => new EmployerListItem
             {
                 EmployerId = e.EmployerId,
-                FullName = $"{e.FirstName} {e.LastName}",
+                FullName = e.FullName,
                 Organization = e.Organization,
                 State = e.State.StateName,
                 JobPostsActive = e.JobPosts.Count()

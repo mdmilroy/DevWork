@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Models.CodingLanguage;
 using System;
 using System.Collections.Generic;
