@@ -1,4 +1,4 @@
-﻿using Contracts;
+using Contracts;
 using Microsoft.AspNet.Identity;
 using Models.Freelancer;
 using Services;
@@ -11,11 +11,31 @@ namespace DevWork.Controllers
     [RoutePrefix("api/Freelancers")]
     public class FreelancerController : ApiController
     {
-        private readonly IFreelancerService _freelancerService;
-
-        public FreelancerController(IFreelancerService freelancerService)
+        private FreelancerService CreateFreelancerService()
         {
-            _freelancerService = freelancerService;
+            var userId = User.Identity.GetUserId();
+            var freelancerService = new FreelancerService(userId);
+            return freelancerService;
+        }
+
+        // api/Freelancer/GetFreelancerList
+        public IHttpActionResult Get()
+        {
+            FreelancerService freelancerService = CreateFreelancerService();
+            var freelancers = freelancerService.GetFreelancers();
+            return Ok(freelancers);
+        }
+
+        // api/Freelancer/GetFreelancerById
+        public IHttpActionResult Get(string id)
+        {
+            FreelancerService freelancerService = CreateFreelancerService();
+            var freelancer = freelancerService.GetFreelancerById(id);
+
+            if (freelancer == null)
+                return NotFound();
+
+            return Ok(freelancer);
         }
 
         // api/Freelancer/Create
@@ -24,45 +44,35 @@ namespace DevWork.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            var service = CreateFreelancerService();
 
-            if (!_freelancerService.CreateFreelancer(freelancer))
+            if (!service.CreateFreelancer(freelancer))
                 return InternalServerError();
 
             return Ok();
         }
 
-        // api/Freelancer/GetFreelancersList
-        public IHttpActionResult Get()
-        {
-            var freelancers = _freelancerService.GetFreelancers();
-            return Ok(freelancers);
-        }
-
-        // api/Freelancer/GetFreelancerById
-        public IHttpActionResult Get(string id)
-        {
-            var freelancer = _freelancerService.GetFreelancerById(id);
-            return Ok(freelancer);
-        }
-
         // api/Freelancer/Update
+        [Authorize(Roles = "freelancer")]
         public IHttpActionResult Put(FreelancerUpdate freelancer)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            var service = CreateFreelancerService();
 
-            if (!_freelancerService.UpdateFreelancer(freelancer))
+            if (!service.UpdateFreelancer(freelancer))
                 return InternalServerError();
 
             return Ok();
         }
 
         // api/Freelancer/Delete
-        public IHttpActionResult Post(string id)
+        public IHttpActionResult Delete(string id)
         {
+            var service = CreateFreelancerService();
 
-            if (!_freelancerService.DeleteFreelancer(id))
+            if (!service.DeleteFreelancer(id))
                 return InternalServerError();
 
             return Ok();
